@@ -1,0 +1,364 @@
+
+                    <section id="postman-test-cases">
+                        <h2>📝 การเขียน Test Case API ด้วย Postman</h2>
+
+                        <h3>🎯 สิ่งที่ต้องตรวจสอบใน API Test</h3>
+                        
+                        <table>
+                            <tr>
+                                <th>หัวข้อ</th>
+                                <th>รายละเอียด</th>
+                                <th>ตัวอย่าง</th>
+                            </tr>
+                            <tr>
+                                <td><strong>Status Code</strong></td>
+                                <td>ตรวจสอบ HTTP status ที่ตอบกลับ</td>
+                                <td>200, 201, 400, 404, 500</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Response Time</strong></td>
+                                <td>เวลาตอบสนองต้องรวดเร็ว</td>
+                                <td>< 500ms, < 2s</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Response Body</strong></td>
+                                <td>ตรวจสอบ JSON structure และค่า</td>
+                                <td>มี field ครบ, ค่าถูกต้อง</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Headers</strong></td>
+                                <td>ตรวจสอบ Content-Type และ headers อื่นๆ</td>
+                                <td>application/json</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Schema Validation</strong></td>
+                                <td>ตรวจสอบว่าข้อมูลตรงกับ schema ที่กำหนด</td>
+                                <td>type, required fields</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Error Handling</strong></td>
+                                <td>ตรวจสอบกรณี error</td>
+                                <td>invalid input, not found</td>
+                            </tr>
+                        </table>
+
+                        <h3>🛍️ ตัวอย่าง: E-commerce API (Test Shop)</h3>
+                        
+                        <div class="info-box">
+                            <h4>💡 API Endpoints ที่ต้องทดสอบ</h4>
+                            <ul>
+                                <li><code>GET /api/products</code> - ดึงรายการสินค้า</li>
+                                <li><code>GET /api/products/{id}</code> - ดึงสินค้าตาม ID</li>
+                                <li><code>POST /api/cart</code> - เพิ่มสินค้าในตะกร้า</li>
+                                <li><code>POST /api/orders</code> - สร้างคำสั่งซื้อ</li>
+                                <li><code>GET /api/orders/{id}</code> - ดึงรายละเอียดคำสั่งซื้อ</li>
+                            </ul>
+                        </div>
+
+                        <h3>📋 Test Case Template สำหรับ Postman</h3>
+
+                        <h4>Test Case 1: GET Products List</h4>
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-javascript">// Test Case: Get All Products
+// Method: GET
+// URL: {{base_url}}/api/products
+
+// 1. ตรวจสอบ Status Code
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+// 2. ตรวจสอบ Response Time
+pm.test("Response time is less than 500ms", function () {
+    pm.expect(pm.response.responseTime).to.be.below(500);
+});
+
+// 3. ตรวจสอบ Content-Type
+pm.test("Content-Type is application/json", function () {
+    pm.response.to.have.header("Content-Type");
+    pm.expect(pm.response.headers.get("Content-Type")).to.include("application/json");
+});
+
+// 4. ตรวจสอบ Response Body เป็น Array
+pm.test("Response is an array", function () {
+    const jsonData = pm.response.json();
+    pm.expect(jsonData).to.be.an('array');
+});
+
+// 5. ตรวจสอบว่ามีสินค้าอย่างน้อย 1 รายการ
+pm.test("Products array is not empty", function () {
+    const jsonData = pm.response.json();
+    pm.expect(jsonData.length).to.be.above(0);
+});
+
+// 6. ตรวจสอบ Schema ของสินค้าแต่ละรายการ
+pm.test("Each product has required fields", function () {
+    const jsonData = pm.response.json();
+    jsonData.forEach(function(product) {
+        pm.expect(product).to.have.property('id');
+        pm.expect(product).to.have.property('name');
+        pm.expect(product).to.have.property('price');
+        pm.expect(product).to.have.property('stock');
+        
+        // ตรวจสอบ type
+        pm.expect(product.id).to.be.a('number');
+        pm.expect(product.name).to.be.a('string');
+        pm.expect(product.price).to.be.a('number');
+        pm.expect(product.stock).to.be.a('number');
+        
+        // ตรวจสอบค่า
+        pm.expect(product.price).to.be.above(0);
+        pm.expect(product.stock).to.be.at.least(0);
+    });
+});
+
+// 7. เก็บ product ID ตัวแรกไว้ใช้ test ต่อไป
+const firstProduct = pm.response.json()[0];
+pm.collectionVariables.set("product_id", firstProduct.id);
+pm.collectionVariables.set("product_price", firstProduct.price);</code></pre>
+                        </div>
+
+                        <h4>Test Case 2: GET Product by ID</h4>
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-javascript">// Test Case: Get Product by ID
+// Method: GET
+// URL: {{base_url}}/api/products/{{product_id}}
+
+// 1. ตรวจสอบ Status Code
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+// 2. ตรวจสอบ Response Body
+pm.test("Response is an object", function () {
+    const jsonData = pm.response.json();
+    pm.expect(jsonData).to.be.an('object');
+});
+
+// 3. ตรวจสอบข้อมูลสินค้าถูกต้อง
+pm.test("Product has correct ID", function () {
+    const jsonData = pm.response.json();
+    const expectedId = pm.collectionVariables.get("product_id");
+    pm.expect(jsonData.id).to.eql(parseInt(expectedId));
+});
+
+// 4. ตรวจสอบ Required Fields
+pm.test("Product has all required fields", function () {
+    const product = pm.response.json();
+    pm.expect(product).to.have.all.keys('id', 'name', 'description', 'price', 'stock', 'category');
+});</code></pre>
+                        </div>
+
+                        <h4>Test Case 3: POST Add to Cart</h4>
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-javascript">// Test Case: Add Product to Cart
+// Method: POST
+// URL: {{base_url}}/api/cart
+// Body (JSON):
+// {
+//     "product_id": {{product_id}},
+//     "quantity": 2
+// }
+
+// 1. ตรวจสอบ Status Code
+pm.test("Status code is 201 (Created)", function () {
+    pm.response.to.have.status(201);
+});
+
+// 2. ตรวจสอบ Response Body
+pm.test("Response contains cart item", function () {
+    const jsonData = pm.response.json();
+    pm.expect(jsonData).to.have.property('cart_id');
+    pm.expect(jsonData).to.have.property('product_id');
+    pm.expect(jsonData).to.have.property('quantity');
+    pm.expect(jsonData).to.have.property('subtotal');
+});
+
+// 3. ตรวจสอบการคำนวณราคา
+pm.test("Subtotal is calculated correctly", function () {
+    const jsonData = pm.response.json();
+    const productPrice = pm.collectionVariables.get("product_price");
+    const expectedSubtotal = productPrice * jsonData.quantity;
+    pm.expect(jsonData.subtotal).to.eql(expectedSubtotal);
+});
+
+// 4. เก็บ Cart ID
+pm.collectionVariables.set("cart_id", pm.response.json().cart_id);</code></pre>
+                        </div>
+
+                        <h4>Test Case 4: POST Create Order (Happy Path)</h4>
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-javascript">// Test Case: Create Order Successfully
+// Method: POST
+// URL: {{base_url}}/api/orders
+// Headers: Authorization: Bearer {{auth_token}}
+// Body (JSON):
+// {
+//     "cart_id": {{cart_id}},
+//     "shipping_address": {
+//         "name": "John Doe",
+//         "address": "123 Main St",
+//         "city": "Bangkok",
+//         "postal_code": "10110"
+//     },
+//     "payment_method": "credit_card"
+// }
+
+// 1. ตรวจสอบ Status Code
+pm.test("Status code is 201 (Order Created)", function () {
+    pm.response.to.have.status(201);
+});
+
+// 2. ตรวจสอบ Response Structure
+pm.test("Response has order details", function () {
+    const order = pm.response.json();
+    pm.expect(order).to.have.property('order_id');
+    pm.expect(order).to.have.property('status');
+    pm.expect(order).to.have.property('total_amount');
+    pm.expect(order).to.have.property('created_at');
+    pm.expect(order).to.have.property('items');
+});
+
+// 3. ตรวจสอบ Order Status
+pm.test("Order status is 'pending'", function () {
+    const order = pm.response.json();
+    pm.expect(order.status).to.eql('pending');
+});
+
+// 4. ตรวจสอบว่ามีรายการสินค้า
+pm.test("Order has items", function () {
+    const order = pm.response.json();
+    pm.expect(order.items).to.be.an('array');
+    pm.expect(order.items.length).to.be.above(0);
+});
+
+// 5. ตรวจสอบ Total Amount มากกว่า 0
+pm.test("Total amount is valid", function () {
+    const order = pm.response.json();
+    pm.expect(order.total_amount).to.be.a('number');
+    pm.expect(order.total_amount).to.be.above(0);
+});
+
+// 6. เก็บ Order ID ไว้ใช้ต่อ
+pm.collectionVariables.set("order_id", pm.response.json().order_id);</code></pre>
+                        </div>
+
+                        <h4>Test Case 5: Error Handling - Invalid Product ID</h4>
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-javascript">// Test Case: Get Product with Invalid ID (Negative Test)
+// Method: GET
+// URL: {{base_url}}/api/products/999999
+
+// 1. ตรวจสอบ Status Code 404
+pm.test("Status code is 404 (Not Found)", function () {
+    pm.response.to.have.status(404);
+});
+
+// 2. ตรวจสอบ Error Message
+pm.test("Error message is appropriate", function () {
+    const jsonData = pm.response.json();
+    pm.expect(jsonData).to.have.property('error');
+    pm.expect(jsonData.error).to.include('not found');
+});
+
+// 3. ตรวจสอบ Response Time ยังเร็วอยู่แม้ error
+pm.test("Error response time is acceptable", function () {
+    pm.expect(pm.response.responseTime).to.be.below(1000);
+});</code></pre>
+                        </div>
+
+                        <h4>Test Case 6: Error Handling - Validation Error</h4>
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-javascript">// Test Case: Create Order with Invalid Data
+// Method: POST
+// URL: {{base_url}}/api/orders
+// Body (JSON) - Missing required fields:
+// {
+//     "cart_id": "",
+//     "shipping_address": {}
+// }
+
+// 1. ตรวจสอบ Status Code 400
+pm.test("Status code is 400 (Bad Request)", function () {
+    pm.response.to.have.status(400);
+});
+
+// 2. ตรวจสอบ Validation Error
+pm.test("Response contains validation errors", function () {
+    const jsonData = pm.response.json();
+    pm.expect(jsonData).to.have.property('errors');
+    pm.expect(jsonData.errors).to.be.an('array');
+});
+
+// 3. ตรวจสอบ Error Messages
+pm.test("Error messages indicate missing fields", function () {
+    const errors = pm.response.json().errors;
+    const errorMessages = errors.map(e => e.message.toLowerCase());
+    pm.expect(errorMessages).to.include.members(['cart_id is required', 'shipping address is required']);
+});</code></pre>
+                        </div>
+
+                        <h3>🔧 Pre-request Script (ตัวอย่าง)</h3>
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-javascript">// Pre-request Script - ทำก่อนส่ง request
+// ใช้สำหรับเตรียมข้อมูล เช่น สร้าง timestamp, random data
+
+// 1. สร้าง Unique Email
+const timestamp = new Date().getTime();
+const uniqueEmail = `test${timestamp}@example.com`;
+pm.collectionVariables.set("unique_email", uniqueEmail);
+
+// 2. สร้าง Random Quantity (1-5)
+const randomQty = Math.floor(Math.random() * 5) + 1;
+pm.collectionVariables.set("random_quantity", randomQty);
+
+// 3. ตั้งค่า Header ถ้าต้องการ
+pm.request.headers.add({
+    key: 'X-Request-ID',
+    value: pm.variables.replaceIn('{{$guid}}')
+});
+
+// 4. Console Log ดูค่า
+console.log("Generated Email:", uniqueEmail);
+console.log("Random Quantity:", randomQty);</code></pre>
+                        </div>
+
+                        <h3>📊 Postman Collection Structure ที่แนะนำ</h3>
+                        <div class="diagram">
+                            <pre>Test Shop API
+├── Setup
+│   └── POST Login (เก็บ auth token)
+├── Products
+│   ├── GET /products (List all)
+│   ├── GET /products/{id} (Get one)
+│   └── GET /products/{id} (404 test)
+├── Cart
+│   ├── POST /cart (Add item)
+│   ├── GET /cart (View cart)
+│   └── DELETE /cart/{id} (Remove item)
+├── Orders
+│   ├── POST /orders (Create - success)
+│   ├── POST /orders (Create - validation error)
+│   ├── GET /orders/{id} (Get order)
+│   └── PATCH /orders/{id}/cancel (Cancel order)
+└── Cleanup
+    └── DELETE /cart/clear</pre>
+                        </div>
+
+                        <h3>✅ Checklist ก่อน Run Collection</h3>
+                        <ul class="checklist">
+                            <li>ตั้งค่า Environment variables (base_url, auth_token)</li>
+                            <li>ตรวจสอบว่า API server ทำงานปกติ</li>
+                            <li>มีข้อมูล test ใน database (products, users)</li>
+                            <li>ตรวจสอบ authentication token ยังไม่หมดอายุ</li>
+                            <li>ตั้งค่า Iteration ถ้าต้องการรันหลายรอบ</li>
+                            <li>เปิด Console เพื่อดู log ถ้ามี error</li>
+                        </ul>
+                    </section>
