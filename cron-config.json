@@ -1,0 +1,29 @@
+{
+  "version": "1.0",
+  "description": "QA Learning Hub Auto-Recovery System - ตรวจสอบและแก้ไขอัตโนมัติ",
+  "jobs": [
+    {
+      "id": "qa-hub-monitor-5min",
+      "name": "QA Hub Monitor (5 min)",
+      "schedule": "*/5 * * * *",
+      "enabled": true,
+      "command": "powershell -ExecutionPolicy Bypass -File qa-learning-hub/auto-recovery.ps1",
+      "workingDirectory": "D:\\Users\\nuttawat.jun\\.openclaw\\workspace",
+      "description": "ตรวจสอบสถานะ QA Learning Hub ทุก 5 นาที หากพบงานค้างหรือไฟล์เสียจะแก้ไขอัตโนมัติ",
+      "notifyOnFailure": true,
+      "logRetention": "7d"
+    }
+  ],
+  "monitoring": {
+    "checkInterval": "5m",
+    "timeoutThreshold": "10m",
+    "autoFix": true,
+    "retryAttempts": 3,
+    "alertChannels": ["console", "file"]
+  },
+  "recoveryActions": {
+    "onMissingFiles": "queue-for-creation",
+    "onCorruptedFiles": "delete-and-requeue",
+    "onTimeout": "restart-task"
+  }
+}

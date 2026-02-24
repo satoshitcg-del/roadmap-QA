@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internet Basics - QA Learning Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/topic.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">🧪</span>
+                <span class="logo-text">QA Learning Hub</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">← กลับสู่หน้าหลัก</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Topic Content -->
+    <main class="topic-page">
+        <div class="topic-header">
+            <div class="container">
+                <div class="topic-meta">
+                    <span class="topic-level-badge beginner">Beginner</span>
+                    <span class="topic-category">พื้นฐาน (Basics)</span>
+                </div>
+                <h1>🌐 Internet Basics</h1>
+                <p class="topic-description">
+                    พื้นฐานอินเทอร์เน็ตที่ QA Engineer ทุกคนต้องรู้ — จากการทำงานของโปรโตคอล 
+                    ไปจนถึงการสื่อสารระหว่าง client & server
+                </p>
+            </div>
+        </div>
+
+        <div class="topic-content">
+            <div class="container">
+                <!-- Table of Contents -->
+                <nav class="toc">
+                    <h3>📋 สารบัญ</h3>
+                    <ul>
+                        <li><a href="#what-is-internet">อินเทอร์เน็ตคืออะไร?</a></li>
+                        <li><a href="#how-it-works">การทำงานของอินเทอร์เน็ต</a></li>
+                        <li><a href="#ip-address">IP Address & DNS</a></li>
+                        <li><a href="#client-server">Client-Server Model</a></li>
+                        <li><a href="#qa-perspective">มุมมอง QA</a></li>
+                        <li><a href="#quiz">แบบทดสอบ</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Content Sections -->
+                <article class="content-body">
+                    <section id="what-is-internet">
+                        <h2>อินเทอร์เน็ตคืออะไร?</h2>
+                        <p>
+                            <strong>อินเทอร์เน็ต (Internet)</strong> คือเครือข่ายคอมพิวเตอร์ระดับโลกที่เชื่อมต่อกัน 
+                            ผ่านชุดของโปรโตคอลมาตรฐานที่เรียกว่า <strong>TCP/IP</strong> 
+                            ทำให้อุปกรณ์ต่างๆ สามารถสื่อสารและแลกเปลี่ยนข้อมูลกันได้
+                        </p>
+
+                        <div class="info-box">
+                            <span class="info-icon">💡</span>
+                            <div class="info-content">
+                                <strong>สำหรับ QA:</strong> 
+                                การเข้าใจอินเทอร์เน็ตช่วยให้คุณเข้าใจว่าทำไมแอปพลิเคชันถึงทำงานช้า 
+                                หรือทำไมบางฟีเจอร์ถึงใช้งานไม่ได้ในบางภูมิภาค
+                            </div>
+                        </div>
+
+                        <h3>องค์ประกอบหลักของอินเทอร์เน็ต</h3>
+                        
+                        <div class="component-grid">
+                            <div class="component-card">
+                                <div class="component-icon">🔌</div>
+                                <h4>Infrastructure</h4>
+                                <ul>
+                                    <li>สายใยแก้วนำแสง (Fiber Optic)</li>
+                                    <li>สายเคเบิล (Copper Cables)</li>
+                                    <li>ดาวเทียม (Satellites)</li>
+                                    <li>เสาสัญญาณ (Cell Towers)</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="component-card">
+                                <div class="component-icon">📡</div>
+                                <h4>Protocols</h4>
+                                <ul>
+                                    <li>TCP/IP - โปรโตคอลหลัก</li>
+                                    <li>HTTP/HTTPS - เว็บ</li>
+                                    <li>FTP - ไฟล์</li>
+                                    <li>SMTP - อีเมล</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="component-card">
+                                <div class="component-icon">🖥️</div>
+                                <h4>Devices</h4>
+                                <ul>
+                                    <li>Routers</li>
+                                    <li>Switches</li>
+                                    <li>Servers</li>
+                                    <li>End Devices (PC, Mobile)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="how-it-works">
+                        <h2>การทำงานของอินเทอร์เน็ต</h2>
+                        
+                        <p>
+                            เมื่อคุณเปิดเว็บเบราว์เซอร์และพิมพ์ <code>www.google.com</code> 
+                            เกิดอะไรขึ้นภายในไม่กี่วินาที?
+                        </p>
+
+                        <div class="process-flow">
+                            <div class="process-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>DNS Lookup</h4>
+                                    <p>แปลงชื่อโดเมน (google.com) เป็น IP Address (142.250.80.46)</p>
+                                </div>
+                            </div>
+                            
+                            <div class="process-arrow">↓</div>
+                            
+                            <div class="process-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>TCP Connection</h4>
+                                    <p>สร้างการเชื่อมต่อ 3-way handshake กับเซิร์ฟเวอร์</p>
+                                </div>
+                            </div>
+                            
+                            <div class="process-arrow">↓</div>
+                            
+                            <div class="process-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>HTTP Request</h4>
+                                    <p>ส่งคำขอ HTTP GET ไปยังเซิร์ฟเวอร์</p>
+                                </div>
+                            </div>
+                            
+                            <div class="process-arrow">↓</div>
+                            
+                            <div class="process-step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4>Server Processing</h4>
+                                    <p>เซิร์ฟเวอร์ประมวลผลและเตรียมข้อมูล</p>
+                                </div>
+                            </div>
+                            
+                            <div class="process-arrow">↓</div>
+                            
+                            <div class="process-step">
+                                <div class="step-number">5</div>
+                                <div class="step-content">
+                                    <h4>HTTP Response</h4>
+                                    <p>ส่งหน้าเว็บกลับมาแสดงผล</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="ip-address">
+                        <h2>IP Address & DNS</h2>
+                        
+                        <h3>IP Address คืออะไร?</h3>
+                        
+                        <p>
+                            <strong>IP Address (Internet Protocol Address)</strong> 
+                            คือที่อยู่เฉพาะที่กำหนดให้กับอุปกรณ์แต่ละเครื่องในเครือข่าย 
+                            เปรียบเสมือน "บ้านเลขที่" บนอินเทอร์เน็ต
+                        </p>
+
+                        <div class="comparison-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>IPv4</th>
+                                        <th>IPv6</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>32-bit address</td>
+                                        <td>128-bit address</td>
+                                    </tr>
+                                    <tr>
+                                        <td>192.168.1.1</td>
+                                        <td>2001:0db8:85a3::8a2e:0370:7334</td>
+                                    </tr>
+                                    <tr>
+                                        <td>~4.3 billion addresses</td>
+                                        <td>~340 undecillion addresses</td>
+                                    </tr>
+                                    <tr>
+                                        <td>กำลังหมด</td>
+                                        <td>อนาคต</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h3>DNS (Domain Name System)</h3>
+                        
+                        <p>
+                            DNS ทำหน้าที่เหมือน "สมุดโทรศัพท์" ของอินเทอร์เน็ต 
+                            แปลงชื่อโดเมนที่มนุษย์อ่านได้ (เช่น google.com) 
+                            เป็น IP Address ที่เครื่องคอมพิวเตอร์เข้าใจ
+                        </p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>ตัวอย่างการทำงาน DNS</span>
+                                <button class="copy-code-btn">📋 คัดลอก</button>
+                            </div>
+                            <pre><code># ตรวจสอบ DNS Record
+$ nslookup google.com
+Server:  8.8.8.8
+Address: 8.8.8.8#53
+
+Non-authoritative answer:
+Name:   google.com
+Address: 142.250.80.46
+
+# ตรวจสอบผ่าน dig
+$ dig google.com A +short
+142.250.80.46</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="client-server">
+                        <h2>Client-Server Model</h2>
+                        
+                        <p>
+                            โมเดล Client-Server เป็นรูปแบบการสื่อสารหลักบนอินเทอร์เน็ต 
+                            แบ่งบทบาทออกเป็นสองฝ่าย:
+                        </p>
+
+                        <div class="comparison-cards">
+                            <div class="comparison-card client">
+                                <div class="card-header">
+                                    <span class="card-icon">💻</span>
+                                    <h3>Client</h3>
+                                </div>
+                                <ul>
+                                    <li>เบราว์เซอร์ (Chrome, Firefox)</li>
+                                    <li>Mobile Apps</li>
+                                    <li>ส่ง Request</li>
+                                    <li>รอรับ Response</li>
+                                    <li>แสดงผลให้ผู้ใช้</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="comparison-card server">
+                                <div class="card-header">
+                                    <span class="card-icon">🖥️</span>
+                                    <h3>Server</h3>
+                                </div>
+                                <ul>
+                                    <li>Web Server (Apache, Nginx)</li>
+                                    <li>Application Server</li>
+                                    <li>รอรับ Request</li>
+                                    <li>ประมวลผล</li>
+                                    <li>ส่ง Response กลับ</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="diagram">
+                            <pre class="ascii-art">
+┌─────────────┐         Request          ┌─────────────┐
+│             │ ────────────────────────>│             │
+│   Client    │                           │   Server    │
+│  (Browser)  │ <──────────────────────── │  (Backend)  │
+│             │         Response          │             │
+└─────────────┘                           └─────────────┘
+                            </pre>
+                        </div>
+                    </section>
+
+                    <section id="qa-perspective">
+                        <h2>มุมมอง QA: ทำไมต้องรู้?</h2>
+                        
+                        <div class="qa-scenarios">
+                            <div class="scenario-card">
+                                <div class="scenario-icon">🐌</div>
+                                <h4>ทำไมเว็บช้า?</h4>
+                                <p>
+                                    เข้าใจว่าปัญหาอยู่ที่ DNS lookup, 
+                                    TCP connection, หรือ Server processing
+                                </p>
+                            </div>
+                            
+                            <div class="scenario-card">
+                                <div class="scenario-icon">❌</div>
+                                <h4>ไม่สามารถเข้าถึงได้</h4>
+                                <p>
+                                    แยกแยะได้ว่าเป็น DNS error, 
+                                    Connection timeout, หรือ Server down
+                                </p>
+                            </div>
+                            
+                            <div class="scenario-card">
+                                <div class="scenario-icon">🌍</div>
+                                <h4>Geo-location Testing</h4>
+                                <p>
+                                    เข้าใจว่า CDN กระจายเนื้อหาอย่างไร 
+                                    และ IP geolocation ทำงานอย่างไร
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="checklist">
+                            <h3>✅ Checklist สำหรับ QA</h3>
+                            
+                            <ul class="checklist-items">
+                                <li><input type="checkbox"> รู้ว่า DNS คืออะไรและทำงานอย่างไร</li>
+                                <li><input type="checkbox"> เข้าใจความแตกต่าง IPv4 vs IPv6</li>
+                                <li><input type="checkbox"> รู้ว่า Client-Server สื่อสารกันอย่างไร</li>
+                                <li><input type="checkbox"> ใช้ nslookup/dig ตรวจสอบ DNS ได้</li>
+                                <li><input type="checkbox"> อ่าน Network tab ใน DevTools ได้</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section id="quiz" class="quiz-section">
+                        <h2>🎯 แบบทดสอบความเข้าใจ</h2>
+                        
+                        <div class="quiz-container">
+                            <div class="quiz-question" data-correct="b">
+                                <p class="question">1. DNS ทำหน้าที่อะไร?</p>
+                                <div class="options">
+                                    <label><input type="radio" name="q1" value="a"> ป้องกันไวรัสคอมพิวเตอร์</label>
+                                    <label><input type="radio" name="q1" value="b"> แปลงชื่อโดเมนเป็น IP Address</label>
+                                    <label><input type="radio" name="q1" value="c"> เข้ารหัสข้อมูลที่ส่งผ่านเน็ต</label>
+                                    <label><input type="radio" name="q1" value="d"> จัดเก็บไฟล์บนคลาวด์</label>
+                                </div>
+                                <div class="feedback"></div>
+                            </div>
+                            
+                            <div class="quiz-question" data-correct="a">
+                                <p class="question">2. ใน Client-Server Model ใครเป็นฝ่ายส่ง Request?</p>
+                                <div class="options">
+                                    <label><input type="radio" name="q2" value="a"> Client</label>
+                                    <label><input type="radio" name="q2" value="b"> Server</label>
+                                    <label><input type="radio" name="q2" value="c"> Router</label>
+                                    <label><input type="radio" name="q2" value="d"> DNS Server</label>
+                                </div>
+                                <div class="feedback"></div>
+                            </div>
+                            
+                            <div class="quiz-question" data-correct="c">
+                                <p class="question">3. IPv4 Address มีกี่ bit?</p>
+                                <div class="options">
+                                    <label><input type="radio" name="q3" value="a"> 16</label>
+                                    <label><input type="radio" name="q3" value="b"> 64</label>
+                                    <label><input type="radio" name="q3" value="c"> 32</label>
+                                    <label><input type="radio" name="q3" value="d"> 128</label>
+                                </div>
+                                <div class="feedback"></div>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-primary" id="checkAnswers">ตรวจคำตอบ</button>
+                        <div id="quizResult" class="quiz-result"></div>
+                    </section>
+                </article>
+
+                <!-- Navigation Footer -->
+                <nav class="topic-nav">
+                    <a href="../index.html#basics" class="nav-prev">← กลับสู่หมวดพื้นฐาน</a>
+                    <a href="http-https.html" class="nav-next">หัวข้อต่อไป: HTTP/HTTPS →</a>
+                </nav>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/topic.js"></script>
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDLC & STLC - QA Learning Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/topic.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">🧪</span>
+                <span class="logo-text">QA Learning Hub</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">← กลับสู่หน้าหลัก</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="topic-page">
+        <div class="topic-header">
+            <div class="container">
+                <div class="topic-meta">
+                    <span class="topic-level-badge beginner">Beginner</span>
+                    <span class="topic-category">พื้นฐาน (Basics)</span>
+                </div>
+                <h1>🔄 SDLC & STLC</h1>
+                <p class="topic-description">วงจรการพัฒนาและทดสอบซอฟต์แวร์ - กระบวนการตั้งแต่เริ่มต้นจนถึงส่งมอบ</p>
+            </div>
+        </div>
+
+        <div class="topic-content">
+            <div class="container">
+                <nav class="toc">
+                    <h3>📋 สารบัญ</h3>
+                    <ul>
+                        <li><a href="#sdlc">SDLC คืออะไร?</a></li>
+                        <li><a href="#stlc">STLC คืออะไร?</a></li>
+                        <li><a href="#models">SDLC Models</a></li>
+                        <li><a href="#qa-role">บทบาท QA</a></li>
+                        <li><a href="#quiz">แบบทดสอบ</a></li>
+                    </ul>
+                </nav>
+
+                <article class="content-body">
+                    <section id="sdlc">
+                        <h2>SDLC (Software Development Life Cycle)</h2>
+                        
+                        <p>กระบวนการพัฒนาซอฟต์แวร์ตั้งแต่เริ่มต้นจนถึงส่งมอบ ประกอบด้วย 6 ขั้นตอนหลัก:</p>
+                        
+                        <div class="process-flow">
+                            <div class="process-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>Requirements Analysis</h4>
+                                    <p>รวบรวมและวิเคราะห์ความต้องการจากลูกค้า</p>
+                                </div>
+                            </div>
+                            <div class="process-arrow">↓</div>
+                            
+                            <div class="process-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>Design</h4>
+                                    <p>ออกแบบระบบและสถาปัตยกรรม</p>
+                                </div>
+                            </div>
+                            <div class="process-arrow">↓</div>
+                            
+                            <div class="process-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>Development</h4>
+                                    <p>เขียนโค้ดตามที่ออกแบบ</p>
+                                </div>
+                            </div>
+                            <div class="process-arrow">↓</div>
+                            
+                            <div class="process-step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4>Testing</h4>
+                                    <p>ทดสอบหาและแก้ไข Bugs</p>
+                                </div>
+                            </div>
+                            <div class="process-arrow">↓</div>
+                            
+                            <div class="process-step">
+                                <div class="step-number">5</div>
+                                <div class="step-content">
+                                    <h4>Deployment</h4>
+                                    <p>นำระบบขึ้น Production</p>
+                                </div>
+                            </div>
+                            <div class="process-arrow">↓</div>
+                            
+                            <div class="process-step">
+                                <div class="step-number">6</div>
+                                <div class="step-content">
+                                    <h4>Maintenance</h4>
+                                    <p>ดูแลและปรับปรุงระบบ</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="stlc">
+                        <h2>STLC (Software Testing Life Cycle)</h2>
+                        
+                        <p>กระบวนการทดสอบซอฟต์แวร์ที่สอดคล้องกับ SDLC แต่เน้นการทดสอบโดยเฉพาะ:</p>
+                        
+                        <div class="comparison-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ขั้นตอน</th>
+                                        <th>กิจกรรม</th>
+                                        <th>Deliverables</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1. Requirement Analysis</td>
+                                        <td>วิเคราะห์ความต้องการที่ต้องทดสอบ</td>
+                                        <td>RTM, Testable requirements</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2. Test Planning</td>
+                                        <td>วางแผน testing strategy, resources</td>
+                                        <td>Test Plan, Estimation</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3. Test Case Development</td>
+                                        <td>เขียน test cases, scripts</td>
+                                        <td>Test Cases, Test Data</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4. Test Environment Setup</td>
+                                        <td>เตรียม environment, tools</td>
+                                        <td>Ready environment</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5. Test Execution</td>
+                                        <td>Run tests, report bugs</td>
+                                        <td>Test Reports, Defect Reports</td>
+                                    </tr>
+                                    <tr>
+                                        <td>6. Test Closure</td>
+                                        <td>สรุปผล, lessons learned</td>
+                                        <td>Test Summary Report</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section id="models">
+                        <h2>SDLC Models</h2>
+                        
+                        <div class="component-grid">
+                            <div class="component-card">
+                                <div class="component-icon">💧</div>
+                                <h4>Waterfall</h4>
+                                <p>ทำทีละขั้นตอน ไม่ย้อนกลับ เหมาะกับ requirements ที่ชัดเจน</p>
+                            </div>
+                            
+                            <div class="component-card">
+                                <div class="component-icon">🔄</div>
+                                <h4>Agile/Scrum</h4>
+                                <p>พัฒนาเป็น Sprint สั้นๆ ปรับเปลี่ยนได้เร็ว</p>
+                            </div>
+                            
+                            <div class="component-card">
+                                <div class="component-icon">🔁</div>
+                                <h4>Iterative</h4>
+                                <p>พัฒนาทีละรอบ ปรับปรุงไปเรื่อยๆ</p>
+                            </div>
+                            
+                            <div class="component-card">
+                                <div class="component-icon">V</div>
+                                <h4>V-Model</h4>
+                                <p>ทดสอบแต่ละ phase พร้อมกับการพัฒนา</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="qa-role">
+                        <h2>บทบาท QA ในแต่ละ Phase</h2>
+                        
+                        <div class="qa-scenarios">
+                            <div class="scenario-card">
+                                <div class="scenario-icon">📋</div>
+                                <h4>Requirements</h4>
+                                <p>Review requirements, identify testable items, ask questions</p>
+                            </div>
+                            
+                            <div class="scenario-card">
+                                <div class="scenario-icon">📝</div>
+                                <h4>Design</h4>
+                                <p>Create test plan, identify test scenarios, prepare test data</p>
+                            </div>
+                            
+                            <div class="scenario-card">
+                                <div class="scenario-icon">🔍</div>
+                                <h4>Testing</h4>
+                                <p>Execute tests, report bugs, verify fixes, regression testing</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="quiz" class="quiz-section">
+                        <h2>🎯 แบบทดสอบ</h2>
+                        
+                        <div class="quiz-container">
+                            <div class="quiz-question" data-correct="b">
+                                <p class="question">1. STLC มีกี่ขั้นตอน?</p>
+                                <div class="options">
+                                    <label><input type="radio" name="q1" value="a"> 4</label>
+                                    <label><input type="radio" name="q1" value="b"> 6</label>
+                                    <label><input type="radio" name="q1" value="c"> 8</label>
+                                    <label><input type="radio" name="q1" value="d"> 10</label>
+                                </div>
+                                <div class="feedback"></div>
+                            </div>
+                            
+                            <div class="quiz-question" data-correct="a">
+                                <p class="question">2. SDLC Model ใดเน้นการทำงานเป็น Sprint?</p>
+                                <div class="options">
+                                    <label><input type="radio" name="q2" value="a"> Agile</label>
+                                    <label><input type="radio" name="q2" value="b"> Waterfall</label>
+                                    <label><input type="radio" name="q2" value="c"> V-Model</label>
+                                    <label><input type="radio" name="q2" value="d"> Spiral</label>
+                                </div>
+                                <div class="feedback"></div>
+                            </div>
+                            
+                            <div class="quiz-question" data-correct="c">
+                                <p class="question">3. ขั้นตอนใดของ STLC ที่ QA เขียน Test Cases?</p>
+                                <div class="options">
+                                    <label><input type="radio" name="q3" value="a"> Planning</label>
+                                    <label><input type="radio" name="q3" value="b"> Execution</label>
+                                    <label><input type="radio" name="q3" value="c"> Development</label>
+                                    <label><input type="radio" name="q3" value="d"> Closure</label>
+                                </div>
+                                <div class="feedback"></div>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-primary" id="checkAnswers">ตรวจคำตอบ</button>
+                        <div id="quizResult" class="quiz-result"></div>
+                    </section>
+                </article>
+
+                <nav class="topic-nav">
+                    <a href="testing-types.html" class="nav-prev">← Testing Types</a>
+                    <a href="test-scenarios.html" class="nav-next">Test Scenarios →</a>
+                </nav>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/topic.js"></script>
+</body>
+</html>

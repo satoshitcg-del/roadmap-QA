@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Management Tools - QA Learning Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/topic.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">🧪</span>
+                <span class="logo-text">QA Learning Hub</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">← กลับสู่หน้าหลัก</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="topic-page">
+        <div class="topic-header">
+            <div class="container">
+                <div class="topic-meta">
+                    <span class="topic-level-badge intermediate">Intermediate</span>
+                    <span class="topic-category">Advanced Topics</span>
+                </div>
+                <h1>🛠️ Test Management Tools</h1>
+                <p class="topic-description">TestRail, qTest, Zephyr และการจัดการ Test Cases แบบมืออาชีพ</p>
+            </div>
+        </div>
+
+        <div class="topic-content">
+            <div class="container">
+                <nav class="toc">
+                    <h3>📋 สารบัญ</h3>
+                    <ul>
+                        <li><a href="#why">ทำไมต้องใช้ Test Management Tools?</a></li>
+                        <li><a href="#tools">Popular Tools</a></li>
+                        <li><a href="#testrail">TestRail Overview</a></li>
+                        <li><a href="#jira">Jira + Zephyr</a></li>
+                        <li><a href="#quiz">แบบทดสอบ</a></li>
+                    </ul>
+                </nav>
+
+                <article class="content-body">
+                    <section id="why">
+                        <h2>📊 ทำไมต้องใช้ Test Management Tools?</h2>
+
+                        <div class="benefits-grid">
+                            <div class="benefit-card">
+                                <span class="benefit-icon">📝</span>
+                                <h4>Organize Test Cases</h4>
+                                <p>จัดระเบียบ test cases เป็นหมวดหมู่ หาได้ง่าย</p>
+                            </div>
+                            <div class="benefit-card">
+                                <span class="benefit-icon">📈</span>
+                                <h4>Track Progress</h4>
+                                <p>รู้ว่าทดสอบไปแล้วเท่าไหร่ เหลือเท่าไหร่</p>
+                            </div>
+                            <div class="benefit-card">
+                                <span class="benefit-icon">🤝</span>
+                                <h4>Team Collaboration</h4>
+                                <p>ทีมเห็น test cases เหมือนกัน ไม่ซ้ำซ้อน</p>
+                            </div>
+                            <div class="benefit-card">
+                                <span class="benefit-icon">📊</span>
+                                <h4>Reporting</h4>
+                                <p>สร้างรายงานอัตโนมัติ ส่งให้ stakeholders</p>
+                            </div>
+                            <div class="benefit-card">
+                                <span class="benefit-icon">🔄</span>
+                                <h4>Reusability</h4>
+                                <p>ใช้ test cases ซ้ำในรอบถัดไป หรือโปรเจกต์อื่น</p>
+                            </div>
+                            <div class="benefit-card">
+                                <span class="benefit-icon">🔍</span>
+                                <h4>Traceability</h4>
+                                <p>เชื่อมโยง requirement → test case → bug → result</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="tools">
+                        <h2>🔧 Popular Test Management Tools</h2>
+
+                        <div class="tools-comparison">
+                            <table>
+                                <tr>
+                                    <th>Tool</th>
+                                    <th>Type</th>
+                                    <th>Pricing</th>
+                                    <th>Best For</th>
+                                </tr>
+                                <tr>
+                                    <td><strong>TestRail</strong></td>
+                                    <td>Standalone</td>
+                                    <td>$$$</td>
+                                    <td>Enterprise, Full features</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>qTest</strong></td>
+                                    <td>Standalone</td>
+                                    <td>$$$$</td>
+                                    <td>Enterprise, Agile scale</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Zephyr (Jira)</strong></td>
+                                    <td>Jira Plugin</td>
+                                    <td>$$</td>
+                                    <td>Jira users</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Xray (Jira)</strong></td>
+                                    <td>Jira Plugin</td>
+                                    <td>$$</td>
+                                    <td>BDD, Cucumber</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>PractiTest</strong></td>
+                                    <td>SaaS</td>
+                                    <td>$$</td>
+                                    <td>Small-Medium teams</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>TestLink</strong></td>
+                                    <td>Open Source</td>
+                                    <td>Free</td>
+                                    <td>Budget-conscious teams</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section id="testrail">
+                        <h2>🚂 TestRail - ตัวอย่าง Tool</h2>
+
+                        <h3>Key Features</h3>
+                        <ul>
+                            <li><strong>Test Cases</strong> - จัดการ test cases เป็นหมวดหมู่ (Suites, Sections)</li>
+                            <li><strong>Test Runs</strong> - สร้าง test run สำหรับแต่ละ release/sprint</li>
+                            <li><strong>Milestones</strong> - จัดเก็บผลการทดสอบตาม milestone</li>
+                            <li><strong>Reports> - Progress, Comparison, Coverage reports</li>
+                            <li><strong>Integrations> - Jira, GitHub, CI/CD tools</li>
+                        </ul>
+
+                        <h3>TestRail Workflow</h3>
+                        <ol>
+                            <li>Create Test Suite (e.g., "Login Feature")</li>
+                            <li>Add Test Cases (with steps, expected results)</li>
+                            <li>Create Test Run (select test cases for this release)</li>
+                            <li>Execute Tests (mark Pass/Fail/Block)</li>
+                            <li>Push bugs to Jira (integration)</li>
+                            <li>Generate Report</li>
+                        </ol>
+                    </section>
+
+                    <section id="jira">
+                        <h2>🎯 Jira + Zephyr/Xray</h2>
+
+                        <p>ถ้าทีมใช้ Jira อยู่แล้ว การใช้ plugin จะสะดวกกว่า</p>
+
+                        <h3>Zephyr Scale (TM4J)</h3>
+                        <ul>
+                            <li>Test cases อยู่ใน Jira issues</li>
+                            <li>Link test cases กับ stories/requirements</li>
+                            <li>Traceability matrix</li>
+                            <li>Reuse test cases across projects</li>
+                        </ul>
+
+                        <h3>Xray for Jira</h3>
+                        <ul>
+                            <li>รองรับ BDD (Cucumber, Gherkin)</li>
+                            <li>Integration กับ automation frameworks</li>
+                            <li>Test Execution เป็น Jira issue type</li>
+                        </ul>
+
+                        <h3>การเลือก Tool</h3>
+                        <table>
+                            <tr><th>Scenario</th><th>แนะนำ</th></tr>
+                            <tr><td>ใช้ Jira + ต้องการ all-in-one</td><td>Zephyr หรือ Xray</td></tr>
+                            <tr><td>ทีมใหญ่, ต้องการ reporting แบบละเอียด</td><td>TestRail หรือ qTest</td>
+                            <tr><td>งบจำกัด</td><td>TestLink, Kualitee (free tier)</td></tr>
+                            <tr><td>BDD/Cucumber heavy</td><td>Xray</td></tr>
+                        </table>
+                    </section>
+
+                    <section id="quiz" class="quiz-section">
+                        <h2>🧠 แบบทดสอบ</h2>
+                        
+                        <div class="quiz-container">
+                            <div class="quiz-question" data-answer="c">
+                                <p><strong>คำถาม 1:</strong> Tool ใดเหมาะสำหรับ BDD/Cucumber?</p>
+                                <div class="quiz-options">
+                                    <label><input type="radio" name="q1" value="a"> TestRail</label>
+                                    <label><input type="radio" name="q1" value="b"> qTest</label>
+                                    <label><input type="radio" name="q1" value="c"> Xray</label>
+                                </div>
+                                <div class="quiz-feedback"></div>
+                            </div>
+
+                            <button class="btn btn-primary" onclick="checkAnswers()">ตรวจคำตอบ</button>
+                            <div id="quiz-result"></div>
+                        </div>
+                    </section>
+
+                    <section class="completion-section">
+                        <button class="btn btn-complete" onclick="markTopicComplete('topics/test-management.html')">
+                            ✅ ฉันเรียนจบบทนี้แล้ว
+                        </button>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 QA Learning Hub | สร้างด้วย ❤️ สำหรับ QA ทุกคน</p>
+        </div>
+    </footer>
+
+    <script src="../js/topic.js"></script>
+    <script>
+        function checkAnswers() {
+            const questions = document.querySelectorAll('.quiz-question');
+            let correct = 0;
+            questions.forEach(q => {
+                const answer = q.dataset.answer;
+                const selected = q.querySelector('input[type="radio"]:checked');
+                const feedback = q.querySelector('.quiz-feedback');
+                if (selected) {
+                    if (selected.value === answer) {
+                        feedback.innerHTML = '<span class="correct">✅ ถูกต้อง!</span>';
+                        correct++;
+                    } else {
+                        feedback.innerHTML = '<span class="incorrect">❌ ลองใหม่</span>';
+                    }
+                } else {
+                    feedback.innerHTML = '<span class="incorrect">⚠️ เลือกคำตอบ</span>';
+                }
+            });
+            const resultDiv = document.getElementById('quiz-result');
+            if (correct === questions.length) {
+                resultDiv.innerHTML = '<div class="success-message">🎉 ยินดีด้วย!</div>';
+            }
+        }
+    </script>
+</body>
+</html>

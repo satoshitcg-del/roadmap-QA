@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usability Testing - QA Learning Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/topic.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">🧪</span>
+                <span class="logo-text">QA Learning Hub</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">← กลับสู่หน้าหลัก</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="topic-page">
+        <div class="topic-header">
+            <div class="container">
+                <div class="topic-meta">
+                    <span class="topic-level-badge intermediate">Intermediate</span>
+                    <span class="topic-category">Non-Functional Testing</span>
+                </div>
+                <h1>👤 Usability Testing</h1>
+                <p class="topic-description">ทดสอบความง่ายในการใช้งาน UX Testing และ User Feedback</p>
+            </div>
+        </div>
+
+        <div class="topic-content">
+            <div class="container">
+                <nav class="toc">
+                    <h3>📋 สารบัญ</h3>
+                    <ul>
+                        <li><a href="#intro">อะไรคือ Usability Testing?</a></li>
+                        <li><a href="#methods">Usability Testing Methods</a></li>
+                        <li><a href="#heuristics">Nielsen's 10 Heuristics</a></li>
+                        <li><a href="#metrics">Usability Metrics</a></li>
+                        <li><a href="#quiz">แบบทดสอบ</a></li>
+                    </ul>
+                </nav>
+
+                <article class="content-body">
+                    <section id="intro">
+                        <h2>👤 Usability Testing คืออะไร?</h2>
+                        
+                        <p><strong>Usability Testing</strong> คือการทดสอบว่าผู้ใช้สามารถใช้งานระบบได้ง่าย มีประสิทธิภาพ และพึงพอใจหรือไม่ โดยการให้ผู้ใช้จริงลองใช้งานและสังเกตพฤติกรรม</p>
+
+                        <h3>🎯 5 องค์ประกอบของ Usability (ISO 9241)</h3>
+                        
+                        <ol>
+                            <li><strong>Learnability</strong> - เรียนรู้ใช้งานได้ง่าย</li>
+                            <li><strong>Efficiency</strong> - ทำงานได้รวดเร็ว</li>
+                            <li><strong>Memorability</strong> - จำวิธีใช้ได้หลังไม่ได้ใช้นาน</li>
+                            <li><strong>Errors</strong> - ทำผิดพลาดน้อย และแก้ไขง่าย</li>
+                            <li><strong>Satisfaction</strong> - พึงพอใจในการใช้งาน</li>
+                        </ol>
+                    </section>
+
+                    <section id="methods">
+                        <h2>🧪 Usability Testing Methods</h2>
+
+                        <div class="methods-grid">
+                            <div class="method-card">
+                                <span class="method-icon">👁️</span>
+                                <h4>Moderated Testing</h4>
+                                <p>มี moderator คอยสังเกตและถามคำถาม</p>
+                            </div>
+                            <div class="method-card">
+                                <span class="method-icon">💻</span>
+                                <h4>Unmoderated Testing</h4>
+                                <p>ผู้ใช้ทดสอบเองผ่านเครื่องมือ เช่น Maze, UserTesting</p>
+                            </div>
+                            <div class="method-card">
+                                <span class="method-icon">🏠</span>
+                                <h4>Remote Testing</h4>
+                                <p>ทดสอบผ่านออนไลน์ ไม่ต้องมาที่เดียวกัน</p>
+                            </div>
+                            <div class="method-card">
+                                <span class="method-icon">🏢</span>
+                                <h4>In-Person Testing</h4>
+                                <p>ทดสอบแบบเจอตัว สังเกต body language</p>
+                            </div>
+                        </div>
+
+                        <h3>📝 Test Tasks ตัวอย่าง</h3>
+                        <div class="code-block">
+                            <pre><code>1. "คุณต้องการซื้อเสื้อผ้า ช่วยหาเสื้อเชิ้ตสีขาว size M และใส่ตะกร้า"
+
+2. "คุณลืมรหัสผ่าน ช่วย reset password"
+
+3. "คุณต้องการยกเลิกคำสั่งซื้อ #12345"
+
+4. "หาข้อมูลการจัดส่งสินค้าของคำสั่งซื้อล่าสุด"</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="heuristics">
+                        <h2>📋 Nielsen's 10 Usability Heuristics</h2>
+
+                        <ol class="heuristics-list">
+                            <li><strong>Visibility of System Status</strong> - แสดงสถานะให้เห็น (loading, progress)</li>
+                            <li><strong>Match Between System and Real World</strong> - ใช้ภาษาที่ผู้ใช้เข้าใจ</li>
+                            <li><strong>User Control and Freedom</strong> - มี Undo/Exit/Back ได้</li>
+                            <li><strong>Consistency and Standards</strong> - ใช้ conventions มาตรฐาน</li>
+                            <li><strong>Error Prevention</strong> - ป้องกันข้อผิดพลาดก่อนเกิด</li>
+                            <li><strong>Recognition Rather Than Recall</strong> - เห็นตัวเลือก ไม่ต้องจำ</li>
+                            <li><strong>Flexibility and Efficiency of Use</strong> - มี shortcuts สำหรับผู้เชี่ยวชาญ</li>
+                            <li><strong>Aesthetic and Minimalist Design</strong> - ไม่มีข้อมูลเกินจำเป็น</li>
+                            <li><strong>Help Users Recognize and Recover from Errors</strong> - Error messages ชัดเจน</li>
+                            <li><strong>Help and Documentation</strong> - มีคู่มือช่วยเหลือที่หาได้ง่าย</li>
+                        </ol>
+                    </section>
+
+                    <section id="metrics">
+                        <h2>📊 Usability Metrics</h2>
+
+                        <table class="metrics-table">
+                            <tr>
+                                <th>Metric</th>
+                                <th>คำอธิบาย</th>
+                                <th>วิธีวัด</th>
+                            </tr>
+                            <tr>
+                                <td><strong>Task Success Rate</strong></td>
+                                <td>% ของผู้ใช้ที่ทำงานสำเร็จ</td>
+                                <td>(สำเร็จ / ทั้งหมด) × 100</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Time on Task</strong></td>
+                                <td>เวลาที่ใช้ทำแต่ละงาน</td>
+                                <td>Stopwatch / Tool</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Error Rate</strong></td>
+                                <td>จำนวนข้อผิดพลาดต่งาน</td>
+                                <td>นับ slip errors, mistakes</td>
+                            </tr>
+                            <tr>
+                                <td><strong>SUS Score</strong></td>
+                                <td>System Usability Scale (0-100)</td>
+                                <td>แบบสอบถาม 10 ข้อ</td>
+                            </tr>
+                            <tr>
+                                <td><strong>NPS</strong></td>
+                                <td>Net Promoter Score</td>
+                                <td>"แนะนำเพื่อนไหม?" -10 ถึง 10</td>
+                            </tr>
+                        </table>
+
+                        <h3>📝 SUS (System Usability Scale) Questions</h3>
+                        <ol>
+                            <li>I think that I would like to use this system frequently</li>
+                            <li>I found the system unnecessarily complex</li>
+                            <li>I thought the system was easy to use</li>
+                            <li>I think that I would need the support of a technical person</li>
+                            <li>I found the various functions in this system were well integrated</li>
+                            <li>I thought there was too much inconsistency in this system</li>
+                            <li>I would imagine that most people would learn to use this system very quickly</li>
+                            <li>I found the system very cumbersome to use</li>
+                            <li>I felt very confident using the system</li>
+                            <li>I needed to learn a lot of things before I could get going</li>
+                        </ol>
+                        <p><strong>Scoring:</strong> ถ้าได้ > 68 ถือว่า Above Average</p>
+                    </section>
+
+                    <section id="quiz" class="quiz-section">
+                        <h2>🧠 แบบทดสอบ</h2>
+                        
+                        <div class="quiz-container">
+                            <div class="quiz-question" data-answer="a">
+                                <p><strong>คำถาม 1:</strong> ข้อใดเป็น 1 ใน 5 องค์ประกอบของ Usability?</p>
+                                <div class="quiz-options">
+                                    <label><input type="radio" name="q1" value="a"> Learnability</label>
+                                    <label><input type="radio" name="q1" value="b"> Scalability</label>
+                                    <label><input type="radio" name="q1" value="c"> Maintainability</label>
+                                </div>
+                                <div class="quiz-feedback"></div>
+                            </div>
+
+                            <button class="btn btn-primary" onclick="checkAnswers()">ตรวจคำตอบ</button>
+                            <div id="quiz-result"></div>
+                        </div>
+                    </section>
+
+                    <section class="completion-section">
+                        <button class="btn btn-complete" onclick="markTopicComplete('topics/usability-testing.html')">
+                            ✅ ฉันเรียนจบบทนี้แล้ว
+                        </button>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 QA Learning Hub | สร้างด้วย ❤️ สำหรับ QA ทุกคน</p>
+        </div>
+    </footer>
+
+    <script src="../js/topic.js"></script>
+    <script>
+        function checkAnswers() {
+            const questions = document.querySelectorAll('.quiz-question');
+            let correct = 0;
+            questions.forEach(q => {
+                const answer = q.dataset.answer;
+                const selected = q.querySelector('input[type="radio"]:checked');
+                const feedback = q.querySelector('.quiz-feedback');
+                if (selected) {
+                    if (selected.value === answer) {
+                        feedback.innerHTML = '<span class="correct">✅ ถูกต้อง!</span>';
+                        correct++;
+                    } else {
+                        feedback.innerHTML = '<span class="incorrect">❌ ลองใหม่</span>';
+                    }
+                } else {
+                    feedback.innerHTML = '<span class="incorrect">⚠️ เลือกคำตอบ</span>';
+                }
+            });
+            const resultDiv = document.getElementById('quiz-result');
+            if (correct === questions.length) {
+                resultDiv.innerHTML = '<div class="success-message">🎉 ยินดีด้วย!</div>';
+            }
+        }
+    </script>
+</body>
+</html>

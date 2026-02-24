@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Scenarios & Cases - QA Learning Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/topic.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">🧪</span>
+                <span class="logo-text">QA Learning Hub</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">← กลับสู่หน้าหลัก</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="topic-page">
+        <div class="topic-header">
+            <div class="container">
+                <div class="topic-meta">
+                    <span class="topic-level-badge beginner">Beginner</span>
+                    <span class="topic-category">Manual Testing</span>
+                </div>
+                <h1>📝 Test Scenarios & Cases</h1>
+                <p class="topic-description">เรียนรู้วิธีเขียน Test Case และ Test Scenario ที่มีประสิทธิภาพ พร้อมตัวอย่างจริง</p>
+            </div>
+        </div>
+
+        <div class="topic-content">
+            <div class="container">
+                <nav class="toc">
+                    <h3>📋 สารบัญ</h3>
+                    <ul>
+                        <li><a href="#scenario-vs-case">Test Scenario vs Test Case</a></li>
+                        <li><a href="#writing-scenarios">เขียน Test Scenario</a></li>
+                        <li><a href="#writing-cases">เขียน Test Case</a></li>
+                        <li><a href="#example">ตัวอย่าง</a></li>
+                        <li><a href="#quiz">แบบทดสอบ</a></li>
+                    </ul>
+                </nav>
+
+                <article class="content-body">
+                    <section id="scenario-vs-case">
+                        <h2>Test Scenario vs Test Case</h2>
+                        
+                        <div class="comparison-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Test Scenario</th>
+                                        <th>Test Case</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>High-level description</td>
+                                        <td>Detailed step-by-step</td>
+                                    </tr>
+                                    <tr>
+                                        <td>"What to test"</td>
+                                        <td>"How to test"</td>
+                                    </tr>
+                                    <tr>
+                                        <td>One scenario = many cases</td>
+                                        <td>One case = specific test</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section id="writing-scenarios">
+                        <h2>การเขียน Test Scenario</h2>
+                        
+                        <p>Test Scenario ควรครอบคลุมความต้องการทั้งหมด โดยไม่ซ้ำซ้อน</p>
+                        
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>ตัวอย่าง Test Scenarios สำหรับ Login</span>
+                                <button class="copy-code-btn">📋 คัดลอก</button>
+                            </div>
+                            <pre><code>TS1: Login ด้วย credentials ที่ถูกต้อง
+TS2: Login ด้วย password ผิด
+TS3: Login ด้วย username ที่ไม่มีในระบบ
+TS4: Login เมื่อระบบ offline
+TS5: Forgot Password functionality</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="writing-cases">
+                        <h2>การเขียน Test Case</h2>
+                        
+                        <p>Test Case ที่ดีต้องมี:</p>
+                        
+                        <ul>
+                            <li><strong>Test Case ID</strong> - รหัสอ้างอิง</li>
+                            <li><strong>Pre-condition</strong> - เงื่อนไขก่อนทดสอบ</li>
+                            <li><strong>Steps</strong> - ขั้นตอนทีละขั้น</li>
+                            <li><strong>Test Data</strong> - ข้อมูลที่ใช้ทดสอบ</li>
+                            <li><strong>Expected Result</strong> - ผลลัพธ์ที่คาดหวัง</li>
+                        </ul>
+                    </section>
+
+                    <section id="example">
+                        <h2>ตัวอย่าง Test Case</h2>
+                        
+                        <div class="comparison-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Field</th>
+                                        <th>Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>ID</td><td>TC_LOGIN_001</td></tr>
+                                    <tr><td>Title</td><td>Login with valid credentials</td></tr>
+                                    <tr><td>Pre-condition</td><td>User exists in system, on login page</td></tr>
+                                    <tr><td>Steps</td><td>1. Enter username "john"&lt;br>2. Enter password "password123"&lt;br>3. Click Login button</td></tr>
+                                    <tr><td>Expected</td><td>Redirect to dashboard, welcome message shown</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section id="quiz" class="quiz-section">
+                        <h2>🎯 แบบทดสอบ</h2>
+                        
+                        <div class="quiz-container">
+                            <div class="quiz-question" data-correct="b">
+                                <p class="question">1. Test Scenario คืออะไร?</p>
+                                <div class="options">
+                                    <label><input type="radio" name="q1" value="a"> ขั้นตอนละเอียดในการทดสอบ</label>
+                                    <label><input type="radio" name="q1" value="b"> ภาพรวมสิ่งที่ต้องทดสอบ</label>
+                                    <label><input type="radio" name="q1" value="c"> ผลลัพธ์ที่คาดหวัง</label>
+                                    <label><input type="radio" name="q1" value="d"> ข้อมูลสำหรับทดสอบ</label>
+                                </div>
+                                <div class="feedback"></div>
+                            </div>
+                            
+                            <div class="quiz-question" data-correct="a">
+                                <p class="question">2. ข้อใดเป็นส่วนของ Test Case?</p>
+                                <div class="options">
+                                    <label><input type="radio" name="q2" value="a"> Expected Result</label>
+                                    <label><input type="radio" name="q2" value="b"> Project Timeline</label>
+                                    <label><input type="radio" name="q2" value="c"> Team Members</label>
+                                    <label><input type="radio" name="q2" value="d"> Budget</label>
+                                </div>
+                                <div class="feedback"></div>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-primary" id="checkAnswers">ตรวจคำตอบ</button>
+                        <div id="quizResult" class="quiz-result"></div>
+                    </section>
+                </article>
+
+                <nav class="topic-nav">
+                    <a href="sdlc-stlc.html" class="nav-prev">← SDLC/STLC</a>
+                    <a href="testing-techniques.html" class="nav-next">Testing Techniques →</a>
+                </nav>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/topic.js"></script>
+</body>
+</html>

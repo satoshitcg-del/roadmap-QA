@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agile & Scrum - QA Learning Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/topic.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">🧪</span>
+                <span class="logo-text">QA Learning Hub</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">← กลับสู่หน้าหลัก</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="topic-page">
+        <div class="topic-header">
+            <div class="container">
+                <div class="topic-meta">
+                    <span class="topic-level-badge intermediate">Intermediate</span>
+                    <span class="topic-category">Advanced Topics</span>
+                </div>
+                <h1>🏃 Agile & Scrum</h1>
+                <p class="topic-description">ทำงานใน Agile Team Sprint Planning และ QA ใน Agile</p>
+            </div>
+        </div>
+
+        <div class="topic-content">
+            <div class="container">
+                <nav class="toc">
+                    <h3>📋 สารบัญ</h3>
+                    <ul>
+                        <li><a href="#intro">Agile คืออะไร?</a></li>
+                        <li><a href="#scrum">Scrum Framework</a></li>
+                        <li><a href="#qa">QA Role in Agile</a></li>
+                        <li><a href="#ceremonies">Scrum Ceremonies</a></li>
+                        <li><a href="#quiz">แบบทดสอบ</a></li>
+                    </ul>
+                </nav>
+
+                <article class="content-body">
+                    <section id="intro">
+                        <h2>🔄 Agile คืออะไร?</h2>
+                        
+                        <p><strong>Agile</strong> คือวิธีการพัฒนาซอฟต์แวร์ที่เน้นความยืดหยุ่น ส่งมอบงานเป็นส่วนๆ (iterative) และตอบสนองต่อการเปลี่ยนแปลงได้รวดเร็ว</p>
+
+                        <h3>📝 Agile Manifesto (4 ค่านิยม)</h3>
+                        
+                        <div class="manifesto">
+                            <p><strong>Individuals and interactions</strong> over Processes and tools</p>
+                            <p><strong>Working software</strong> over Comprehensive documentation</p>
+                            <p><strong>Customer collaboration</strong> over Contract negotiation</p>
+                            <p><strong>Responding to change</strong> over Following a plan</p>
+                        </div>
+
+                        <h3>📋 12 Principles of Agile</h3>
+                        <ol class="principles">
+                            <li>ส่งมอบซอฟต์แวร์ที่ใช้งานได้บ่อยๆ (weeks > months)</li>
+                            <li>ยินดีรับ requirement เปลี่ยนแปลง</li>
+                            <li>ส่งมอบงานที่ใช้งานได้สม่ำเสมอ</li>
+                            <li>Business people และ Developers ต้องทำงานร่วมกัน</li>
+                            <li>สร้างโครงการรอบตัวแทนที่มุ่งมั่น</li>
+                            <li>สื่อสารแบบ face-to-face มีประสิทธิภาพสูงสุด</li>
+                            <li>ซอฟต์แวร์ที่ใช้งานได้คือตัววัดความก้าวหน้าหลัก</li>
+                            <li>Agile processes ส่งเสริมการพัฒนาที่ยั่งยืน</li>
+                            <li>เน้น technical excellence และ good design</li>
+                            <li>ความเรียบง่ายสำคัญ</li>
+                            <li>ทีมที่มีการจัดการตนเองดีที่สุด</li>
+                            <li>Reflect และปรับปรุงอย่างสม่ำเสมอ</li>
+                        </ol>
+                    </section>
+
+                    <section id="scrum">
+                        <h2>🏃 Scrum Framework</h2>
+
+                        <p><strong>Scrum</strong> เป็น Agile framework ที่นิยมมากที่สุด</p>
+
+                        <h3>🎭 Scrum Roles</h3>
+                        <div class="roles-grid">
+                            <div class="role-card">
+                                <span class="role-icon">👤</span>
+                                <h4>Product Owner</h4>
+                                <p>กำหนด priority, จัดการ Product Backlog</p>
+                            </div>
+                            <div class="role-card">
+                                <span class="role-icon">🏃</span>
+                                <h4>Scrum Master</h4>
+                                <p>คอย facilitate, ลบอุปสรรค, coach ทีม</p>
+                            </div>
+                            <div class="role-card">
+                                <span class="role-icon">👥</span>
+                                <h4>Development Team</h4>
+                                <p>Developers, QA, Designers ที่สร้าง product</p>
+                            </div>
+                        </div>
+
+                        <h3>📊 Scrum Artifacts</h3>
+                        <ul>
+                            <li><strong>Product Backlog</strong> - รายการทั้งหมดที่ต้องทำ เรียงตาม priority</li>
+                            <li><strong>Sprint Backlog</strong> - งานที่เลือกทำใน Sprint นี้</li>
+                            <li><strong>Increment</strong> - ผลงานที่ส่งมอบได้หลัง Sprint</li>
+                        </ul>
+
+                        <h3>🔄 Sprint Cycle (1-4 weeks)</h3>
+                        <div class="sprint-flow">
+                            <pre class="diagram">
+Sprint Planning (1-2 hrs) 
+        ↓
+Daily Standup (15 min) ← → จันทร์-ศุกร์
+        ↓
+Sprint Review (1-2 hrs)
+        ↓
+Retrospective (1 hr)
+        ↓
+เริ่ม Sprint ใหม่
+                            </pre>
+                        </div>
+                    </section>
+
+                    <section id="qa">
+                        <h2>🧪 QA Role in Agile/Scrum</h2>
+
+                        <h3>✅ หน้าที่ QA ใน Agile</h3>
+                        <ul>
+                            <li>📝 Participate in Sprint Planning - ประเมินงาน test และให้ความเห็นเรื่อง acceptance criteria</li>
+                            <li>🔍 Test Early - เริ่ม test ตั้งแต่ตอน dev กำลังพัฒนา (ไม่รอให้เสร็จ)</li>
+                            <li>🤝 Pair Testing - ทำงานร่วมกับ dev ตั้งแต่เริ่ม</li>
+                            <li>⚡ Automation - สร้าง automated tests ให้รันใน CI/CD</li>
+                            <li>📊 Exploratory Testing - ทดสอบแบบสำรวจหา edge cases</li>
+                            <li>🗣️ Feedback Loop - แจ้งปัญหาเร็ว ช่วยทีมแก้ไขทันที</li>
+                        </ul>
+
+                        <h3>🔄 QA Activities per Sprint Phase</h3>
+                        <table>
+                            <tr><th>Phase</th><th>QA Activities</th></tr>
+                            <tr><td>Sprint Planning</td><td>Review stories, estimate testing effort, clarify acceptance criteria</td></tr>
+                            <tr><td>Daily Standup</td><td>Update test status, identify blockers, coordinate with dev</td></tr>
+                            <tr><td>During Sprint</td><td>Test completed features, report bugs, update test cases</td></tr>
+                            <tr><td>Sprint Review</td><td>Demo features, present test results</td></tr>
+                            <tr><td>Retrospective</td><td>Suggest process improvements, share lessons learned</td></tr>
+                        </table>
+                    </section>
+
+                    <section id="ceremonies">
+                        <h2>🎯 Scrum Ceremonies</h2>
+
+                        <h3>1️⃣ Sprint Planning</h3>
+                        <ul>
+                            <li><strong>Duration:</strong> 2-4 hours (for 2-week sprint)</li>
+                            <li><strong>Attendees:</strong> ทั้งทีม</li>
+                            <li><strong>Output:</strong> Sprint Backlog + Sprint Goal</li>
+                        </ul>
+
+                        <h3>2️⃣ Daily Standup (Daily Scrum)</h3>
+                        <ul>
+                            <li><strong>Duration:</strong> 15 minutes</li>
+                            <li><strong>Questions:</strong></li>
+                            <ul>
+                                <li>What did I do yesterday?</li>
+                                <li>What will I do today?</li>
+                                <li>Any blockers?</li>
+                            </ul>
+                        </ul>
+
+                        <h3>3️⃣ Sprint Review</h3>
+                        <ul>
+                            <li>Demo working software ให้ stakeholders</li>
+                            <li>รับ feedback</li>
+                            <li>Update Product Backlog ตาม feedback</li>
+                        </ul>
+
+                        <h3>4️⃣ Sprint Retrospective</h3>
+                        <ul>
+                            <li>ทีมทั้งหมด (ไม่มี external)</li>
+                            <li>What went well?</li>
+                            <li>What could be improved?</li>
+                            <li>Action items for next sprint</li>
+                        </ul>
+                    </section>
+
+                    <section id="quiz" class="quiz-section">
+                        <h2>🧠 แบบทดสอบ</h2>
+                        
+                        <div class="quiz-container">
+                            <div class="quiz-question" data-answer="b">
+                                <p><strong>คำถาม 1:</strong> Scrum Sprint ปกติยาวนานเท่าไหร่?</p>
+                                <div class="quiz-options">
+                                    <label><input type="radio" name="q1" value="a"> 1 วัน</label>
+                                    <label><input type="radio" name="q1" value="b"> 1-4 สัปดาห์</label>
+                                    <label><input type="radio" name="q1" value="c"> 6 เดือน</label>
+                                </div>
+                                <div class="quiz-feedback"></div>
+                            </div>
+
+                            <div class="quiz-question" data-answer="a">
+                                <p><strong>คำถาม 2:</strong> ใครคือคนที่กำหนด Priority ของงาน?</p>
+                                <div class="quiz-options">
+                                    <label><input type="radio" name="q2" value="a"> Product Owner</label>
+                                    <label><input type="radio" name="q2" value="b"> Scrum Master</label>
+                                    <label><input type="radio" name="q2" value="c"> QA Lead</label>
+                                </div>
+                                <div class="quiz-feedback"></div>
+                            </div>
+
+                            <button class="btn btn-primary" onclick="checkAnswers()">ตรวจคำตอบ</button>
+                            <div id="quiz-result"></div>
+                        </div>
+                    </section>
+
+                    <section class="completion-section">
+                        <button class="btn btn-complete" onclick="markTopicComplete('topics/agile-scrum.html')">
+                            ✅ ฉันเรียนจบบทนี้แล้ว
+                        </button>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 QA Learning Hub | สร้างด้วย ❤️ สำหรับ QA ทุกคน</p>
+        </div>
+    </footer>
+
+    <script src="../js/topic.js"></script>
+    <script>
+        function checkAnswers() {
+            const questions = document.querySelectorAll('.quiz-question');
+            let correct = 0;
+            questions.forEach(q => {
+                const answer = q.dataset.answer;
+                const selected = q.querySelector('input[type="radio"]:checked');
+                const feedback = q.querySelector('.quiz-feedback');
+                if (selected) {
+                    if (selected.value === answer) {
+                        feedback.innerHTML = '<span class="correct">✅ ถูกต้อง!</span>';
+                        correct++;
+                    } else {
+                        feedback.innerHTML = '<span class="incorrect">❌ ลองใหม่</span>';
+                    }
+                } else {
+                    feedback.innerHTML = '<span class="incorrect">⚠️ เลือกคำตอบ</span>';
+                }
+            });
+            const resultDiv = document.getElementById('quiz-result');
+            if (correct === questions.length) {
+                resultDiv.innerHTML = '<div class="success-message">🎉 ยินดีด้วย!</div>';
+            }
+        }
+    </script>
+</body>
+</html>

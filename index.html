@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QA Engineer Learning Hub - คู่มือสอน QA ครบวงจร</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🧪</span>
+                <span class="logo-text">QA Learning Hub</span>
+            </a>
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link active">หน้าหลัก</a></li>
+                <li><a href="#basics" class="nav-link">พื้นฐาน</a></li>
+                <li><a href="#manual" class="nav-link">Manual Testing</a></li>
+                <li><a href="#automation" class="nav-link">Automation</a></li>
+                <li><a href="#advanced" class="nav-link">ขั้นสูง</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">🚀 เริ่มต้นเรียนรู้ QA วันนี้</div>
+            <h1>QA Engineer<br><span class="gradient-text">Learning Hub</span></h1>
+            <p class="hero-description">
+                คู่มือเรียนรู้ Software QA แบบครบวงจร ตั้งแต่พื้นฐานจนถึงระดับมืออาชีพ<br>
+                เรียนรู้ด้วยตนเองผ่านเนื้อหาที่จัดระเบียบ พร้อมตัวอย่างจริงและแบบฝึกหัด
+            </p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">24+</span>
+                    <span class="stat-label">หัวข้อ</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">หมวดหมู่</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">ฟรี</span>
+                </div>
+            </div>
+            <div class="hero-buttons">
+                <a href="#basics" class="btn btn-primary">เริ่มเรียนเลย →</a>
+                <a href="#roadmap" class="btn btn-secondary">ดูแผนการเรียน</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="code-preview">
+                <div class="code-header">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                    <span class="code-title">test_login.py</span>
+                </div>
+                <pre class="code-content"><code><span class="keyword">def</span> <span class="function">test_successful_login</span>():
+    <span class="comment"># Arrange</span>
+    username = <span class="string">"valid_user"</span>
+    password = <span class="string">"correct_pass"</span>
+    
+    <span class="comment"># Act</span>
+    result = login(username, password)
+    
+    <span class="comment"># Assert</span>
+    <span class="keyword">assert</span> result.status == <span class="string">"success"</span>
+    <span class="keyword">assert</span> result.redirect == <span class="string">"/dashboard"</span></code></pre>
+            </div>
+        </div>
+    </header>
+
+    <!-- Roadmap Overview -->
+    <section id="roadmap" class="section roadmap-section">
+        <div class="container">
+            <h2 class="section-title">แผนการเรียนรู้ QA</h2>
+            <p class="section-subtitle">เส้นทางสู่การเป็น QA Engineer มืออาชีพ</p>
+            
+            <div class="roadmap-timeline">
+                <!-- Phase 1 -->
+                <div class="roadmap-phase">
+                    <div class="phase-header">
+                        <div class="phase-icon">📚</div>
+                        <div class="phase-info">
+                            <h3>พื้นฐาน (Basics)</h3>
+                            <span class="phase-duration">1-2 สัปดาห์</span>
+                        </div>
+                    </div>
+                    <div class="phase-topics">
+                        <a href="topics/internet-basics.html" class="topic-card beginner">
+                            <span class="topic-icon">🌐</span>
+                            <h4>Internet Basics</h4>
+                            <p>พื้นฐานอินเทอร์เน็ต โปรโตคอล IP/DNS</p>
+                            <span class="topic-level">Beginner</span>
+                        </a>
+                        <a href="topics/http-https.html" class="topic-card beginner">
+                            <span class="topic-icon">📡</span>
+                            <h4>HTTP/HTTPS</h4>
+                            <p>โปรโตคอลเว็บ Methods, Status Codes, Headers</p>
+                            <span class="topic-level">Beginner</span>
+                        </a>
+                        <a href="topics/what-is-qa.html" class="topic-card beginner">
+                            <span class="topic-icon">🎯</span>
+                            <h4>What is QA?</h4>
+                            <p>QA vs QC, Quality Assurance คืออะไร</p>
+                            <span class="topic-level">Beginner</span>
+                        </a>
+                        <a href="topics/testing-types.html" class="topic-card beginner">
+                            <span class="topic-icon">🧩</span>
+                            <h4>Testing Types</h4>
+                            <p>ประเภทการทดสอบ Functional/Non-Functional</p>
+                            <span class="topic-level">Beginner</span>
+                        </a>
+                        <a href="topics/sdlc-stlc.html" class="topic-card beginner">
+                            <span class="topic-icon">🔄</span>
+                            <h4>SDLC & STLC</h4>
+                            <p>วงจรพัฒนาและทดสอบซอฟต์แวร์</p>
+                            <span class="topic-level">Beginner</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Phase 2 -->
+                <div class="roadmap-phase" id="manual">
+                    <div class="phase-header">
+                        <div class="phase-icon">✋</div>
+                        <div class="phase-info">
+                            <h3>Manual Testing</h3>
+                            <span class="phase-duration">2-3 สัปดาห์</span>
+                        </div>
+                    </div>
+                    <div class="phase-topics">
+                        <a href="topics/test-scenarios.html" class="topic-card beginner">
+                            <span class="topic-icon">📝</span>
+                            <h4>Test Scenarios & Cases</h4>
+                            <p>เขียน Test Case ที่มีประสิทธิภาพ</p>
+                            <span class="topic-level">Beginner</span>
+                        </a>
+                        <a href="topics/testing-techniques.html" class="topic-card intermediate">
+                            <span class="topic-icon">🔍</span>
+                            <h4>Testing Techniques</h4>
+                            <p>EP, BVA, Decision Table, State Transition</p>
+                            <span class="topic-level">Intermediate</span>
+                        </a>
+                        <a href="topics/bug-reporting.html" class="topic-card beginner">
+                            <span class="topic-icon">🐛</span>
+                            <h4>Bug Reporting</h4>
+                            <p>รายงาน Bug อย่างมืออาชีพใน Jira</p>
+                            <span class="topic-level">Beginner</span>
+                        </a>
+                        <a href="topics/test-documentation.html" class="topic-card beginner">
+                            <span class="topic-icon">📋</span>
+                            <h4>Test Documentation</h4>
+                            <p>Test Plan, Strategy, Report</p>
+                            <span class="topic-level">Beginner</span>
+                        </a>
+                        <a href="topics/risk-based-testing.html" class="topic-card intermediate">
+                            <span class="topic-icon">⚠️</span>
+                            <h4>Risk-based Testing</h4>
+                            <p>จัดลำดับความสำคัญตามความเสี่ยง</p>
+                            <span class="topic-level">Intermediate</span>
+                        </a>
+                        <a href="topics/exploratory-testing.html" class="topic-card intermediate">
+                            <span class="topic-icon">🗺️</span>
+                            <h4>Exploratory Testing</h4>
+                            <p>ทดสอบแบบสำรวจค้นหา</p>
+                            <span class="topic-level">Intermediate</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Phase 3 -->
+                <div class="roadmap-phase" id="automation">
+                    <div class="phase-header">
+                        <div class="phase-icon">🤖</div>
+                        <div class="phase-info">
+                            <h3>Automation Testing</h3>
+                            <span class="phase-duration">4-6 สัปดาห์</span>
+                        </div>
+                    </div>
+                    <div class="phase-topics">
+                        <a href="topics/selenium.html" class="topic-card intermediate">
+                            <span class="topic-icon">🎭</span>
+                            <h4>Selenium WebDriver</h4>
+                            <p>Web Automation ด้วย Python/Java</p>
+                            <span class="topic-level">Intermediate</span>
+                        </a>
+                        <a href="topics/cypress.html" class="topic-card intermediate">
+                            <span class="topic-icon">🌲</span>
+                            <h4>Cypress</h4>
+                            <p>Modern Web Testing Framework</p>
+                            <span class="topic-level">Intermediate</span>
+                        </a>
+                        <a href="topics/playwright.html" class="topic-card intermediate">
+                            <span class="topic-icon">🎪</span>
+                            <h4>Playwright</h4>
+                            <p>Cross-browser Automation จาก Microsoft</p>
+                            <span class="topic-level">Intermediate</span>
+                        </a>
+                        <a href="topics/api-testing.html" class="topic-card intermediate">
+                            <span class="topic-icon">🔌</span>
+                            <h4>API Testing</h4>
+                            <p>Postman, REST Assured, HTTP Methods</p>
+                            <span class="topic-level">Intermediate</span>
+                        </a>
+                        <a href="topics/cicd-integration.html" class="topic-card advanced">
+                            <span class="topic-icon">🚀</span>
+                            <h4>CI/CD Integration</h4>
+                            <p>เชื่อมต่อ Jenkins, GitHub Actions</p>
+                            <span class="topic-level">Advanced</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Phase 4 -->
+                <div class="roadmap-phase">
+                    <div class="phase-header">
+                        <div class="phase-icon">⚡</div>
+                        <div class="phase-info">
+                            <h3>Non-Functional Testing</h3>
+                            <span class="phase-duration">2-3 สัปดาห์</span>
+                        </div>
+                    </div>
+                    <div class="phase-topics">
+                        <a href="topics/performance-testing.html" class="topic-card advanced">
+                            <span class="topic-icon">📊</span>
+                            <h4>Performance Testing</h4>
+                            <p>JMeter, Load Testing, Stress Testing</p>
+                            <span class="topic-level">Advanced</span>
+                        </a>
+                        <a href="topics/security-testing.html" class="topic-card advanced">
+                            <span class="topic-icon">🔒</span>
+                            <h4>Security Testing</h4>
+                            <p>OWASP Top 10, SQL Injection, XSS</p>
+                            <span class="topic-level">Advanced</span>
+                        </a>
+                        <a href="topics/accessibility-testing.html" class="topic-card intermediate">
+                            <span class="topic-icon">♿</span>
+                            <h4>Accessibility Testing</h4>
+                            <p>WCAG, Screen Readers, A11y</p>
+                            <span class="topic-level">Intermediate</span>
+                        </a>
+                        <a href="topics/usability-testing.html" class="topic-card intermediate">
+                            <span class="topic-icon">👤</span>
+                            <h4>Usability Testing</h4>
+                            <p>UX Testing, User Feedback</p>
+                            <span class="topic-level">Intermediate</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Phase 5 -->
+                <div class="roadmap-phase" id="advanced">
+                    <div class="phase-header">
+                        <div class="phase-icon">🎓</div>
+                        <div class="phase-info">
+                            <h3>Advanced Topics</h3>
+                            <span class="phase-duration">3-4 สัปดาห์</span>
+                        </div>
+                    </div>
+                    <div class="phase-topics">
+                        <a href="topics/mobile-testing.html" class="topic-card advanced">
+                            <span class="topic-icon">📱</span>
+                            <h4>Mobile Testing</h4>
+                            <p>Appium, Android, iOS Testing</p>
+                            <span class="topic-level">Advanced</span>
+                        </a>
+                        <a href="topics/database-testing.html" class="topic-card advanced">
+                            <span class="topic-icon">🗄️</span>
+                            <h4>Database Testing</h4>
+                            <p>SQL, Data Integrity, Migration</p>
+                            <span class="topic-level">Advanced</span>
+                        </a>
+                        <a href="topics/agile-scrum.html" class="topic-card intermediate">
+                            <span class="topic-icon">🏃</span>
+                            <h4>Agile & Scrum</h4>
+                            <p>ทำงานใน Agile Team, Sprint Planning</p>
+                            <span class="topic-level">Intermediate</span>
+                        </a>
+                        <a href="topics/test-management.html" class="topic-card intermediate">
+                            <span class="topic-icon">🛠️</span>
+                            <h4>Test Management Tools</h4>
+                            <p>TestRail, qTest, Zephyr</p>
+                            <span class="topic-level">Intermediate</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Progress Tracker -->
+    <section class="section progress-section">
+        <div class="container">
+            <h2 class="section-title">ติดตามความก้าวหน้า</h2>
+            <div class="progress-cards">
+                <div class="progress-card">
+                    <div class="progress-ring" data-progress="0">
+                        <svg viewBox="0 0 100 100">
+                            <circle class="progress-bg" cx="50" cy="50" r="45"/>
+                            <circle class="progress-bar" cx="50" cy="50" r="45"/>
+                        </svg>
+                        <span class="progress-text">0%</span>
+                    </div>
+                    <h3>พื้นฐาน</h3>
+                    <p>เริ่มต้นที่นี่</p>
+                </div>
+                <div class="progress-card">
+                    <div class="progress-ring" data-progress="0">
+                        <svg viewBox="0 0 100 100">
+                            <circle class="progress-bg" cx="50" cy="50" r="45"/>
+                            <circle class="progress-bar" cx="50" cy="50" r="45"/>
+                        </svg>
+                        <span class="progress-text">0%</span>
+                    </div>
+                    <h3>Manual</h3>
+                    <p>รอการเรียนรู้</p>
+                </div>
+                <div class="progress-card">
+                    <div class="progress-ring" data-progress="0">
+                        <svg viewBox="0 0 100 100">
+                            <circle class="progress-bg" cx="50" cy="50" r="45"/>
+                            <circle class="progress-bar" cx="50" cy="50" r="45"/>
+                        </svg>
+                        <span class="progress-text">0%</span>
+                    </div>
+                    <h3>Automation</h3>
+                    <p>รอการเรียนรู้</p>
+                </div>
+                <div class="progress-card">
+                    <div class="progress-ring" data-progress="0">
+                        <svg viewBox="0 0 100 100">
+                            <circle class="progress-bg" cx="50" cy="50" r="45"/>
+                            <circle class="progress-bar" cx="50" cy="50" r="45"/>
+                        </svg>
+                        <span class="progress-text">0%</span>
+                    </div>
+                    <h3>Advanced</h3>
+                    <p>รอการเรียนรู้</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-icon">🧪</span>
+                    <span class="logo-text">QA Learning Hub</span>
+                    <p>เรียนรู้ QA แบบครบวงจร ฟรี ตลอดชีพ</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>เนื้อหา</h4>
+                        <ul>
+                            <li><a href="#basics">พื้นฐาน</a></li>
+                            <li><a href="#manual">Manual Testing</a></li>
+                            <li><a href="#automation">Automation</a></li>
+                            <li><a href="#advanced">ขั้นสูง</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>ทรัพยากร</h4>
+                        <ul>
+                            <li><a href="#">แบบฝึกหัด</a></li>
+                            <li><a href="#">ข้อสอบ</a></li>
+                            <li><a href="#">Project ตัวอย่าง</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 QA Learning Hub | สร้างด้วย ❤️ สำหรับ QA ทุกคน</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

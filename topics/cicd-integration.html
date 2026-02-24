@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CI/CD Integration - QA Learning Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/topic.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">🧪</span>
+                <span class="logo-text">QA Learning Hub</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">← กลับสู่หน้าหลัก</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="topic-page">
+        <div class="topic-header">
+            <div class="container">
+                <div class="topic-meta">
+                    <span class="topic-level-badge advanced">Advanced</span>
+                    <span class="topic-category">Automation Testing</span>
+                </div>
+                <h1>🚀 CI/CD Integration</h1>
+                <p class="topic-description">เชื่อมต่อ Automated Tests เข้ากับ Jenkins, GitHub Actions, GitLab CI</p>
+            </div>
+        </div>
+
+        <div class="topic-content">
+            <div class="container">
+                <nav class="toc">
+                    <h3>📋 สารบัญ</h3>
+                    <ul>
+                        <li><a href="#concept">CI/CD คืออะไร?</a></li>
+                        <li><a href="#github">GitHub Actions</a></li>
+                        <li><a href="#jenkins">Jenkins Pipeline</a></li>
+                        <li><a href="#gitlab">GitLab CI</a></li>
+                        <li><a href="#best">Best Practices</a></li>
+                        <li><a href="#quiz">แบบทดสอบ</a></li>
+                    </ul>
+                </nav>
+
+                <article class="content-body">
+                    <section id="concept">
+                        <h2>🔄 CI/CD Pipeline คืออะไร?</h2>
+                        
+                        <p><strong>CI/CD (Continuous Integration/Continuous Deployment)</strong> คือกระบวนการอัตโนมัติในการ Build, Test และ Deploy ซอฟต์แวร์</p>
+
+                        <div class="pipeline-diagram">
+                            <pre class="diagram">
+Code Commit → Build → Unit Test → Integration Test → Deploy → Production
+     ↓            ↓          ↓              ↓            ↓
+  Git Push   Compile   Jest/Mocha    Selenium/    Staging    Live
+                          API Tests    Cypress      Server   
+                            </pre>
+                        </div>
+
+                        <h3>🎯 ทำไมต้อง Integrate Tests เข้า CI/CD?</h3>
+                        <ul>
+                            <li>⚡ ตรวจพบปัญหาเร็ว - รู้ทันทีที่ push code</li>
+                            <li>🔄 ทดสอบอัตโนมัติทุกครั้งที่มีการเปลี่ยนแปลง</li>
+                            <li>🛡️ ป้องกัน Bug เข้า Production</li>
+                            <li>📊 มี Test Report อัตโนมัติ</li>
+                        </ul>
+                    </section>
+
+                    <section id="github">
+                        <h2>🐙 GitHub Actions</h2>
+
+                        <h3>📁 โครงสร้างไฟล์</h3>
+                        <div class="code-block">
+                            <pre><code>.github/workflows/
+└── test.yml</code></pre>
+                        </div>
+
+                        <h3>⚙️ Example: GitHub Actions with Selenium</h3>
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-yaml">name: Run Tests
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+        pip install pytest selenium webdriver-manager
+    
+    - name: Run tests
+      run: pytest tests/ -v --tb=short
+    
+    - name: Upload test results
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: test-results
+        path: |
+          report.html
+          screenshots/</code></pre>
+                        </div>
+
+                        <h3>🎭 GitHub Actions with Playwright</h3>
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-yaml">name: Playwright Tests
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 18
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
+    
+    - name: Run Playwright tests
+      run: npx playwright test
+    
+    - name: Upload report
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: playwright-report
+        path: playwright-report/
+        retention-days: 30</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="jenkins">
+                        <h2>🔧 Jenkins Pipeline</h2>
+
+                        <h3>Jenkinsfile Example</h3>
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-groovy">pipeline {
+    agent any
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/your/repo.git'
+            }
+        }
+        
+        stage('Install') {
+            steps {
+                sh 'pip install -r requirements.txt'
+            }
+        }
+        
+        stage('Test') {
+            steps {
+                sh 'pytest tests/ --html=report.html --self-contained-html'
+            }
+        }
+        
+        stage('Report') {
+            steps {
+                publishHTML([
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    reportDir: '.',
+                    reportFiles: 'report.html',
+                    reportName: 'Test Report'
+                ])
+            }
+        }
+    }
+    
+    post {
+        always {
+            junit 'test-results/*.xml'
+        }
+        failure {
+            mail to: 'team@example.com',
+                 subject: "Build Failed: ${env.JOB_NAME}"
+        }
+    }
+}</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="gitlab">
+                        <h2>🦊 GitLab CI</h2>
+
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-yaml">stages:
+  - build
+  - test
+  - deploy
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+
+cache:
+  paths:
+    - .cache/pip
+    - venv/
+
+before_script:
+  - python -V
+  - pip install virtualenv
+  - virtualenv venv
+  - source venv/bin/activate
+
+build:
+  stage: build
+  script:
+    - pip install -r requirements.txt
+  artifacts:
+    paths:
+      - venv/
+
+test:
+  stage: test
+  script:
+    - pytest tests/ --junitxml=report.xml
+  artifacts:
+    when: always
+    reports:
+      junit: report.xml
+    paths:
+      - report.xml
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Deploying..."
+  only:
+    - main</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="best">
+                        <h2>✅ Best Practices</h2>
+
+                        <div class="tips-grid">
+                            <div class="tip-card">
+                                <span class="tip-icon">⏱️</span>
+                                <h4>Set Timeouts</h4>
+                                <p>กำหนด timeout เพื่อป้องกัน job ค้าง</p>
+                            </div>
+                            <div class="tip-card">
+                                <span class="tip-icon">📦</span>
+                                <h4>Cache Dependencies</h4>
+                                <p>เก็บ cache เพื่อลดเวลา build</p>
+                            </div>
+                            <div class="tip-card">
+                                <span class="tip-icon">📊</span>
+                                <h4>Artifacts & Reports</h4>
+                                <p>เก็บ test results และ screenshots</p>
+                            </div>
+                            <div class="tip-card">
+                                <span class="tip-icon">🔒</span>
+                                <h4>Secrets Management</h4>
+                                <p>ใช้ Environment Variables สำหรับ sensitive data</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="quiz" class="quiz-section">
+                        <h2>🧠 แบบทดสอบ</h2>
+                        
+                        <div class="quiz-container">
+                            <div class="quiz-question" data-answer="b">
+                                <p><strong>คำถาม 1:</strong> CI/CD ย่อมาจากอะไร?</p>
+                                <div class="quiz-options">
+                                    <label><input type="radio" name="q1" value="a"> Code Integration/Code Development</label>
+                                    <label><input type="radio" name="q1" value="b"> Continuous Integration/Continuous Deployment</label>
+                                    <label><input type="radio" name="q1" value="c"> Central Integration/Central Deployment</label>
+                                </div>
+                                <div class="quiz-feedback"></div>
+                            </div>
+
+                            <button class="btn btn-primary" onclick="checkAnswers()">ตรวจคำตอบ</button>
+                            <div id="quiz-result"></div>
+                        </div>
+                    </section>
+
+                    <section class="completion-section">
+                        <button class="btn btn-complete" onclick="markTopicComplete('topics/cicd-integration.html')">
+                            ✅ ฉันเรียนจบบทนี้แล้ว
+                        </button>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 QA Learning Hub | สร้างด้วย ❤️ สำหรับ QA ทุกคน</p>
+        </div>
+    </footer>
+
+    <script src="../js/topic.js"></script>
+    <script>
+        function checkAnswers() {
+            const questions = document.querySelectorAll('.quiz-question');
+            let correct = 0;
+            questions.forEach(q => {
+                const answer = q.dataset.answer;
+                const selected = q.querySelector('input[type="radio"]:checked');
+                const feedback = q.querySelector('.quiz-feedback');
+                if (selected) {
+                    if (selected.value === answer) {
+                        feedback.innerHTML = '<span class="correct">✅ ถูกต้อง!</span>';
+                        correct++;
+                    } else {
+                        feedback.innerHTML = '<span class="incorrect">❌ ลองใหม่</span>';
+                    }
+                } else {
+                    feedback.innerHTML = '<span class="incorrect">⚠️ เลือกคำตอบ</span>';
+                }
+            });
+            const resultDiv = document.getElementById('quiz-result');
+            if (correct === questions.length) {
+                resultDiv.innerHTML = '<div class="success-message">🎉 ยินดีด้วย!</div>';
+            }
+        }
+    </script>
+</body>
+</html>

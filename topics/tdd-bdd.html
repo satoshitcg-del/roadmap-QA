@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TDD & BDD - QA Learning Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/topic.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">🧪</span>
+                <span class="logo-text">QA Learning Hub</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">← กลับสู่หน้าหลัก</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="topic-page">
+        <div class="topic-header">
+            <div class="container">
+                <div class="topic-meta">
+                    <span class="topic-level-badge intermediate">Intermediate</span>
+                    <span class="topic-category">Advanced Topics</span>
+                </div>
+                <h1>🔄 TDD & BDD</h1>
+                <p class="topic-description">Test Driven Development และ Behavior Driven Development แนวทางการพัฒนาที่เน้น Testing ก่อน</p>
+            </div>
+        </div>
+
+        <div class="topic-content">
+            <div class="container">
+                <nav class="toc">
+                    <h3>📋 สารบัญ</h3>
+                    <ul>
+                        <li><a href="#tdd">TDD (Test Driven Development)</a></li>
+                        <li><a href="#tdd-cycle">TDD Cycle (Red-Green-Refactor)</a></li>
+                        <li><a href="#bdd">BDD (Behavior Driven Development)</a></li>
+                        <li><a href="#gherkin">Gherkin Syntax</a></li>
+                        <li><a href="#comparison">TDD vs BDD</a></li>
+                        <li><a href="#quiz">แบบทดสอบ</a></li>
+                    </ul>
+                </nav>
+
+                <article class="content-body">
+                    <section id="tdd">
+                        <h2>🔄 TDD (Test Driven Development)</h2>
+                        
+                        <p><strong>TDD</strong> คือแนวทางการพัฒนาซอฟต์แวร์ที่เขียน <strong>Test ก่อน</strong> แล้วค่อยเขียน Code ให้ผ่าน Test นั้น</p>
+
+                        <div class="info-box">
+                            <h4>💡 TDD คืออะไร?</h4>
+                            <p>TDD ไม่ใช่การทดสอบแบบดั้งเดิม แต่เป็น <strong>วิธีคิด (mindset)</strong> ในการออกแบบซอฟต์แวร์ผ่านการเขียน tests</p>
+                        </div>
+
+                        <h3>🎯 ข้อดีของ TDD</h3>
+                        <ul>
+                            <li>✅ รู้ว่า code ทำงานถูกต้องตั้งแต่เริ่ม</li>
+                            <li>✅ Design ดีขึ้น (loosely coupled, testable)</li>
+                            <li>✅ มี test coverage สูงโดยอัตโนมัติ</li>
+                            <li>✅ กล้าแก้ไข/refactor code เพราะมี test คุ้มครอง</li>
+                            <li>✅ Documentation ที่อัปเดตเสมอ (tests บอกว่า code ทำอะไร)</li>
+                        </ul>
+
+                        <h3>⚠️ ข้อควรระวัง</h3>
+                        <ul>
+                            <li>❌ ใช้เวลาเรียนรู้มากขึ้นตอนเริ่ม</li>
+                            <li>❌ อาจเขียน test มากเกินจำเป็น (over-testing)</li>
+                            <li>❌ ไม่เหมาะกับ UI หรือ requirement ที่เปลี่ยนบ่อย</li>
+                        </ul>
+                    </section>
+
+                    <section id="tdd-cycle">
+                        <h2>🚦 TDD Cycle: Red → Green → Refactor</h2>
+
+                        <div class="diagram">
+                            <pre class="ascii-art">
+    ┌─────────────────────────────────────┐
+    │                                     │
+    ▼                                     │
+┌─────────┐    ┌──────────┐    ┌─────────┴──┐
+│   RED   │───▶│  GREEN   │───▶│  REFACTOR  │
+│ (Write  │    │(Write    │    │(Improve    │
+│  Test)  │    │  Code)   │    │   Code)    │
+└─────────┘    └──────────┘    └────────────┘
+   (Fail)         (Pass)          (Pass)
+                            </pre>
+                        </div>
+
+                        <h3>🔴 1. RED - เขียน Test ที่ Fail</h3>
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-python"># test_calculator.py
+
+def test_add():
+    calc = Calculator()
+    result = calc.add(2, 3)
+    assert result == 5  # Test นี้จะ Fail เพราะยังไม่มี class Calculator</code></pre>
+                        </div>
+
+                        <h3>🟢 2. GREEN - เขียน Code ให้ Test ผ่าน</h3>
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-python"># calculator.py
+
+class Calculator:
+    def add(self, a, b):
+        return a + b  # เขียนแค่พอให้ test ผ่าน</code></pre>
+                        </div>
+
+                        <h3>🔵 3. REFACTOR - ปรับปรุง Code</h3>
+                        <div class="code-block">
+                            <pre><code class="language-python"># ปรับปรุงโค้ดให้ดีขึ้น แต่ยังคงให้ test ผ่านเหมือนเดิม
+# เช่น: เพิ่ม docstring, ปรับชื่อตัวแปร, ลดความซ้ำซ้อน</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="bdd">
+                        <h2>🎭 BDD (Behavior Driven Development)</h2>
+
+                        <p><strong>BDD</strong> คือการขยายแนวคิด TDD ให้เข้าใจง่ายขึ้นโดยใช้ภาษาธรรมชาติ (Given-When-Then) เพื่อให้ทีม business, QA, และ dev เข้าใจตรงกัน</p>
+
+                        <div class="info-box">
+                            <h4>💡 BDD ต่างจาก TDD อย่างไร?</h4>
+                            <p><strong>TDD</strong>: Test technical behavior (function นี้ return ค่าอะไร)<br>
+                            <strong>BDD</strong>: Test business behavior (user ทำอะไร ระบบตอบสนองอย่างไร)</p>
+                        </div>
+
+                        <h3>🎯 ข้อดีของ BDD</h3>
+                        <ul>
+                            <li>✅ ทีมเข้าใจ requirement ตรงกัน (ใช้ภาษาธรรมชาติ)</li>
+                            <li>✅ Living documentation (feature files อธิบายระบบ)</li>
+                            <li>✅ ลด communication gap ระหว่าง business และ tech</li>
+                        </ul>
+                    </section>
+
+                    <section id="gherkin">
+                        <h2>📝 Gherkin Syntax (Given-When-Then)</h2>
+
+                        <p>Gherkin เป็นภาษาที่ใช้เขียน BDD scenarios แบบ domain-specific</p>
+
+                        <h3>Keywords หลัก</h3>
+                        <table>
+                            <tr><th>Keyword</th><th>ความหมาย</th><th>ตัวอย่าง</th></tr>
+                            <tr><td><strong>Feature</strong></td><td>ชื่อฟีเจอร์</td><td>Feature: Login</td></tr>
+                            <tr><td><strong>Scenario</strong></td><td>Test case หนึ่งๆ</td><td>Scenario: Successful login</td></tr>
+                            <tr><td><strong>Given</strong></td><td>Precondition</td><td>Given user is on login page</td></tr>
+                            <tr><td><strong>When</strong></td><td>Action</td><td>When user enters valid credentials</td></tr>
+                            <tr><td><strong>Then</strong></td><td>Expected result</td><td>Then user should see dashboard</td></tr>
+                            <tr><td><strong>And/But</strong></td><td>เชื่อมต่อ step</td><td>And message "Welcome" displayed</td></tr>
+                        </table>
+
+                        <h3>💡 Example: Login Feature</h3>
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-gherkin">Feature: User Login
+  As a registered user
+  I want to login with my credentials
+  So that I can access my account
+
+  Scenario: Successful login with valid credentials
+    Given user is on the login page
+    And user has a valid account
+    When user enters "john@example.com" in email field
+    And user enters "password123" in password field
+    And user clicks the login button
+    Then user should be redirected to dashboard
+    And welcome message should be displayed
+
+  Scenario: Failed login with invalid password
+    Given user is on the login page
+    When user enters valid email "john@example.com"
+    And user enters invalid password "wrongpass"
+    And user clicks the login button
+    Then error message "Invalid credentials" should be displayed
+    And user should remain on login page</code></pre>
+                        </div>
+
+                        <h3>🔧 Tools สำหรับ BDD</h3>
+                        <ul>
+                            <li><strong>Cucumber</strong> - Java, JavaScript, Ruby, Python (Behave)</li>
+                            <li><strong>SpecFlow</strong> - .NET</li>
+                            <li><strong>Behave</strong> - Python</li>
+                            <li><strong>pytest-bdd</strong> - Python</li>
+                            <li><strong>Robot Framework</strong> - Keyword-driven testing</li>
+                        </ul>
+                    </section>
+
+                    <section id="comparison">
+                        <h2>⚖️ TDD vs BDD Comparison</h2>
+
+                        <table class="comparison-table">
+                            <tr>
+                                <th>TDD</th>
+                                <th>BDD</th>
+                            </tr>
+                            <tr>
+                                <td>Test technical units</td>
+                                <td>Test business behavior</td>
+                            </tr>
+                            <tr>
+                                <td>เขียนโดย developers</td>
+                                <td>เขียนโดยทั้ง team (3 Amigos)</td>
+                            </tr>
+                            <tr>
+                                <td>ใช้ xUnit frameworks</td>
+                                <td>ใช้ Gherkin + step definitions</td>
+                            </tr>
+                            <tr>
+                                <td>Focus: Code correctness</td>
+                                <td>Focus: Business value</td>
+                            </tr>
+                            <tr>
+                                <td>Tests = Technical docs</td>
+                                <td>Tests = Living docs for all</td>
+                            </tr>
+                        </table>
+
+                        <div class="tip-box">
+                            <h4>💡 ใช้ร่วมกันได้!</h4>
+                            <p>TDD และ BDD ไม่ใช่การเลือกข้าง หลายทีมใช้ BDD สำหรับ high-level acceptance tests และ TDD สำหรับ unit tests ภายใน</p>
+                        </div>
+                    </section>
+
+                    <section id="quiz" class="quiz-section">
+                        <h2>🧠 แบบทดสอบ</h2>
+                        
+                        <div class="quiz-container">
+                            <div class="quiz-question" data-answer="b">
+                                <p><strong>คำถาม 1:</strong> TDD Cycle มีขั้นตอนอะไรบ้าง?</p>
+                                <div class="quiz-options">
+                                    <label><input type="radio" name="q1" value="a"> Plan-Do-Check-Act</label>
+                                    <label><input type="radio" name="q1" value="b"> Red-Green-Refactor</label>
+                                    <label><input type="radio" name="q1" value="c"> Design-Code-Test</label>
+                                </div>
+                                <div class="quiz-feedback"></div>
+                            </div>
+
+                            <div class="quiz-question" data-answer="c">
+                                <p><strong>คำถาม 2:</strong> ข้อใดเป็น Keyword ของ Gherkin?</p>
+                                <div class="quiz-options">
+                                    <label><input type="radio" name="q2" value="a"> Arrange-Act-Assert</label>
+                                    <label><input type="radio" name="q2" value="b"> Setup-Execute-Verify</label>
+                                    <label><input type="radio" name="q2" value="c"> Given-When-Then</label>
+                                </div>
+                                <div class="quiz-feedback"></div>
+                            </div>
+
+                            <button class="btn btn-primary" onclick="checkAnswers()">ตรวจคำตอบ</button>
+                            <div id="quiz-result"></div>
+                        </div>
+                    </section>
+
+                    <section class="completion-section">
+                        <button class="btn btn-complete" onclick="markTopicComplete('topics/tdd-bdd.html')">
+                            ✅ ฉันเรียนจบบทนี้แล้ว
+                        </button>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 QA Learning Hub | สร้างด้วย ❤️ สำหรับ QA ทุกคน</p>
+        </div>
+    </footer>
+
+    <script src="../js/topic.js"></script>
+    <script>
+        function checkAnswers() {
+            const questions = document.querySelectorAll('.quiz-question');
+            let correct = 0;
+            questions.forEach(q => {
+                const answer = q.dataset.answer;
+                const selected = q.querySelector('input[type="radio"]:checked');
+                const feedback = q.querySelector('.quiz-feedback');
+                if (selected) {
+                    if (selected.value === answer) {
+                        feedback.innerHTML = '<span class="correct">✅ ถูกต้อง!</span>';
+                        correct++;
+                    } else {
+                        feedback.innerHTML = '<span class="incorrect">❌ ลองใหม่</span>';
+                    }
+                } else {
+                    feedback.innerHTML = '<span class="incorrect">⚠️ เลือกคำตอบ</span>';
+                }
+            });
+            const resultDiv = document.getElementById('quiz-result');
+            if (correct === questions.length) {
+                resultDiv.innerHTML = '<div class="success-message">🎉 ยินดีด้วย!</div>';
+            }
+        }
+    </script>
+</body>
+</html>

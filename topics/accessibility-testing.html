@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility Testing - QA Learning Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/topic.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">🧪</span>
+                <span class="logo-text">QA Learning Hub</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">← กลับสู่หน้าหลัก</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="topic-page">
+        <div class="topic-header">
+            <div class="container">
+                <div class="topic-meta">
+                    <span class="topic-level-badge intermediate">Intermediate</span>
+                    <span class="topic-category">Non-Functional Testing</span>
+                </div>
+                <h1>♿ Accessibility Testing</h1>
+                <p class="topic-description">ทดสอบการเข้าถึงสำหรับผู้พิการ WCAG Compliance</p>
+            </div>
+        </div>
+
+        <div class="topic-content">
+            <div class="container">
+                <nav class="toc">
+                    <h3>📋 สารบัญ</h3>
+                    <ul>
+                        <li><a href="#intro">อะไรคือ Accessibility?</a></li>
+                        <li><a href="#wcag">WCAG Guidelines</a></li>
+                        <li><a href="#checklist">Accessibility Checklist</a></li>
+                        <li><a href="#tools">Testing Tools</a></li>
+                        <li><a href="#quiz">แบบทดสอบ</a></li>
+                    </ul>
+                </nav>
+
+                <article class="content-body">
+                    <section id="intro">
+                        <h2>♿ อะไรคือ Accessibility Testing?</h2>
+                        
+                        <p><strong>Accessibility (a11y)</strong> คือการออกแบบและทดสอบให้ผู้พิการสามารถใช้งานเว็บไซต์/แอพได้ เช่น:</p>
+
+                        <ul>
+                            <li>👁️ ผู้พิการทางสายตา (ใช้ Screen Readers)</li>
+                            <li>👂 ผู้พิการทางการได้ยิน</li>
+                            <li>⌨️ ผู้ที่ใช้ Keyboard navigation</li>
+                            <li>🎨 ผู้ที่มองเห็นสีได้ยาก (Color blindness)</li>
+                        </ul>
+
+                        <div class="info-box">
+                            <h4>💡 ทำไมต้องสนใจ Accessibility?</h4>
+                            <ul>
+                                <li>🌍 15% ของประชากรโลกมีความพิการ</li>
+                                <li>⚖️ กฎหมายบังคับในหลายประเทศ</li>
+                                <li>📈 ช่วย SEO และ User Experience ทั่วไป</li>
+                                <li>🏢 สร้าง Brand reputation</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section id="wcag">
+                        <h2>📋 WCAG (Web Content Accessibility Guidelines)</h2>
+
+                        <h3>4 หลักการหลัก (POUR)</h3>
+                        <div class="pour-grid">
+                            <div class="pour-card">
+                                <span class="pour-letter">P</span>
+                                <h4>Perceivable</h4>
+                                <p>รับรู้ได้ - ข้อมูลต้องนำเสนอในรูปแบบที่ผู้ใช้สามารถรับรู้ได้</p>
+                            </div>
+                            <div class="pour-card">
+                                <span class="pour-letter">O</span>
+                                <h4>Operable</h4>
+                                <p>ใช้งานได้ - ส่วนติดต่อต้องใช้งานได้ด้วยวิธีต่างๆ</p>
+                            </div>
+                            <div class="pour-card">
+                                <span class="pour-letter">U</span>
+                                <h4>Understandable</h4>
+                                <p>เข้าใจได้ - ข้อมูลและการใช้งานต้องเข้าใจง่าย</p>
+                            </div>
+                            <div class="pour-card">
+                                <span class="pour-letter">R</span>
+                                <h4>Robust</h4>
+                                <p>ทนทาน - ต้องใช้งานได้กับเทคโนโลยี Assistive</p>
+                            </div>
+                        </div>
+
+                        <h3>ระดับความสอดคล้อง (Compliance Levels)</h3>
+                        <ul>
+                            <li><strong>Level A</strong> - พื้นฐานที่สุด ต้องทำ</li>
+                            <li><strong>Level AA</strong> - มาตรฐานทั่วไปที่แนะนำ</li>
+                            <li><strong>Level AAA</strong> - สูงสุด ไม่บังคับทุกกรณี</li>
+                        </ul>
+                    </section>
+
+                    <section id="checklist">
+                        <h2>✅ Accessibility Checklist</h2>
+
+                        <table class="checklist-table">
+                            <tr><th>หัวข้อ</th><th>การทดสอบ</th></tr>
+                            <tr>
+                                <td>🔍 Alt Text</td>
+                                <td>รูปภาพต้องมี alt attribute ที่อธิบายเนื้อหา</td>
+                            </tr>
+                            <tr>
+                                <td>🎨 Color Contrast</td>
+                                <td>Contrast ratio ต้อง ≥ 4.5:1 (AA) หรือ ≥ 7:1 (AAA)</td>
+                            </tr>
+                            <tr>
+                                <td>⌨️ Keyboard Navigation</td>
+                                <td>ใช้ Tab, Enter, Space, Arrow keys ได้ครบ</td>
+                            </tr>
+                            <tr>
+                                <td>🔤 Form Labels</td>
+                                <td>ทุก input ต้องมี label ที่เชื่อมโยงถูกต้อง</td>
+                            </tr>
+                            <tr>
+                                <td>🎯 Focus Indicators</td>
+                                <td>เห็นว่า element ไหนกำลัง focus อยู่</td>
+                            </tr>
+                            <tr>
+                                <td>📱 Resize Text</td>
+                                <td>ข้อความต้องอ่านได้เมื่อ zoom 200%</td>
+                            </tr>
+                            <tr>
+                                <td>🔊 Screen Reader</td>
+                                <td>ทดสอบด้วย NVDA, JAWS หรือ VoiceOver</td>
+                            </tr>
+                            <tr>
+                                <td>📝 Headings Structure</td>
+                                <td>Heading ต้องมีลำดับตรงกับเนื้อหา (h1→h2→h3)</td>
+                            </tr>
+                        </table>
+
+                        <h3>🎨 Color Contrast Examples</h3>
+                        <div class="contrast-examples">
+                            <div class="contrast-box fail">
+                                <p>ข้อความสีอ่อนบนพื้นขาว ❌</p>
+                                <span>Ratio: 2.1:1</span>
+                            </div>
+                            <div class="contrast-box aa">
+                                <p>ข้อความสีเทาเข้มบนพื้นขาว ✅ AA</p>
+                                <span>Ratio: 4.6:1</span>
+                            </div>
+                            <div class="contrast-box aaa">
+                                <p>ข้อความสีดำบนพื้นขาว ✅ AAA</p>
+                                <span>Ratio: 21:1</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="tools">
+                        <h2>🛠️ Accessibility Testing Tools</h2>
+
+                        <div class="tools-grid">
+                            <div class="tool-card">
+                                <h4>🔍 Lighthouse</h4>
+                                <p>Built-in Chrome DevTools</p>
+                                <span class="tool-tag">Free</span>
+                            </div>
+                            <div class="tool-card">
+                                <h4>🌊 WAVE</h4>
+                                <p>Web Accessibility Evaluator</p>
+                                <span class="tool-tag">Free</span>
+                            </div>
+                            <div class="tool-card">
+                                <h4>🎨 Axe DevTools</h4>
+                                <p>Browser extension</p>
+                                <span class="tool-tag">Free/Paid</span>
+                            </div>
+                            <div class="tool-card">
+                                <h4>🔊 NVDA</h4>
+                                <p>Screen Reader (Windows)</p>
+                                <span class="tool-tag">Free</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="quiz" class="quiz-section">
+                        <h2>🧠 แบบทดสอบ</h2>
+                        
+                        <div class="quiz-container">
+                            <div class="quiz-question" data-answer="c">
+                                <p><strong>คำถาม 1:</strong> WCAG Level AA ต้องการ Color Contrast ขั้นต่ำเท่าไหร่?</p>
+                                <div class="quiz-options">
+                                    <label><input type="radio" name="q1" value="a"> 2:1</label>
+                                    <label><input type="radio" name="q1" value="b"> 3:1</label>
+                                    <label><input type="radio" name="q1" value="c"> 4.5:1</label>
+                                </div>
+                                <div class="quiz-feedback"></div>
+                            </div>
+
+                            <button class="btn btn-primary" onclick="checkAnswers()">ตรวจคำตอบ</button>
+                            <div id="quiz-result"></div>
+                        </div>
+                    </section>
+
+                    <section class="completion-section">
+                        <button class="btn btn-complete" onclick="markTopicComplete('topics/accessibility-testing.html')">
+                            ✅ ฉันเรียนจบบทนี้แล้ว
+                        </button>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 QA Learning Hub | สร้างด้วย ❤️ สำหรับ QA ทุกคน</p>
+        </div>
+    </footer>
+
+    <script src="../js/topic.js"></script>
+    <script>
+        function checkAnswers() {
+            const questions = document.querySelectorAll('.quiz-question');
+            let correct = 0;
+            questions.forEach(q => {
+                const answer = q.dataset.answer;
+                const selected = q.querySelector('input[type="radio"]:checked');
+                const feedback = q.querySelector('.quiz-feedback');
+                if (selected) {
+                    if (selected.value === answer) {
+                        feedback.innerHTML = '<span class="correct">✅ ถูกต้อง!</span>';
+                        correct++;
+                    } else {
+                        feedback.innerHTML = '<span class="incorrect">❌ ลองใหม่</span>';
+                    }
+                } else {
+                    feedback.innerHTML = '<span class="incorrect">⚠️ เลือกคำตอบ</span>';
+                }
+            });
+            const resultDiv = document.getElementById('quiz-result');
+            if (correct === questions.length) {
+                resultDiv.innerHTML = '<div class="success-message">🎉 ยินดีด้วย!</div>';
+            }
+        }
+    </script>
+</body>
+</html>

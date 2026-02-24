@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cypress Testing - QA Learning Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/topic.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">🧪</span>
+                <span class="logo-text">QA Learning Hub</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">← กลับสู่หน้าหลัก</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="topic-page">
+        <div class="topic-header">
+            <div class="container">
+                <div class="topic-meta">
+                    <span class="topic-level-badge intermediate">Intermediate</span>
+                    <span class="topic-category">Automation Testing</span>
+                </div>
+                <h1>🌲 Cypress</h1>
+                <p class="topic-description">Modern End-to-End Testing Framework สำหรับ Web Applications</p>
+            </div>
+        </div>
+
+        <div class="topic-content">
+            <div class="container">
+                <nav class="toc">
+                    <h3>📋 สารบัญ</h3>
+                    <ul>
+                        <li><a href="#intro">Cypress คืออะไร?</a></li>
+                        <li><a href="#setup">การติดตั้ง</a></li>
+                        <li><a href="#basics">พื้นฐาน Cypress</a></li>
+                        <li><a href="#selectors">Selectors และ Commands</a></li>
+                        <li><a href="#assertions">Assertions</a></li>
+                        <li><a href="#advanced">Advanced Features</a></li>
+                        <li><a href="#quiz">แบบทดสอบ</a></li>
+                    </ul>
+                </nav>
+
+                <article class="content-body">
+                    <section id="intro">
+                        <h2>🌲 Cypress คืออะไร?</h2>
+                        
+                        <p><strong>Cypress</strong> เป็น JavaScript End-to-End Testing Framework ที่ทันสมัย ออกแบบมาเฉพาะสำหรับ Modern Web Applications</p>
+
+                        <div class="comparison-box">
+                            <h4>🆚 Cypress vs Selenium</h4>
+                            <table>
+                                <tr><th>Cypress</th><th>Selenium</th></tr>
+                                <tr><td>JavaScript เท่านั้น</td><td>หลายภาษา (Python, Java, etc.)</td></tr>
+                                <tr><td>Auto-wait (รออัตโนมัติ)</td><td>ต้องเขียน Explicit Wait เอง</td></tr>
+                                <tr><td>Real-time reload</td><td>ต้องรันใหม่ทุกครั้ง</td></tr>
+                                <tr><td>Debug ง่าย (Time Travel)</td><td>Debug ธรรมดา</td></tr>
+                                <tr><td>รองรับ Chrome, Edge, Firefox</td><td>รองรับทุก Browser</td></tr>
+                                <tr><td>ไม่รองรับ Mobile</td><td>รองรับ Mobile ผ่าน Appium</td></tr>
+                                <tr><td>เร็วกว่า</td><td>ช้ากว่า (network latency)</td></tr>
+                            </table>
+                        </div>
+
+                        <h3>✨ จุดเด่นของ Cypress</h3>
+                        <ul>
+                            <li>⚡ <strong>Fast</strong> - เร็วกว่า Selenium มาก (รันใน browser เดียวกัน)</li>
+                            <li>🔍 <strong>Time Travel Debugging</strong> - ย้อนกลับดู state ทีละ step</li>
+                            <li>📸 <strong>Automatic Screenshots/Videos</strong> - ถ่ายรูป/วิดีโออัตโนมัติตอน fail</li>
+                            <li>⏱️ <strong>Auto-wait</strong> - รอ element โดยอัตโนมัติ</li>
+                            <li>🎯 <strong>Real-time Reloads</strong> - แก้โค้ดแล้วรันใหม่ทันที</li>
+                        </ul>
+                    </section>
+
+                    <section id="setup">
+                        <h2>⚙️ การติดตั้ง Cypress</h2>
+
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-bash"># 1. สร้างโปรเจกต์ใหม่
+mkdir my-cypress-project
+cd my-cypress-project
+npm init -y
+
+# 2. ติดตั้ง Cypress
+npm install cypress --save-dev
+
+# 3. เปิด Cypress Test Runner
+npx cypress open
+
+# หรือ รันผ่าน command line (headless)
+npx cypress run</code></pre>
+                        </div>
+
+                        <h3>📁 โครงสร้างโปรเจกต์ Cypress</h3>
+                        <div class="code-block">
+                            <pre><code>cypress/
+├── e2e/              # Test files (End-to-End tests)
+│   ├── login.cy.js
+│   └── checkout.cy.js
+├── fixtures/         # Test data (JSON files)
+│   └── users.json
+├── support/
+│   ├── commands.js   # Custom commands
+│   └── e2e.js        # Global config
+cypress.config.js     # Cypress configuration</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="basics">
+                        <h2>📝 Test Structure พื้นฐาน</h2>
+
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-javascript">// cypress/e2e/login.cy.js
+
+describe('Login Tests', () => {
+  
+  // รันทุก test ก่อน
+  beforeEach(() => {
+    cy.visit('/login')
+  })
+
+  it('should login with valid credentials', () => {
+    // Test steps ที่นี่
+  })
+
+  it('should show error with invalid credentials', () => {
+    // Test steps ที่นี่
+  })
+})</code></pre>
+                        </div>
+
+                        <h3>🚀 Hello World - ทดสอบ Login</h3>
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-javascript">describe('Login Page', () => {
+  
+  beforeEach(() => {
+    cy.visit('https://example.com/login')
+  })
+
+  it('successfully logs in with valid credentials', () => {
+    // หาและกรอก username
+    cy.get('[data-testid="username-input"]')
+      .type('testuser')
+    
+    // กรอก password
+    cy.get('[data-testid="password-input"]')
+      .type('Test@123')
+    
+    // คลิก login
+    cy.get('[data-testid="login-button"]')
+      .click()
+    
+    // ตรวจสอบว่า redirect ไป dashboard
+    cy.url()
+      .should('include', '/dashboard')
+    
+    // ตรวจสอบว่าแสดง welcome message
+    cy.contains('Welcome, testuser!')
+      .should('be.visible')
+  })
+})</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="selectors">
+                        <h2>🎯 Selectors และ Commands</h2>
+
+                        <h3>การหา Elements (cy.get, cy.find, cy.contains)</h3>
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-javascript">// หาด้วย CSS Selector
+cy.get('.button-primary')
+cy.get('#submit-btn')
+cy.get('[data-testid="login-form"]')  // ✅ แนะนำ
+
+// หาด้วยข้อความ
+cy.contains('Submit')
+cy.contains('button', 'Submit')  // หา button ที่มีข้อความ Submit
+
+// Chain commands
+cy.get('.form')
+  .find('input[name="email"]')  // หาภายใน parent
+  .type('test@example.com')
+
+// การกรอง
+cy.get('li')
+  .first()      // อันแรก
+  .last()       // อันสุดท้าย
+  .eq(2)        // index ที่ 2
+  .filter('.active')  // ที่มี class active
+  .not('.disabled')   // ที่ไม่มี class disabled</code></pre>
+                        </div>
+
+                        <h3>🎮 Common Commands</h3>
+                        <table>
+                            <tr><th>Command</th><th>คำอธิบาย</th><th>ตัวอย่าง</th></tr>
+                            <tr><td><code>.visit()</code></td><td>เปิดหน้าเว็บ</td><td><code>cy.visit('/login')</code></td></tr>
+                            <tr><td><code>.click()</code></td><td>คลิก element</td><td><code>cy.get('button').click()</code></td></tr>
+                            <tr><td><code>.type()</code></td><td>พิมพ์ข้อความ</td><td><code>cy.get('input').type('hello')</code></td></tr>
+                            <tr><td><code>.clear()</code></td><td>ล้างข้อความ</td><td><code>cy.get('input').clear()</code></td></tr>
+                            <tr><td><code>.select()</code></td><td>เลือก dropdown</td><td><code>cy.get('select').select('Option 1')</code></td></tr>
+                            <tr><td><code>.check()/uncheck()</code></td><td>เลือก/ยกเลิก checkbox</td><td><code>cy.get('[type="checkbox"]').check()</code></td></tr>
+                            <tr><td><code>wait()</code></td><td>รอ (ไม่แนะนำ ใช้ auto-wait)</td><td><code>cy.wait(1000)</code></td></tr>
+                        </table>
+
+                        <h3>⌨️ Special Keys ใน .type()</h3>
+                        <div class="code-block">
+                            <pre><code class="language-javascript">cy.get('input').type('Hello{enter}')      // พิมพ์แล้วกด Enter
+cy.get('input').type('{backspace}')         // กด Backspace
+cy.get('input').type('{esc}')               // กด Escape
+cy.get('input').type('{ctrl+c}')            // Ctrl+C
+cy.get('input').type('{selectall}{del}')    // เลือกทั้งหมดแล้วลบ</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="assertions">
+                        <h2>✅ Assertions (Implicit & Explicit)</h2>
+
+                        <p>Cypress มี Assertions ในตัว ไม่ต้อง import library เพิ่ม</p>
+
+                        <h3>Implicit Assertions (.should())</h3>
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-javascript">// Visibility
+cy.get('.message').should('be.visible')
+cy.get('.loading').should('not.be.visible')
+
+// Existence
+cy.get('.user-profile').should('exist')
+cy.get('.error').should('not.exist')
+
+// State
+cy.get('button').should('be.enabled')
+cy.get('input').should('be.disabled')
+cy.get(':checkbox').should('be.checked')
+
+// Content
+cy.get('.title').should('have.text', 'Welcome')
+cy.get('.title').should('contain', 'Welcome')  // บางส่วนก็ได้
+cy.get('input').should('have.value', 'test@email.com')
+
+// Class/CSS
+cy.get('.button').should('have.class', 'primary')
+cy.get('.banner').should('have.css', 'background-color', 'rgb(255, 0, 0)')
+
+// Attribute
+cy.get('a').should('have.attr', 'href', '/dashboard')
+cy.get('img').should('have.attr', 'alt')
+
+// Length
+cy.get('.list-item').should('have.length', 3)
+cy.get('.list-item').should('have.length.at.least', 1)
+
+// Chain multiple assertions
+cy.get('.user-card')
+  .should('be.visible')
+  .and('have.class', 'active')
+  .and('contain', 'John Doe')</code></pre>
+                        </div>
+
+                        <h3>Explicit Assertions (expect, assert)</h3>
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-javascript">// BDD Style (expect)
+cy.get('.user').then(($user) => {
+  expect($user).to.have.text('John Doe')
+  expect($user).to.be.visible
+})
+
+// ตรวจสอบ API Response
+cy.request('GET', '/api/users/1').then((response) => {
+  expect(response.status).to.eq(200)
+  expect(response.body).to.have.property('id', 1)
+  expect(response.body.name).to.be.a('string')
+  expect(response.body.email).to.include('@')
+})</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="advanced">
+                        <h2>🚀 Advanced Features</h2>
+
+                        <h3>📡 API Testing ใน Cypress</h3>
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-javascript">// Intercept/Stub API calls
+cy.intercept('GET', '/api/users', {
+  statusCode: 200,
+  body: { users: [{ id: 1, name: 'John' }] }
+}).as('getUsers')
+
+cy.visit('/users')
+cy.wait('@getUsers')  // รอ API เรียกเสร็จ
+
+// ตรวจสอบ API ถูกเรียก
+cy.get('@getUsers').its('request.url').should('include', '/api/users')</code></pre>
+                        </div>
+
+                        <h3>📸 Screenshots & Videos</h3>
+                        <div class="code-block">
+                            <pre><code class="language-javascript">// ถ่ายรูป
+cy.screenshot('homepage')
+cy.get('.modal').screenshot('modal-dialog')
+
+// Video ถ่ายอัตโนมัติตอนรัน headless
+// ดูได้ที่ cypress/videos/</code></pre>
+                        </div>
+
+                        <h3>🔧 Custom Commands</h3>
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-javascript">// cypress/support/commands.js
+Cypress.Commands.add('login', (email, password) => {
+  cy.visit('/login')
+  cy.get('[data-testid="email"]').type(email)
+  cy.get('[data-testid="password"]').type(password)
+  cy.get('[data-testid="login-btn"]').click()
+  cy.url().should('include', '/dashboard')
+})
+
+// ใช้ใน test
+cy.login('test@example.com', 'password123')</code></pre>
+                        </div>
+
+                        <h3>📁 Fixtures (Test Data)</h3>
+                        <div class="code-block">
+                            <pre><code class="language-javascript">// cypress/fixtures/users.json
+{
+  "admin": {
+    "email": "admin@test.com",
+    "password": "admin123"
+  },
+  "user": {
+    "email": "user@test.com",
+    "password": "user123"
+  }
+}
+
+// ใช้ใน test
+cy.fixture('users').then((users) => {
+  cy.login(users.admin.email, users.admin.password)
+})</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="quiz" class="quiz-section">
+                        <h2>🧠 แบบทดสอบ</h2>
+                        
+                        <div class="quiz-container">
+                            <div class="quiz-question" data-answer="b">
+                                <p><strong>คำถาม 1:</strong> Cypress ใช้ภาษาอะไร?</p>
+                                <div class="quiz-options">
+                                    <label><input type="radio" name="q1" value="a"> Python</label>
+                                    <label><input type="radio" name="q1" value="b"> JavaScript</label>
+                                    <label><input type="radio" name="q1" value="c"> Java</label>
+                                </div>
+                                <div class="quiz-feedback"></div>
+                            </div>
+
+                            <div class="quiz-question" data-answer="a">
+                                <p><strong>คำถาม 2:</strong> จุดเด่นของ Cypress คืออะไร?</p>
+                                <div class="quiz-options">
+                                    <label><input type="radio" name="q2" value="a"> Auto-wait และ Time Travel Debugging</label>
+                                    <label><input type="radio" name="q2" value="b"> รองรับทุกภาษาโปรแกรมมิ่ง</label>
+                                    <label><input type="radio" name="q2" value="c"> รองรับ Mobile Testing</label>
+                                </div>
+                                <div class="quiz-feedback"></div>
+                            </div>
+
+                            <button class="btn btn-primary" onclick="checkAnswers()">ตรวจคำตอบ</button>
+                            <div id="quiz-result"></div>
+                        </div>
+                    </section>
+
+                    <section class="completion-section">
+                        <button class="btn btn-complete" onclick="markTopicComplete('topics/cypress.html')">
+                            ✅ ฉันเรียนจบบทนี้แล้ว
+                        </button>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 QA Learning Hub | สร้างด้วย ❤️ สำหรับ QA ทุกคน</p>
+        </div>
+    </footer>
+
+    <script src="../js/topic.js"></script>
+    <script>
+        function checkAnswers() {
+            const questions = document.querySelectorAll('.quiz-question');
+            let correct = 0;
+            questions.forEach(q => {
+                const answer = q.dataset.answer;
+                const selected = q.querySelector('input[type="radio"]:checked');
+                const feedback = q.querySelector('.quiz-feedback');
+                if (selected) {
+                    if (selected.value === answer) {
+                        feedback.innerHTML = '<span class="correct">✅ ถูกต้อง!</span>';
+                        correct++;
+                    } else {
+                        feedback.innerHTML = '<span class="incorrect">❌ ลองใหม่</span>';
+                    }
+                } else {
+                    feedback.innerHTML = '<span class="incorrect">⚠️ เลือกคำตอบ</span>';
+                }
+            });
+            const resultDiv = document.getElementById('quiz-result');
+            if (correct === questions.length) {
+                resultDiv.innerHTML = '<div class="success-message">🎉 ยินดีด้วย!</div>';
+            }
+        }
+    </script>
+</body>
+</html>

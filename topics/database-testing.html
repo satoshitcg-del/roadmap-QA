@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Testing - QA Learning Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/topic.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">🧪</span>
+                <span class="logo-text">QA Learning Hub</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">← กลับสู่หน้าหลัก</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="topic-page">
+        <div class="topic-header">
+            <div class="container">
+                <div class="topic-meta">
+                    <span class="topic-level-badge advanced">Advanced</span>
+                    <span class="topic-category">Advanced Topics</span>
+                </div>
+                <h1>🗄️ Database Testing</h1>
+                <p class="topic-description">SQL, Data Integrity, Data Migration และ Database Validation</p>
+            </div>
+        </div>
+
+        <div class="topic-content">
+            <div class="container">
+                <nav class="toc">
+                    <h3>📋 สารบัญ</h3>
+                    <ul>
+                        <li><a href="#types">ประเภท Database Testing</a></li>
+                        <li><a href="#sql">SQL Testing</a></li>
+                        <li><a href="#integrity">Data Integrity</a></li>
+                        <li><a href="#checklist">Testing Checklist</a></li>
+                        <li><a href="#quiz">แบบทดสอบ</a></li>
+                    </ul>
+                </nav>
+
+                <article class="content-body">
+                    <section id="types">
+                        <h2>🗄️ ประเภท Database Testing</h2>
+
+                        <div class="test-types-grid">
+                            <div class="test-type-card">
+                                <span class="type-icon">📊</span>
+                                <h4>Structural Testing</h4>
+                                <ul>
+                                    <li>Table/Column validation</li>
+                                    <li>Data types, length</li>
+                                    <li>Constraints, indexes</li>
+                                </ul>
+                            </div>
+                            <div class="test-type-card">
+                                <span class="type-icon">✅</span>
+                                <h4>Functional Testing</h4>
+                                <ul>
+                                    <li>CRUD operations</li>
+                                    <li>Triggers, Stored procedures</li>
+                                    <li>Transactions</li>
+                                </ul>
+                            </div>
+                            <div class="test-type-card">
+                                <span class="type-icon">🔄</span>
+                                <h4>Data Migration Testing</h4>
+                                <ul>
+                                    <li>Row count validation</li>
+                                    <li>Data integrity after migration</li>
+                                    <li>Rollback testing</li>
+                                </ul>
+                            </div>
+                            <div class="test-type-card">
+                                <span class="type-icon">⚡</span>
+                                <h4>Performance Testing</h4>
+                                <ul>
+                                    <li>Query execution time</li>
+                                    <li>Index optimization</li>
+                                    <li>Lock contention</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="sql">
+                        <h2>🔍 SQL Testing</h2>
+
+                        <h3>Test Case Examples</h3>
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-sql">-- Test 1: Verify SELECT returns correct data
+SELECT * FROM users WHERE id = 123;
+-- Expected: 1 row with correct user data
+
+-- Test 2: Verify INSERT works
+INSERT INTO users (name, email) VALUES ('Test', 'test@email.com');
+-- Expected: 1 row affected, auto-increment ID assigned
+
+-- Test 3: Verify UPDATE
+UPDATE users SET status = 'active' WHERE id = 123;
+-- Expected: Only row 123 updated, status changed
+
+-- Test 4: Verify DELETE with constraints
+DELETE FROM orders WHERE id = 999;
+-- Expected: Row deleted or FK constraint error if referenced
+
+-- Test 5: Verify JOIN returns correct data
+SELECT u.name, o.total
+FROM users u
+JOIN orders o ON u.id = o.user_id
+WHERE u.id = 123;
+-- Expected: All orders for user 123</code></pre>
+                        </div>
+
+                        <h3>🧪 Testing with Python</h3>
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-python">import pytest
+import mysql.connector
+
+class TestDatabase:
+    
+    def setup_method(self):
+        self.conn = mysql.connector.connect(
+            host='localhost',
+            user='test_user',
+            password='password',
+            database='test_db'
+        )
+        self.cursor = self.conn.cursor()
+    
+    def teardown_method(self):
+        self.cursor.close()
+        self.conn.close()
+    
+    def test_user_insert(self):
+        """ทดสอบ INSERT user"""
+        query = "INSERT INTO users (name, email) VALUES (%s, %s)"
+        self.cursor.execute(query, ('John Doe', 'john@email.com'))
+        self.conn.commit()
+        
+        assert self.cursor.rowcount == 1
+        assert self.cursor.lastrowid > 0
+    
+    def test_user_select(self):
+        """ทดสอบ SELECT user"""
+        self.cursor.execute("SELECT * FROM users WHERE id = 1")
+        result = self.cursor.fetchone()
+        
+        assert result is not None
+        assert result[1] == 'John Doe'  # name column
+    
+    def test_foreign_key_constraint(self):
+        """ทดสอบ Foreign Key constraint"""
+        # ลอง insert order ด้วย user_id ที่ไม่มีอยู่
+        query = "INSERT INTO orders (user_id, total) VALUES (999, 100)"
+        
+        with pytest.raises(mysql.connector.IntegrityError):
+            self.cursor.execute(query)
+            self.conn.commit()
+    
+    def test_data_count(self):
+        """ทดสอบ row count"""
+        self.cursor.execute("SELECT COUNT(*) FROM users")
+        count = self.cursor.fetchone()[0]
+        
+        assert count >= 0  # หรือตรวจสอบค่าเฉพาะ</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="integrity">
+                        <h2>🔒 Data Integrity Checks</h2>
+
+                        <table class="integrity-table">
+                            <tr><th>Constraint Type</th><th>Description</th><th>Test Example</th></tr>
+                            <tr>
+                                <td><strong>PRIMARY KEY</strong></td>
+                                <td>Unique, not null</td>
+                                <td>Insert duplicate ID → Error</td>
+                            </tr>
+                            <tr>
+                                <td><strong>FOREIGN KEY</strong></td>
+                                <td>Referential integrity</td>
+                                <td>Insert with invalid ref → Error</td>
+                            </tr>
+                            <tr>
+                                <td><strong>UNIQUE</strong></td>
+                                <td>No duplicates</td>
+                                <td>Insert duplicate email → Error</td>
+                            </tr>
+                            <tr>
+                                <td><strong>NOT NULL</strong></td>
+                                <td>Required field</td>
+                                <td>Insert null → Error</td>
+                            </tr>
+                            <tr>
+                                <td><strong>CHECK</strong></td>
+                                <td>Custom validation</td>
+                                <td>Price < 0 → Error</td>
+                            </tr>
+                        </table>
+                    </section>
+
+                    <section id="checklist">
+                        <h2>✅ Database Testing Checklist</h2>
+
+                        <h3>Schema Validation</h3>
+                        <ul>
+                            <li>✓ Table names correct</li>
+                            <li>✓ Column names and data types</li>
+                            <li>✓ Column lengths and constraints</li>
+                            <li>✓ Indexes defined correctly</li>
+                        </ul>
+
+                        <h3>Data Validation</h3>
+                        <ul>
+                            <li>✓ No orphaned records (FK integrity)</li>
+                            <li>✓ Default values set correctly</li>
+                            <li>✓ No duplicate data where unique required</li>
+                            <li>✓ Date/time formats consistent</li>
+                        </ul>
+
+                        <h3>CRUD Operations</h3>
+                        <ul>
+                            <li>✓ Create (INSERT) with valid data</li>
+                            <li>✓ Read (SELECT) returns correct results</li>
+                            <li>✓ Update (UPDATE) modifies only intended rows</li>
+                            <li>✓ Delete (DELETE) handles constraints properly</li>
+                        </ul>
+                    </section>
+
+                    <section id="quiz" class="quiz-section">
+                        <h2>🧠 แบบทดสอบ</h2>
+                        
+                        <div class="quiz-container">
+                            <div class="quiz-question" data-answer="a">
+                                <p><strong>คำถาม 1:</strong> อะไรคือ Primary Key?</p>
+                                <div class="quiz-options">
+                                    <label><input type="radio" name="q1" value="a"> Unique identifier ที่ไม่ซ้ำและไม่ null</label>
+                                    <label><input type="radio" name="q1" value="b"> Column ที่สามารถซ้ำได้</label>
+                                    <label><input type="radio" name="q1" value="c"> Foreign Key ของตารางอื่น</label>
+                                </div>
+                                <div class="quiz-feedback"></div>
+                            </div>
+
+                            <button class="btn btn-primary" onclick="checkAnswers()">ตรวจคำตอบ</button>
+                            <div id="quiz-result"></div>
+                        </div>
+                    </section>
+
+                    <section class="completion-section">
+                        <button class="btn btn-complete" onclick="markTopicComplete('topics/database-testing.html')">
+                            ✅ ฉันเรียนจบบทนี้แล้ว
+                        </button>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 QA Learning Hub | สร้างด้วย ❤️ สำหรับ QA ทุกคน</p>
+        </div>
+    </footer>
+
+    <script src="../js/topic.js"></script>
+    <script>
+        function checkAnswers() {
+            const questions = document.querySelectorAll('.quiz-question');
+            let correct = 0;
+            questions.forEach(q => {
+                const answer = q.dataset.answer;
+                const selected = q.querySelector('input[type="radio"]:checked');
+                const feedback = q.querySelector('.quiz-feedback');
+                if (selected) {
+                    if (selected.value === answer) {
+                        feedback.innerHTML = '<span class="correct">✅ ถูกต้อง!</span>';
+                        correct++;
+                    } else {
+                        feedback.innerHTML = '<span class="incorrect">❌ ลองใหม่</span>';
+                    }
+                } else {
+                    feedback.innerHTML = '<span class="incorrect">⚠️ เลือกคำตอบ</span>';
+                }
+            });
+            const resultDiv = document.getElementById('quiz-result');
+            if (correct === questions.length) {
+                resultDiv.innerHTML = '<div class="success-message">🎉 ยินดีด้วย!</div>';
+            }
+        }
+    </script>
+</body>
+</html>

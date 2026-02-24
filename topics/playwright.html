@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playwright Testing - QA Learning Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/topic.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">🧪</span>
+                <span class="logo-text">QA Learning Hub</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">← กลับสู่หน้าหลัก</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="topic-page">
+        <div class="topic-header">
+            <div class="container">
+                <div class="topic-meta">
+                    <span class="topic-level-badge intermediate">Intermediate</span>
+                    <span class="topic-category">Automation Testing</span>
+                </div>
+                <h1>🎪 Playwright</h1>
+                <p class="topic-description">Cross-browser Automation จาก Microsoft - เร็ว มั่นคง รองรับทุก Browser</p>
+            </div>
+        </div>
+
+        <div class="topic-content">
+            <div class="container">
+                <nav class="toc">
+                    <h3>📋 สารบัญ</h3>
+                    <ul>
+                        <li><a href="#intro">Playwright คืออะไร?</a></li>
+                        <li><a href="#setup">การติดตั้ง</a></li>
+                        <li><a href="#first-test">First Test</a></li>
+                        <li><a href="#selectors">Selectors</a></li>
+                        <li><a href="#actions">Actions</a></li>
+                        <li><a href="#assertions">Assertions</a></li>
+                        <li><a href="#advanced">Advanced Features</a></li>
+                        <li><a href="#quiz">แบบทดสอบ</a></li>
+                    </ul>
+                </nav>
+
+                <article class="content-body">
+                    <section id="intro">
+                        <h2>🎪 Playwright คืออะไร?</h2>
+                        
+                        <p><strong>Playwright</strong> เป็น Cross-browser Automation Framework ที่พัฒนาโดย Microsoft สร้างขึ้นบนประสบการณ์จาก Puppeteer และสามารถทดสอบได้ทุก Browser รวมถึง Chromium, Firefox, และ WebKit</p>
+
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <span class="feature-icon">🚀</span>
+                                <h4>Fast & Reliable</h4>
+                                <p>Auto-wait สำหรับ elements, actions รอจนพร้อม</p>
+                            </div>
+                            <div class="feature-card">
+                                <span class="feature-icon">🌐</span>
+                                <h4>Cross-Browser</h4>
+                                <p>Chromium, Firefox, WebKit ในครั้งเดียว</p>
+                            </div>
+                            <div class="feature-card">
+                                <span class="feature-icon">📱</span>
+                                <h4>Mobile Emulation</h4>
+                                <p>จำลอง Mobile devices และ viewport</p>
+                            </div>
+                            <div class="feature-card">
+                                <span class="feature-icon">🔧</span>
+                                <h4>Multi-Language</h4>
+                                <p>TypeScript, JavaScript, Python, .NET, Java</p>
+                            </div>
+                        </div>
+
+                        <h3>🆚 Playwright vs Cypress vs Selenium</h3>
+                        <table class="comparison-table">
+                            <tr>
+                                <th>Feature</th>
+                                <th>Playwright</th>
+                                <th>Cypress</th>
+                                <th>Selenium</th>
+                            </tr>
+                            <tr>
+                                <td>Cross-Browser</td>
+                                <td>✅ All major</td>
+                                <td>⚠️ Limited</td>
+                                <td>✅ All</td>
+                            </tr>
+                            <tr>
+                                <td>Mobile Testing</td>
+                                <td>✅ Emulation</td>
+                                <td>❌ No</td>
+                                <td>✅ With Appium</td>
+                            </tr>
+                            <tr>
+                                <td>Parallel Execution</td>
+                                <td>✅ Built-in</td>
+                                <td>⚠️ Limited</td>
+                                <td>✅ With Grid</td>
+                            </tr>
+                            <tr>
+                                <td>API Testing</td>
+                                <td>✅ Yes</td>
+                                <td>✅ Yes</td>
+                                <td>⚠️ External</td>
+                            </tr>
+                            <tr>
+                                <td>Test Generation</td>
+                                <td>✅ Codegen</td>
+                                <td>❌ No</td>
+                                <td>⚠️ Recorder</td>
+                            </tr>
+                        </table>
+                    </section>
+
+                    <section id="setup">
+                        <h2>⚙️ การติดตั้ง</h2>
+
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-bash"># NPM
+npm init -y
+npm install @playwright/test
+npx playwright install
+
+# Python
+pip install pytest-playwright
+playwright install
+
+# ติดตั้ง browsers ทั้งหมด
+npx playwright install chromium firefox webkit
+
+# หรือ เฉพาะบางตัว
+npx playwright install chromium</code></pre>
+                        </div>
+
+                        <h3>📁 โครงสร้างโปรเจกต์ (JavaScript/TypeScript)</h3>
+                        <div class="code-block">
+                            <pre><code>my-playwright-tests/
+├── tests/
+│   ├── login.spec.js
+│   └── checkout.spec.js
+├── playwright.config.js
+└── package.json</code></pre>
+                        </div>
+
+                        <h3>⚙️ playwright.config.js</h3>
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-javascript">// @ts-check
+const { defineConfig, devices } = require('@playwright/test');
+
+module.exports = defineConfig({
+  testDir: './tests',
+  fullyParallel: true,
+  forbidOnly: !!process.env.CI,
+  retries: process.env.CI ? 2 : 0,
+  workers: process.env.CI ? 1 : undefined,
+  reporter: 'html',
+  use: {
+    baseURL: 'http://localhost:3000',
+    trace: 'on-first-retry',
+    screenshot: 'only-on-failure',
+  },
+
+  projects: [
+    {
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
+    },
+    {
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'] },
+    },
+    {
+      name: 'webkit',
+      use: { ...devices['Desktop Safari'] },
+    },
+    // Mobile
+    {
+      name: 'Mobile Chrome',
+      use: { ...devices['Pixel 5'] },
+    },
+    {
+      name: 'Mobile Safari',
+      use: { ...devices['iPhone 12'] },
+    },
+  ],
+});</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="first-test">
+                        <h2>📝 First Test</h2>
+
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-javascript">// tests/login.spec.js
+const { test, expect } = require('@playwright/test');
+
+test.describe('Login Page', () => {
+  
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/login');
+  });
+
+  test('should login with valid credentials', async ({ page }) => {
+    // Fill username
+    await page.getByTestId('username-input').fill('testuser');
+    
+    // Fill password
+    await page.getByTestId('password-input').fill('Test@123');
+    
+    // Click login
+    await page.getByTestId('login-button').click();
+    
+    // Verify redirect to dashboard
+    await expect(page).toHaveURL(/.*dashboard/);
+    
+    // Verify welcome message
+    await expect(page.getByText('Welcome, testuser!')).toBeVisible();
+  });
+
+  test('should show error with invalid credentials', async ({ page }) => {
+    await page.getByTestId('username-input').fill('wronguser');
+    await page.getByTestId('password-input').fill('wrongpass');
+    await page.getByTestId('login-button').click();
+    
+    await expect(page.getByText('Invalid credentials')).toBeVisible();
+  });
+});</code></pre>
+                        </div>
+
+                        <h3>▶️ รัน Tests</h3>
+                        <div class="code-block">
+                            <pre><code class="language-bash"># รันทั้งหมด
+npx playwright test
+
+# รันบางไฟล์
+npx playwright test login.spec.js
+
+# รันด้วย headed mode (เห็น browser)
+npx playwright test --headed
+
+# รันเฉพาะ chromium
+npx playwright test --project=chromium
+
+# Debug mode
+npx playwright test --debug
+
+# ดูรายงาน
+npx playwright show-report</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="selectors">
+                        <h2>🎯 Selectors</h2>
+
+                        <p>Playwright มี Selectors ที่หลากหลายและ智能:</p>
+
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-javascript">// By Test ID (แนะนำ!)
+await page.getByTestId('submit-button').click();
+
+// By Role (accessibility)
+await page.getByRole('button', { name: 'Submit' }).click();
+await page.getByRole('textbox', { name: 'Email' }).fill('test@example.com');
+
+// By Label
+await page.getByLabel('Password').fill('secret');
+
+// By Placeholder
+await page.getByPlaceholder('Search products...').fill('laptop');
+
+// By Text
+await page.getByText('Welcome back').click();
+
+// By Title
+await page.getByTitle('Close').click();
+
+// CSS Selector
+await page.locator('.button-primary').click();
+await page.locator('#submit-btn').click();
+
+// XPath
+await page.locator('xpath=//button[@id="submit"]').click();
+
+// Chaining
+await page.locator('form').filter({ hasText: 'Login' }).getByRole('button').click();
+
+// nth element (index)
+await page.locator('.list-item').nth(2).click();
+
+// first/last
+await page.locator('.item').first().click();
+await page.locator('.item').last().click();</code></pre>
+                        </div>
+
+                        <div class="tip-box">
+                            <h4>💡 Best Practice: Use Test IDs</h4>
+                            <p>เพิ่ม <code>data-testid="..."</code> ใน HTML เพื่อให้ test มั่นคง:</p>
+                            <pre><code class="language-html"><button data-testid="login-button">Login</button></code></pre>
+                        </div>
+                    </section>
+
+                    <section id="actions">
+                        <h2>🎮 Actions</h2>
+
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-javascript">// Click
+await page.click('button');
+await page.click('button', { button: 'right' });  // Right click
+await page.click('button', { clickCount: 2 });    // Double click
+await page.click('button', { delay: 100 });       // Delay 100ms
+
+// Fill (พิมพ์ + ล้างข้อความเดิม)
+await page.fill('input[name="email"]', 'test@example.com');
+
+// Type (พิมพ์ต่อ)
+await page.type('input[name="search"]', 'hello', { delay: 100 });
+
+// Press key
+await page.press('input', 'Enter');
+await page.press('input', 'Control+a');
+await page.press('input', 'ArrowDown');
+
+// Clear
+await page.fill('input', '');  // หรือ
+await page.locator('input').clear();
+
+// Select dropdown
+await page.selectOption('select', 'option-value');
+await page.selectOption('select', { label: 'Option Label' });
+
+// Check/Uncheck
+await page.check('input[type="checkbox"]');
+await page.uncheck('input[type="checkbox"]');
+
+// Hover
+await page.hover('.dropdown-menu');
+
+// Focus/Blur
+await page.focus('input');
+await page.blur('input');
+
+// Scroll
+await page.scroll('selector');
+await page.evaluate(() => window.scrollTo(0, 500));
+
+// Upload file
+await page.setInputFiles('input[type="file"]', 'path/to/file.pdf');
+
+// Drag and Drop
+await page.dragAndDrop('#source', '#target');
+
+// Screenshot
+await page.screenshot({ path: 'screenshot.png' });
+await page.screenshot({ path: 'element.png', element: await page.$('div') });
+await page.screenshot({ path: 'fullpage.png', fullPage: true });
+
+// PDF (Chromium only)
+await page.pdf({ path: 'page.pdf' });</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="assertions">
+                        <h2>✅ Assertions</h2>
+
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-javascript">// URL Assertions
+await expect(page).toHaveURL('https://example.com/dashboard');
+await expect(page).toHaveURL(/.*dashboard/);
+
+// Title Assertion
+await expect(page).toHaveTitle('Dashboard');
+await expect(page).toHaveTitle(/Dashboard/);
+
+// Element Visibility
+await expect(page.locator('.message')).toBeVisible();
+await expect(page.locator('.error')).not.toBeVisible();
+await expect(page.locator('.loading')).toBeHidden();
+
+// Element State
+await expect(page.locator('button')).toBeEnabled();
+await expect(page.locator('button')).toBeDisabled();
+await expect(page.locator('input')).toBeEditable();
+await expect(page.locator('input')).toBeFocused();
+
+// Element Count
+await expect(page.locator('.item')).toHaveCount(5);
+
+// Text Content
+await expect(page.locator('.title')).toHaveText('Welcome');
+await expect(page.locator('.title')).toContainText('Wel');
+await expect(page.locator('.title')).not.toHaveText('Error');
+
+// Input Value
+await expect(page.locator('input')).toHaveValue('test@example.com');
+
+// Attribute
+await expect(page.locator('img')).toHaveAttribute('alt', 'Logo');
+await expect(page.locator('a')).toHaveAttribute('href', /.*dashboard/);
+
+// CSS
+await expect(page.locator('.button')).toHaveCSS('background-color', 'rgb(0, 123, 255)');
+
+// Class
+await expect(page.locator('div')).toHaveClass(/active/);
+
+// Screenshot comparison
+await expect(page).toHaveScreenshot('landing.png');
+await expect(page.locator('.component')).toHaveScreenshot('component.png');
+
+// Wait for condition
+await expect.poll(async () => {
+  const response = await page.request.get('https://api.example.com/status');
+  return response.status();
+}).toBe(200);</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="advanced">
+                        <h2>🚀 Advanced Features</h2>
+
+                        <h3>📡 API Testing</h3>
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-javascript">// Mock API response
+await page.route('**/api/users', async route => {
+  await route.fulfill({
+    status: 200,
+    body: JSON.stringify({ users: [{ id: 1, name: 'John' }] }),
+  });
+});
+
+// Abort request
+await page.route('**/*.png', route => route.abort());
+
+// Modify request
+await page.route('**/api/login', async route => {
+  const postData = route.request().postData();
+  // modify postData...
+  await route.continue({ postData });
+});
+
+// Wait for API call
+await page.goto('/users');
+const response = await page.waitForResponse('**/api/users');
+expect(response.status()).toBe(200);</code></pre>
+                        </div>
+
+                        <h3>📱 Mobile Emulation</h3>
+                        <div class="code-block">
+                            <pre><code class="language-javascript">// In playwright.config.js
+projects: [
+  {
+    name: 'Mobile Chrome',
+    use: {
+      ...devices['Pixel 5'],
+    },
+  },
+  {
+    name: 'Mobile Safari',
+    use: {
+      ...devices['iPhone 12 Pro Max'],
+    },
+  },
+];
+
+// Or in test
+import { devices } from '@playwright/test';
+
+test.use({
+  ...devices['iPhone 13'],
+});</code></pre>
+                        </div>
+
+                        <h3>🎬 Test Generator (Codegen)</h3>
+                        <div class="code-block">
+                            <pre><code class="language-bash"># เปิด browser แล้วอัด test อัตโนมัติ
+npx playwright codegen https://example.com
+
+# กำหนด viewport
+npx playwright codegen --viewport-size=1280,720 https://example.com
+
+# กำหนด device
+npx playwright codegen --device="iPhone 13" https://example.com</code></pre>
+                        </div>
+
+                        <h3>🔌 Global Setup/Teardown</h3>
+                        <div class="code-block">
+                            <pre><code class="language-javascript">// global-setup.js
+const { chromium } = require('@playwright/test');
+
+module.exports = async config => {
+  const browser = await chromium.launch();
+  const page = await browser.newPage();
+  await page.goto('https://example.com/login');
+  await page.fill('input[name="user"]', 'admin');
+  await page.fill('input[name="password"]', 'password');
+  await page.click('text=Login');
+  
+  // Save signed-in state
+  await page.context().storageState({ path: 'storageState.json' });
+  await browser.close();
+};
+
+// playwright.config.js
+module.exports = {
+  globalSetup: require.resolve('./global-setup'),
+  use: {
+    storageState: 'storageState.json',
+  },
+};</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="quiz" class="quiz-section">
+                        <h2>🧠 แบบทดสอบ</h2>
+                        
+                        <div class="quiz-container">
+                            <div class="quiz-question" data-answer="b">
+                                <p><strong>คำถาม 1:</strong> Playwright พัฒนาโดยบริษัทไหน?</p>
+                                <div class="quiz-options">
+                                    <label><input type="radio" name="q1" value="a"> Google</label>
+                                    <label><input type="radio" name="q1" value="b"> Microsoft</label>
+                                    <label><input type="radio" name="q1" value="c"> Facebook</label>
+                                </div>
+                                <div class="quiz-feedback"></div>
+                            </div>
+
+                            <div class="quiz-question" data-answer="a">
+                                <p><strong>คำถาม 2:</strong> Playwright รองรับกี่ภาษา?</p>
+                                <div class="quiz-options">
+                                    <label><input type="radio" name="q2" value="a"> 5 ภาษา (JS, TS, Python, .NET, Java)</label>
+                                    <label><input type="radio" name="q2" value="b"> 1 ภาษา (JavaScript เท่านั้น)</label>
+                                    <label><input type="radio" name="q2" value="c"> 3 ภาษา</label>
+                                </div>
+                                <div class="quiz-feedback"></div>
+                            </div>
+
+                            <button class="btn btn-primary" onclick="checkAnswers()">ตรวจคำตอบ</button>
+                            <div id="quiz-result"></div>
+                        </div>
+                    </section>
+
+                    <section class="completion-section">
+                        <button class="btn btn-complete" onclick="markTopicComplete('topics/playwright.html')">
+                            ✅ ฉันเรียนจบบทนี้แล้ว
+                        </button>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 QA Learning Hub | สร้างด้วย ❤️ สำหรับ QA ทุกคน</p>
+        </div>
+    </footer>
+
+    <script src="../js/topic.js"></script>
+    <script>
+        function checkAnswers() {
+            const questions = document.querySelectorAll('.quiz-question');
+            let correct = 0;
+            questions.forEach(q => {
+                const answer = q.dataset.answer;
+                const selected = q.querySelector('input[type="radio"]:checked');
+                const feedback = q.querySelector('.quiz-feedback');
+                if (selected) {
+                    if (selected.value === answer) {
+                        feedback.innerHTML = '<span class="correct">✅ ถูกต้อง!</span>';
+                        correct++;
+                    } else {
+                        feedback.innerHTML = '<span class="incorrect">❌ ลองใหม่</span>';
+                    }
+                } else {
+                    feedback.innerHTML = '<span class="incorrect">⚠️ เลือกคำตอบ</span>';
+                }
+            });
+            const resultDiv = document.getElementById('quiz-result');
+            if (correct === questions.length) {
+                resultDiv.innerHTML = '<div class="success-message">🎉 ยินดีด้วย!</div>';
+            }
+        }
+    </script>
+</body>
+</html>

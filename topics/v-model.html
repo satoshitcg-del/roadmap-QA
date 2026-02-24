@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-Model & Software Models - QA Learning Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/topic.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">🧪</span>
+                <span class="logo-text">QA Learning Hub</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">← กลับสู่หน้าหลัก</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="topic-page">
+        <div class="topic-header">
+            <div class="container">
+                <div class="topic-meta">
+                    <span class="topic-level-badge beginner">Beginner</span>
+                    <span class="topic-category">พื้นฐาน (Basics)</span>
+                </div>
+                <h1>🔺 V-Model & Software Models</h1>
+                <p class="topic-description">รู้จัก V-Model, Waterfall และ Software Development Life Cycle แบบต่างๆ</p>
+            </div>
+        </div>
+
+        <div class="topic-content">
+            <div class="container">
+                <nav class="toc">
+                    <h3>📋 สารบัญ</h3>
+                    <ul>
+                        <li><a href="#waterfall">Waterfall Model</a></li>
+                        <li><a href="#vmodel">V-Model</a></li>
+                        <li><a href="#comparison">เปรียบเทียบ Models</a></li>
+                        <li><a href="#verification">Verification vs Validation</a></li>
+                        <li><a href="#quiz">แบบทดสอบ</a></li>
+                    </ul>
+                </nav>
+
+                <article class="content-body">
+                    <section id="waterfall">
+                        <h2>🌊 Waterfall Model</h2>
+                        
+                        <p><strong>Waterfall</strong> เป็นโมเดลแบบลำดับขั้น (Sequential) ต้องทำขั้นตอนก่อนให้เสร็จก่อนจะไปขั้นตอนถัดไป</p>
+
+                        <div class="diagram">
+                            <pre class="ascii-art">
+Requirements
+    ↓
+   Design
+    ↓
+Implementation
+    ↓
+  Testing
+    ↓
+Deployment
+    ↓
+Maintenance
+                            </pre>
+                        </div>
+
+                        <h3>⚠️ ข้อเสียของ Waterfall</h3>
+                        <ul>
+                            <li>❌ ไม่สามารถย้อนกลับไปแก้ไขขั้นตอนก่อนหน้าได้ง่าย</li>
+                            <li>❌ ไม่เห็นงานจริงจนกว่าจะถึงขั้นตอนสุดท้าย</li>
+                            <li>❌ ไม่เหมาะกับ requirement ที่เปลี่ยนบ่อย</li>
+                            <li>❌ ความเสี่ยงสูงถ้าเข้าใจ requirement ผิดตอนแรก</li>
+                        </ul>
+
+                        <h3>✅ เหมาะกับ</h3>
+                        <ul>
+                            <li>✓ โปรเจกต์ที่ requirement ชัดเจนและไม่เปลี่ยน</li>
+                            <li>✓ ระบบที่มีความเสี่ยงต่ำ</li>
+                            <li>✓ โปรเจกต์ที่ต้องมี documentation ละเอียด</li>
+                        </ul>
+                    </section>
+
+                    <section id="vmodel">
+                        <h2>🔺 V-Model (Verification & Validation Model)</h2>
+
+                        <p><strong>V-Model</strong> เป็นขยายของ Waterfall ที่เน้นความสัมพันธ์ระหว่าง Development phase และ Testing phase แต่ละระดับมีการทดสอบที่สอดคล้องกัน</p>
+
+                        <div class="diagram">
+                            <pre class="ascii-art">
+       Verification                    Validation
+       (Development)                   (Testing)
+       
+       ┌─────────────┐          ┌─────────────┐
+       │ Requirements│          │     UAT     │
+       │    Specs    │◀────────▶│   Testing   │
+       └──────┬──────┘          └──────┬──────┘
+              │                        │
+       ┌──────▼──────┐          ┌──────▼──────┐
+       │    System   │          │    System   │
+       │    Design   │◀────────▶│    Testing  │
+       └──────┬──────┘          └──────┬──────┘
+              │                        │
+       ┌──────▼──────┐          ┌──────▼──────┐
+       │   Module    │          │  Integration│
+       │    Design   │◀────────▶│   Testing   │
+       └──────┬──────┘          └──────┬──────┘
+              │                        │
+       ┌──────▼──────┐          ┌──────▼──────┐
+       │    Coding   │◀────────▶│   Unit Test │
+       └─────────────┘          └─────────────┘
+              
+                    ╲    /
+                      ╲  /
+                        ▼
+                  Implementation
+                            </pre>
+                        </div>
+
+                        <h3>📊 V-Model Phases</h3>
+                        <table class="vmodel-table">
+                            <tr>
+                                <th>Phase (Left)</th>
+                                <th>Testing (Right)</th>
+                                <th>คำอธิบาย</th>
+                            </tr>
+                            <tr>
+                                <td><strong>Requirements</strong></td>
+                                <td><strong>UAT</strong> (Acceptance Testing)</td>
+                                <td>ตรวจสอบว่าระบบตรงตาม business needs</td>
+                            </tr>
+                            <tr>
+                                <td><strong>System Design</strong></td>
+                                <td><strong>System Testing</strong></td>
+                                <td>ทดสอบระบบทั้งหมดตาม design specs</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Module/Architectural Design</strong></td>
+                                <td><strong>Integration Testing</strong></td>
+                                <td>ทดสอบการเชื่อมต่อระหว่าง modules</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Coding/Implementation</strong></td>
+                                <td><strong>Unit Testing</strong></td>
+                                <td>ทดสอบแต่ละ unit/function โดย developer</td>
+                            </tr>
+                        </table>
+
+                        <div class="info-box">
+                            <h4>💡 หลักการสำคัญ</h4>
+                            <p>ใน V-Model <strong>แต่ละ development phase มี testing phase ที่สอดคล้องกัน</strong> — ทำให้ตรวจพบปัญหาได้เร็วกว่า Waterfall</p>
+                        </div>
+                    </section>
+
+                    <section id="comparison">
+                        <h2>⚖️ เปรียบเทียบ SDLC Models</h2>
+
+                        <table class="comparison-table">
+                            <tr>
+                                <th>Model</th>
+                                <th>ลักษณะ</th>
+                                <th>Testing</th>
+                                <th>เหมาะกับ</th>
+                            </tr>
+                            <tr>
+                                <td><strong>Waterfall</strong></td>
+                                <td>Linear, sequential</td>
+                                <td>ทำทีเดียวตอนท้าย</td>
+                                <td>Requirement แน่นอน</td>
+                            </tr>
+                            <tr>
+                                <td><strong>V-Model</strong></td>
+                                <td>Sequential with parallel testing</td>
+                                <td>ทดสอบคู่ขนานทุก phase</td>
+                                <td>ระบบ mission-critical</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Agile/Scrum</strong></td>
+                                <td>Iterative, incremental</td>
+                                <td>Continuous testing</td>
+                                <td>Requirement เปลี่ยนบ่อย</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Spiral</strong></td>
+                                <td>Risk-driven, iterative</td>
+                                <td>ทดสอบทุก cycle</td>
+                                <td>โปรเจกต์มีความเสี่ยงสูง</td>
+                            </tr>
+                        </table>
+                    </section>
+
+                    <section id="verification">
+                        <h2>✅ Verification vs Validation</h2>
+
+                        <div class="comparison-box">
+                            <div class="comparison-side">
+                                <h3>🔍 Verification</h3>
+                                <p><strong>"Are we building the product right?"</strong></p>
+                                <ul>
+                                    <li>ตรวจสอบว่าทำตาม spec ถูกต้อง</li>
+                                    <li>ไม่ต้องรัน code</li>
+                                    <li>Static testing (reviews, inspections)</li>
+                                    <li>ตรวจ documents, code</li>
+                                </ul>
+                                <p><strong>ตัวอย่าง:</strong> Code review, requirements review</p>
+                            </div>
+                            <div class="comparison-side">
+                                <h3>🎯 Validation</h3>
+                                <p><strong>"Are we building the right product?"</strong></p>
+                                <ul>
+                                    <li>ตรวจสอบว่าตรงตาม user needs</li>
+                                    <li>ต้องรัน code</li>
+                                    <li>Dynamic testing (execute software)</li>
+                                    <li>ทดสอบ functionality</li>
+                                </ul>
+                                <p><strong>ตัวอย่าง:</strong> UAT, System testing</p>
+                            </div>
+                        </div>
+
+                        <h3>📝 สรุปความแตกต่าง</h3>
+                        <table>
+                            <tr><th>Verification</th><th>Validation</th></tr>
+                            <tr><td>ตรวจ spec/design</td><td>ตรวจ product จริง</td></tr>
+                            <tr><td>Static (ไม่รัน)</td><td>Dynamic (รัน code)</td></tr>
+                            <tr><td>Developer/QA</td><td>End User/QA</td></tr>
+                            <tr><td>ตรวจก่อน build</td><td>ตรวจหลัง build</td></tr>
+                        </table>
+                    </section>
+
+                    <section id="quiz" class="quiz-section">
+                        <h2>🧠 แบบทดสอบ</h2>
+                        
+                        <div class="quiz-container">
+                            <div class="quiz-question" data-answer="a">
+                                <p><strong>คำถาม 1:</strong> ใน V-Model Unit Testing คู่กับ Phase ไหน?</p>
+                                <div class="quiz-options">
+                                    <label><input type="radio" name="q1" value="a"> Coding/Implementation</label>
+                                    <label><input type="radio" name="q1" value="b"> System Design</label>
+                                    <label><input type="radio" name="q1" value="c"> Requirements</label>
+                                </div>
+                                <div class="quiz-feedback"></div>
+                            </div>
+
+                            <div class="quiz-question" data-answer="b">
+                                <p><strong>คำถาม 2:</strong> "Are we building the right product?" คือคำถามของ?</p>
+                                <div class="quiz-options">
+                                    <label><input type="radio" name="q2" value="a"> Verification</label>
+                                    <label><input type="radio" name="q2" value="b"> Validation</label>
+                                    <label><input type="radio" name="q2" value="c"> Verification และ Validation</label>
+                                </div>
+                                <div class="quiz-feedback"></div>
+                            </div>
+
+                            <button class="btn btn-primary" onclick="checkAnswers()">ตรวจคำตอบ</button>
+                            <div id="quiz-result"></div>
+                        </div>
+                    </section>
+
+                    <section class="completion-section">
+                        <button class="btn btn-complete" onclick="markTopicComplete('topics/v-model.html')">
+                            ✅ ฉันเรียนจบบทนี้แล้ว
+                        </button>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 QA Learning Hub | สร้างด้วย ❤️ สำหรับ QA ทุกคน</p>
+        </div>
+    </footer>
+
+    <script src="../js/topic.js"></script>
+    <script>
+        function checkAnswers() {
+            const questions = document.querySelectorAll('.quiz-question');
+            let correct = 0;
+            questions.forEach(q => {
+                const answer = q.dataset.answer;
+                const selected = q.querySelector('input[type="radio"]:checked');
+                const feedback = q.querySelector('.quiz-feedback');
+                if (selected) {
+                    if (selected.value === answer) {
+                        feedback.innerHTML = '<span class="correct">✅ ถูกต้อง!</span>';
+                        correct++;
+                    } else {
+                        feedback.innerHTML = '<span class="incorrect">❌ ลองใหม่</span>';
+                    }
+                } else {
+                    feedback.innerHTML = '<span class="incorrect">⚠️ เลือกคำตอบ</span>';
+                }
+            });
+            const resultDiv = document.getElementById('quiz-result');
+            if (correct === questions.length) {
+                resultDiv.innerHTML = '<div class="success-message">🎉 ยินดีด้วย!</div>';
+            }
+        }
+    </script>
+</body>
+</html>

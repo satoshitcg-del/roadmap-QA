@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git & Version Control - QA Learning Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/topic.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">🧪</span>
+                <span class="logo-text">QA Learning Hub</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">← กลับสู่หน้าหลัก</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="topic-page">
+        <div class="topic-header">
+            <div class="container">
+                <div class="topic-meta">
+                    <span class="topic-level-badge beginner">Beginner</span>
+                    <span class="topic-category">Tools</span>
+                </div>
+                <h1>🌿 Git & Version Control</h1>
+                <p class="topic-description">พื้นฐาน Git, GitHub, GitLab สำหรับ QA Engineer</p>
+            </div>
+        </div>
+
+        <div class="topic-content">
+            <div class="container">
+                <nav class="toc">
+                    <h3>📋 สารบัญ</h3>
+                    <ul>
+                        <li><a href="#intro">Version Control คืออะไร?</a></li>
+                        <li><a href="#git">Git พื้นฐาน</a></li>
+                        <li><a href="#commands">คำสั่งที่ใช้บ่อย</a></li>
+                        <li><a href="#qa">Git สำหรับ QA</a></li>
+                        <li><a href="#quiz">แบบทดสอบ</a></li>
+                    </ul>
+                </nav>
+
+                <article class="content-body">
+                    <section id="intro">
+                        <h2>📚 Version Control คืออะไร?</h2>
+                        
+                        <p><strong>Version Control System (VCS)</strong> คือระบบที่ใช้บันทึกการเปลี่ยนแปลงของไฟล์ เพื่อให้สามารถย้อนกลับไปดูหรือกู้คืนเวอร์ชันเก่าได้</p>
+
+                        <div class="info-box">
+                            <h4>💡 ทำไม QA ต้องรู้ Git?</h4>
+                            <ul>
+                                <li>ดูว่า bug เกิดจาก commit ไหน</li>
+                                <li>ดึง code มา deploy/test เองได้</li>
+                                <li>รีวิว code ก่อน merge</li>
+                                <li>ทำงานร่วมกับ dev ได้ดีขึ้น</li>
+                            </ul>
+                        </div>
+
+                        <h3>ประเภทของ Version Control</h3>
+                        <ul>
+                            <li><strong>Local VCS</strong> - บันทึกบนเครื่องตัวเอง (เช่น RCS)</li>
+                            <li><strong>Centralized VCS</strong> - มี server กลาง (เช่น SVN, CVS)</li>
+                            <li><strong>Distributed VCS</strong> - ทุกคนมี repo ของตัวเอง (เช่น Git, Mercurial)</li>
+                        </ul>
+                    </section>
+
+                    <section id="git">
+                        <h2>🌿 Git พื้นฐาน</h2>
+
+                        <p><strong>Git</strong> เป็น Distributed Version Control ที่นิยมมากที่สุด พัฒนาโดย Linus Torvalds (ผู้สร้าง Linux)</p>
+
+                        <h3>🔧 Git Architecture</h3>
+                        <div class="diagram">
+                            <pre class="ascii-art">
+Working Directory
+        ↓ (add)
+   Staging Area
+        ↓ (commit)
+    Local Repo
+        ↓ (push)
+   Remote Repo
+        (GitHub/GitLab)
+                            </pre>
+                        </div>
+
+                        <h3>📁 Git States</h3>
+                        <ul>
+                            <li><strong>Working Directory</strong> - ไฟล์ที่กำลังแก้ไข</li>
+                            <li><strong>Staging Area (Index)</strong> - ไฟล์ที่เตรียม commit</li>
+                            <li><strong>Local Repository</strong> - ประวัติการ commit ในเครื่อง</li>
+                            <li><strong>Remote Repository</strong> - repository บน server (GitHub/GitLab)</li>
+                        </ul>
+                    </section>
+
+                    <section id="commands">
+                        <h2>💻 คำสั่ง Git ที่ใช้บ่อย</h2>
+
+                        <h3>🚀 Setup & Basic Commands</h3>
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-bash"># ตั้งค่า Git
+git config --global user.name "Your Name"
+git config --global user.email "your@email.com"
+
+# สร้าง repo ใหม่
+git init
+
+# Clone repo จาก remote
+git clone https://github.com/user/repo.git
+
+# ดูสถานะ
+git status
+
+# เพิ่มไฟล์เข้า staging
+git add filename.txt
+git add .  # เพิ่มทั้งหมด
+
+# Commit การเปลี่ยนแปลง
+git commit -m "Add new feature"
+
+# Push ขึ้น remote
+git push origin main
+
+# Pull การเปลี่ยนแปลงล่าสุด
+git pull origin main</code></pre>
+                        </div>
+
+                        <h3>🌿 Branching</h3>
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-bash"># ดู branch ทั้งหมด
+git branch
+
+# สร้าง branch ใหม่
+git branch feature/login
+
+# เปลี่ยน branch
+git checkout feature/login
+# หรือ
+git switch feature/login
+
+# สร้าง & เปลี่ยนในครั้งเดียว
+git checkout -b feature/signup
+
+# Merge branch
+git checkout main
+git merge feature/login
+
+# ลบ branch
+git branch -d feature/login  # ลบหลัง merge แล้ว
+git branch -D feature/login  # บังคับลบ</code></pre>
+                        </div>
+
+                        <h3>🔍 Inspection Commands</h3>
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-bash"># ดูประวัติ commit
+git log
+git log --oneline  # แบบสั้น
+git log --graph    # แบบกราฟ
+
+# ดู diff (ความแตกต่าง)
+git diff
+git diff --staged  # ดู staged changes
+
+# ดูข้อมูล remote
+git remote -v
+
+# ดู commit ที่ทำกับไฟล์
+git blame filename.txt</code></pre>
+                        </div>
+
+                        <h3>↩️ Undo Changes</h3>
+                        <div class="code-block">
+                            <pre><code class="language-bash"># ยกเลิกการแก้ไขใน working directory
+git checkout -- filename.txt
+
+# ยกเลิกการ add (unstage)
+git reset HEAD filename.txt
+
+# แก้ไข commit ล่าสุด
+git commit --amend
+
+# ย้อนกลับไป commit ก่อนหน้า
+git revert HEAD</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="qa">
+                        <h2>🧪 Git สำหรับ QA Engineer</h2>
+
+                        <h3>🐛 การหา Commit ที่ทำให้เกิด Bug (Git Bisect)</h3>
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-bash"># เริ่ม bisect
+git bisect start
+
+# บอกว่า commit ปัจจุบันมี bug
+git bisect bad
+
+# บอกว่า commit เก่านี้ไม่มี bug
+git bisect good v1.0
+
+# Git จะ checkout commit ตรงกลางให้ทดสอบ
+# ทดสอบแล้วบอกว่า good หรือ bad
+git bisect good  # หรือ git bisect bad
+
+# ทำซ้ำจนเจอ commit ที่ทำให้เกิด bug
+git bisect reset  # ออกจาก bisect mode</code></pre>
+                        </div>
+
+                        <h3>📋 Git Workflow สำหรับ QA</h3>
+                        <ol>
+                            <li><strong>Clone repo</strong> — <code>git clone https://...</code></li>
+                            <li><strong>Pull ล่าสุด</strong> — <code>git pull</code></li>
+                            <li><strong>สร้าง branch สำหรับ test</strong> — <code>git checkout -b test/feature-x</code></li>
+                            <li><strong>เขียน/แก้ไข test scripts</strong></li>
+                            <li><strong>Commit การเปลี่ยนแปลง</strong> — <code>git add . && git commit -m "Add tests"</code></li>
+                            <li><strong>Push ขึ้น remote</strong> — <code>git push origin test/feature-x</code></li>
+                            <li><strong>สร้าง Pull Request</strong></li>
+                        </ol>
+
+                        <h3>🏢 Git Platforms</h3>
+                        <div class="tools-grid">
+                            <div class="tool-card">
+                                <h4>🐙 GitHub</h4>
+                                <p>ที่นิยมมากที่สุด Actions, Issues, PRs</p>
+                            </div>
+                            <div class="tool-card">
+                                <h4>🦊 GitLab</h4>
+                                <p>Built-in CI/CD DevOps platform</p>
+                            </div>
+                            <div class="tool-card">
+                                <h4>📘 Bitbucket</h4>
+                                <p>ของ Atlassian Jira integration</p>
+                            </div>
+                            <div class="tool-card">
+                                <h4>🌿 GitKraken</h4>
+                                <p>GUI client สวยงาม</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="quiz" class="quiz-section">
+                        <h2>🧠 แบบทดสอบ</h2>
+                        
+                        <div class="quiz-container">
+                            <div class="quiz-question" data-answer="c">
+                                <p><strong>คำถาม 1:</strong> คำสั่งใดใช้สำหรับบันทึกการเปลี่ยนแปลง?</p>
+                                <div class="quiz-options">
+                                    <label><input type="radio" name="q1" value="a"> git add</label>
+                                    <label><input type="radio" name="q1" value="b"> git push</label>
+                                    <label><input type="radio" name="q1" value="c"> git commit</label>
+                                </div>
+                                <div class="quiz-feedback"></div>
+                            </div>
+
+                            <button class="btn btn-primary" onclick="checkAnswers()">ตรวจคำตอบ</button>
+                            <div id="quiz-result"></div>
+                        </div>
+                    </section>
+
+                    <section class="completion-section">
+                        <button class="btn btn-complete" onclick="markTopicComplete('topics/git-version-control.html')">
+                            ✅ ฉันเรียนจบบทนี้แล้ว
+                        </button>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 QA Learning Hub | สร้างด้วย ❤️ สำหรับ QA ทุกคน</p>
+        </div>
+    </footer>
+
+    <script src="../js/topic.js"></script>
+    <script>
+        function checkAnswers() {
+            const questions = document.querySelectorAll('.quiz-question');
+            let correct = 0;
+            questions.forEach(q => {
+                const answer = q.dataset.answer;
+                const selected = q.querySelector('input[type="radio"]:checked');
+                const feedback = q.querySelector('.quiz-feedback');
+                if (selected) {
+                    if (selected.value === answer) {
+                        feedback.innerHTML = '<span class="correct">✅ ถูกต้อง!</span>';
+                        correct++;
+                    } else {
+                        feedback.innerHTML = '<span class="incorrect">❌ ลองใหม่</span>';
+                    }
+                } else {
+                    feedback.innerHTML = '<span class="incorrect">⚠️ เลือกคำตอบ</span>';
+                }
+            });
+            const resultDiv = document.getElementById('quiz-result');
+            if (correct === questions.length) {
+                resultDiv.innerHTML = '<div class="success-message">🎉 ยินดีด้วย!</div>';
+            }
+        }
+    </script>
+</body>
+</html>

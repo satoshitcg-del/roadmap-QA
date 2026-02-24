@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="th"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing Techniques - QA Learning Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/topic.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head><body>
+    <nav class="navbar"><div class="nav-container"><a href="../index.html" class="nav-logo"><span class="logo-icon">🧪</span><span class="logo-text">QA Learning Hub</span></a><ul class="nav-menu"><li><a href="../index.html" class="nav-link">← กลับสู่หน้าหลัก</a></li></ul></div></nav>
+    <main class="topic-page"><div class="topic-header"><div class="container"><div class="topic-meta"><span class="topic-level-badge intermediate">Intermediate</span><span class="topic-category">Manual Testing</span></div><h1>🔍 Testing Techniques</h1><p class="topic-description">EP, BVA, Decision Table, State Transition - เทคนิคการออกแบบ test cases ที่มีประสิทธิภาพ</p></div></div>
+        <div class="topic-content"><div class="container"><nav class="toc"><h3>📋 สารบัญ</h3><ul><li><a href="#ep">Equivalence Partitioning</a></li><li><a href="#bva">Boundary Value Analysis</a></li><li><a href="#decision">Decision Table</a></li><li><a href="#state">State Transition</a></li><li><a href="#quiz">แบบทดสอบ</a></li></ul></nav>
+            <article class="content-body">
+                <section id="ep"><h2>Equivalence Partitioning (EP)</h2><p>แบ่งข้อมูลออกเป็นกลุ่มที่เหมือนกัน (equivalent) แล้วเลือกตัวแทนมาทดสอบจากแต่ละกลุ่ม</p>
+                    <div class="example-box"><strong>ตัวอย่าง:</strong> ช่องรับอายุ 1-100 ปี<ul><li>Valid EP: 1-100</li><li>Invalid EP: &lt;1, &gt;100, non-numeric</li></ul></div></section>
+                
+                <section id="bva"><h2>Boundary Value Analysis (BVA)</h2><p>ทดสอบที่ค่าขอบเขต (boundaries) เพราะมักพบ defects ที่นี่</p>
+                    <div class="example-box"><strong>ตัวอย่าง:</strong> ช่วง 1-100<ul><li>Test values: 0, 1, 2, 99, 100, 101</li></ul></div></section>
+                
+                <section id="decision"><h2>Decision Table</h2><p>สร้างตารางแสดง conditions และ actions ทั้งหมด ช่วยให้ไม่พลาด combination ใดๆ</p></section>
+                
+                <section id="state"><h2>State Transition</h2><p>ทดสอบการเปลี่ยน state ของระบบ เช่น Order: New → Paid → Shipped → Delivered</p></section>
+                
+                <section id="quiz" class="quiz-section"><h2>🎯 แบบทดสอบ</h2><div class="quiz-container">
+                    <div class="quiz-question" data-correct="b"><p class="question">1. BVA ทดสอบที่จุดใด?</p><div class="options"><label><input type="radio" name="q1" value="a"> ค่ากลาง</label><label><input type="radio" name="q1" value="b"> ค่าขอบเขต</label><label><input type="radio" name="q1" value="c"> ค่าสุ่ม</label><label><input type="radio" name="q1" value="d"> ค่าเฉลี่ย</label></div><div class="feedback"></div></div>
+                    <div class="quiz-question" data-correct="a"><p class="question">2. EP ใช้ทำอะไร?</p><div class="options"><label><input type="radio" name="q2" value="a"> ลดจำนวน test cases</label><label><input type="radio" name="q2" value="b"> เพิ่ม coverage</label><label><input type="radio" name="q2" value="c"> หา boundary</label><div class="feedback"></div></div></div>
+                <button class="btn btn-primary" id="checkAnswers">ตรวจคำตอบ</button><div id="quizResult" class="quiz-result"></div></section>
+            </article>
+            <nav class="topic-nav"><a href="test-scenarios.html" class="nav-prev">← Test Scenarios</a><a href="bug-reporting.html" class="nav-next">Bug Reporting →</a></nav>
+        </div></div>
+    </main>
+    <script src="../js/topic.js"></script>
+</body></html>

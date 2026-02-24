@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk-Based Testing - QA Learning Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/topic.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">🧪</span>
+                <span class="logo-text">QA Learning Hub</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">← กลับสู่หน้าหลัก</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="topic-page">
+        <div class="topic-header">
+            <div class="container">
+                <div class="topic-meta">
+                    <span class="topic-level-badge intermediate">Intermediate</span>
+                    <span class="topic-category">Manual Testing</span>
+                </div>
+                <h1>⚠️ Risk-Based Testing</h1>
+                <p class="topic-description">จัดลำดับความสำคัญการทดสอบตามระดับความเสี่ยงของฟีเจอร์</p>
+            </div>
+        </div>
+
+        <div class="topic-content">
+            <div class="container">
+                <nav class="toc">
+                    <h3>📋 สารบัญ</h3>
+                    <ul>
+                        <li><a href="#concept">แนวคิด Risk-Based Testing</a></li>
+                        <li><a href="#risk-matrix">Risk Matrix</a></li>
+                        <li><a href="#process">ขั้นตอนการทำ RBT</a></li>
+                        <li><a href="#examples">ตัวอย่างการประเมิน</a></li>
+                        <li><a href="#quiz">แบบทดสอบ</a></li>
+                    </ul>
+                </nav>
+
+                <article class="content-body">
+                    <section id="concept">
+                        <h2>🎯 อะไรคือ Risk-Based Testing?</h2>
+                        <p><strong>Risk-Based Testing (RBT)</strong> คือการทดสอบที่ให้ความสำคัญกับฟีเจอร์ที่มีความเสี่ยงสูงก่อน โดยพิจารณาจาก:</p>
+                        
+                        <ul>
+                            <li>🔴 <strong>Impact (ผลกระทบ)</strong> - ถ้าเกิดข้อผิดพลาดจะมีผลกระทบรุนแรงแค่ไหน?</li>
+                            <li>🟡 <strong>Likelihood (โอกาสเกิด)</strong> - โอกาสที่จะเกิดข้อผิดพลาดมีมากน้อยแค่ไหน?</li>
+                        </ul>
+
+                        <div class="formula-box">
+                            <h4>📐 สูตรคำนวณ Risk Level</h4>
+                            <div class="formula">
+                                <code>Risk = Impact × Likelihood</code>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="risk-matrix">
+                        <h2>🟥 Risk Assessment Matrix</h2>
+                        
+                        <div class="matrix-table">
+                            <table>
+                                <tr>
+                                    <th>Impact →<br>Likelihood ↓</th>
+                                    <th class="low">Low (1)</th>
+                                    <th class="medium">Medium (2)</th>
+                                    <th class="high">High (3)</th>
+                                    <th class="critical">Critical (4)</th>
+                                </tr>
+                                <tr>
+                                    <td><strong>Rare (1)</strong></td>
+                                    <td class="low">1 - Low 🟢</td>
+                                    <td class="medium">2 - Medium 🟡</td>
+                                    <td class="medium">3 - Medium 🟡</td>
+                                    <td class="high">4 - High 🟠</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Unlikely (2)</strong></td>
+                                    <td class="medium">2 - Medium 🟡</td>
+                                    <td class="medium">4 - Medium 🟡</td>
+                                    <td class="high">6 - High 🟠</td>
+                                    <td class="critical">8 - Critical 🔴</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Possible (3)</strong></td>
+                                    <td class="medium">3 - Medium 🟡</td>
+                                    <td class="high">6 - High 🟠</td>
+                                    <td class="critical">9 - Critical 🔴</td>
+                                    <td class="critical">12 - Critical 🔴</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Likely (4)</strong></td>
+                                    <td class="high">4 - High 🟠</td>
+                                    <td class="critical">8 - Critical 🔴</td>
+                                    <td class="critical">12 - Critical 🔴</td>
+                                    <td class="critical">16 - Critical 🔴</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <h3>🎨 Risk Level Colors</h3>
+                        <div class="risk-legend">
+                            <div class="risk-item"><span class="dot low"></span> <strong>Low (1-2)</strong> - Test if time permits</div>
+                            <div class="risk-item"><span class="dot medium"></span> <strong>Medium (3-4)</strong> - Standard testing</div>
+                            <div class="risk-item"><span class="dot high"></span> <strong>High (6-8)</strong> - Thorough testing required</div>
+                            <div class="risk-item"><span class="dot critical"></span> <strong>Critical (9-16)</strong> - Extensive testing mandatory</div>
+                        </div>
+                    </section>
+
+                    <section id="process">
+                        <h2>🔄 5 ขั้นตอน Risk-Based Testing</h2>
+
+                        <div class="process-steps">
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>Identify Risks</h4>
+                                    <p>ระบุความเสี่ยงที่อาจเกิดขึ้นกับแต่ละฟีเจอร์</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>Analyze Risks</h4>
+                                    <p>ประเมิน Impact และ Likelihood ของแต่ละความเสี่ยง</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>Prioritize</h4>
+                                    <p>จัดลำดับความสำคัญตาม Risk Level</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4>Design Tests</h4>
+                                    <p>สร้าง Test Cases ให้ครอบคลุมความเสี่ยงสูงก่อน</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">5</div>
+                                <div class="step-content">
+                                    <h4>Execute & Monitor</h4>
+                                    <p>ทดสอบตามลำดับ และติดตามความเสี่ยงใหม่ที่เกิดขึ้น</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="examples">
+                        <h2>📊 ตัวอย่างการประเมิน Risk: E-commerce App</h2>
+
+                        <table class="risk-example-table">
+                            <tr>
+                                <th>Feature</th>
+                                <th>Impact</th>
+                                <th>Likelihood</th>
+                                <th>Risk Score</th>
+                                <th>Priority</th>
+                            </tr>
+                            <tr class="critical">
+                                <td>💳 Payment Processing</td>
+                                <td>Critical (4)</td>
+                                <td>Possible (3)</td>
+                                <td><strong>12</strong></td>
+                                <td>🔴 P0 - Test First</td>
+                            </tr>
+                            <tr class="critical">
+                                <td>🔐 User Authentication</td>
+                                <td>Critical (4)</td>
+                                <td>Likely (4)</td>
+                                <td><strong>16</strong></td>
+                                <td>🔴 P0 - Test First</td>
+                            </tr>
+                            <tr class="high">
+                                <td>🛒 Shopping Cart</td>
+                                <td>High (3)</td>
+                                <td>Possible (3)</td>
+                                <td><strong>9</strong></td>
+                                <td>🟠 P1 - High Priority</td>
+                            </tr>
+                            <tr class="high">
+                                <td>📦 Order Management</td>
+                                <td>High (3)</td>
+                                <td>Unlikely (2)</td>
+                                <td><strong>6</strong></td>
+                                <td>🟠 P1 - High Priority</td>
+                            </tr>
+                            <tr class="medium">
+                                <td>🔍 Product Search</td>
+                                <td>Medium (2)</td>
+                                <td>Possible (3)</td>
+                                <td><strong>6</strong></td>
+                                <td>🟡 P2 - Standard</td>
+                            </tr>
+                            <tr class="low">
+                                <td>📧 Email Notifications</td>
+                                <td>Low (1)</td>
+                                <td>Unlikely (2)</td>
+                                <td><strong>2</strong></td>
+                                <td>🟢 P3 - Low Priority</td>
+                            </tr>
+                        </table>
+                    </section>
+
+                    <section id="quiz" class="quiz-section">
+                        <h2>🧠 แบบทดสอบ</h2>
+                        
+                        <div class="quiz-container">
+                            <div class="quiz-question" data-answer="b">
+                                <p><strong>คำถาม 1:</strong> Risk-Based Testing คืออะไร?</p>
+                                <div class="quiz-options">
+                                    <label><input type="radio" name="q1" value="a"> ทดสอบทุกฟีเจอร์เท่าๆ กัน</label>
+                                    <label><input type="radio" name="q1" value="b"> ทดสอบตามระดับความเสี่ยง ให้ความสำคัญกับฟีเจอร์เสี่ยงสูงก่อน</label>
+                                    <label><input type="radio" name="q1" value="c"> ทดสอบเฉพาะฟีเจอร์ที่ลูกค้าบอก</label>
+                                </div>
+                                <div class="quiz-feedback"></div>
+                            </div>
+
+                            <div class="quiz-question" data-answer="a">
+                                <p><strong>คำถาม 2:</strong> สูตรคำนวณ Risk คืออะไร?</p>
+                                <div class="quiz-options">
+                                    <label><input type="radio" name="q2" value="a"> Risk = Impact × Likelihood</label>
+                                    <label><input type="radio" name="q2" value="b"> Risk = Impact + Likelihood</label>
+                                    <label><input type="radio" name="q2" value="c"> Risk = Impact ÷ Likelihood</label>
+                                </div>
+                                <div class="quiz-feedback"></div>
+                            </div>
+
+                            <button class="btn btn-primary" onclick="checkAnswers()">ตรวจคำตอบ</button>
+                            <div id="quiz-result"></div>
+                        </div>
+                    </section>
+
+                    <section class="completion-section">
+                        <button class="btn btn-complete" onclick="markTopicComplete('topics/risk-based-testing.html')">
+                            ✅ ฉันเรียนจบบทนี้แล้ว
+                        </button>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 QA Learning Hub | สร้างด้วย ❤️ สำหรับ QA ทุกคน</p>
+        </div>
+    </footer>
+
+    <script src="../js/topic.js"></script>
+    <script>
+        function checkAnswers() {
+            const questions = document.querySelectorAll('.quiz-question');
+            let correct = 0;
+            questions.forEach(q => {
+                const answer = q.dataset.answer;
+                const selected = q.querySelector('input[type="radio"]:checked');
+                const feedback = q.querySelector('.quiz-feedback');
+                if (selected) {
+                    if (selected.value === answer) {
+                        feedback.innerHTML = '<span class="correct">✅ ถูกต้อง!</span>';
+                        correct++;
+                    } else {
+                        feedback.innerHTML = '<span class="incorrect">❌ ลองใหม่</span>';
+                    }
+                } else {
+                    feedback.innerHTML = '<span class="incorrect">⚠️ เลือกคำตอบ</span>';
+                }
+            });
+            const resultDiv = document.getElementById('quiz-result');
+            if (correct === questions.length) {
+                resultDiv.innerHTML = '<div class="success-message">🎉 ยินดีด้วย!</div>';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Testing - QA Learning Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/topic.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">🧪</span>
+                <span class="logo-text">QA Learning Hub</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">← กลับสู่หน้าหลัก</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="topic-page">
+        <div class="topic-header">
+            <div class="container">
+                <div class="topic-meta">
+                    <span class="topic-level-badge advanced">Advanced</span>
+                    <span class="topic-category">Advanced Topics</span>
+                </div>
+                <h1>📱 Mobile Testing</h1>
+                <p class="topic-description">Appium, Android Testing, iOS Testing และ Mobile Automation</p>
+            </div>
+        </div>
+
+        <div class="topic-content">
+            <div class="container">
+                <nav class="toc">
+                    <h3>📋 สารบัญ</h3>
+                    <ul>
+                        <li><a href="#intro">Mobile Testing Types</a></li>
+                        <li><a href="#appium">Appium Basics</a></li>
+                        <li><a href="#checklist">Mobile Testing Checklist</a></li>
+                        <li><a href="#quiz">แบบทดสอบ</a></li>
+                    </ul>
+                </nav>
+
+                <article class="content-body">
+                    <section id="intro">
+                        <h2>📱 Mobile Testing Types</h2>
+
+                        <div class="test-types-grid">
+                            <div class="test-type-card">
+                                <span class="type-icon">🧪</span>
+                                <h4>Functional Testing</h4>
+                                <ul>
+                                    <li>UI elements แสดงถูกต้อง</li>
+                                    <li>Navigation ทำงานได้</li>
+                                    <li>Input fields รับค่าได้</li>
+                                </ul>
+                            </div>
+                            <div class="test-type-card">
+                                <span class="type-icon">⚡</span>
+                                <h4>Performance Testing</h4>
+                                <ul>
+                                    <li>App launch time</li>
+                                    <li>Battery consumption</li>
+                                    <li>Memory usage</li>
+                                </ul>
+                            </div>
+                            <div class="test-type-card">
+                                <span class="type-icon">🔄</span>
+                                <h4>Compatibility Testing</h4>
+                                <ul>
+                                    <li>OS versions (iOS/Android)</li>
+                                    <li>Screen sizes</li>
+                                    <li>Device models</li>
+                                </ul>
+                            </div>
+                            <div class="test-type-card">
+                                <span class="type-icon">📡</span>
+                                <h4>Network Testing</h4>
+                                <ul>
+                                    <li>Weak signal (2G/3G)</li>
+                                    <li>Offline mode</li>
+                                    <li>WiFi to cellular switch</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="appium">
+                        <h2>🤖 Appium - Mobile Automation</h2>
+
+                        <p>Appium เป็น Open Source tool สำหรับ automate mobile apps (Native, Hybrid, Web)</p>
+
+                        <h3>⚙️ Setup</h3>
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-bash"># Install Appium
+npm install -g appium
+
+# Install drivers
+appium driver install uiautomator2  # Android
+appium driver install xcuitest      # iOS
+
+# Python client
+pip install Appium-Python-Client</code></pre>
+                        </div>
+
+                        <h3>📝 Example Test (Python)</h3>
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-python">from appium import webdriver
+from appium.options.android import UiAutomator2Options
+
+# Capabilities
+options = UiAutomator2Options()
+options.platform_name = 'Android'
+options.device_name = 'emulator-5554'
+options.app_package = 'com.example.app'
+options.app_activity = '.MainActivity'
+
+# Start driver
+driver = webdriver.Remote('http://localhost:4723', options=options)
+
+# Find element and click
+driver.find_element(by=AppiumBy.ID, value='login_btn').click()
+
+# Type text
+driver.find_element(by=AppiumBy.ID, value='username').send_keys('testuser')
+
+# Tap by coordinates
+driver.tap([(100, 200)])
+
+# Swipe
+driver.swipe(300, 1000, 300, 200, 400)
+
+# Close
+driver.quit()</code></pre>
+                        </div>
+
+                        <h3>📍 Mobile Selectors</h3>
+                        <table>
+                            <tr><th>Strategy</th><th>Example</th></tr>
+                            <tr><td>ID</td><td><code>AppiumBy.ID, 'login_btn'</code></td></tr>
+                            <tr><td>XPath</td><td><code>AppiumBy.XPATH, '//Button[@text="Login"]'</code></td></tr>
+                            <tr><td>Accessibility ID</td><td><code>AppiumBy.ACCESSIBILITY_ID, 'login'</code></td></tr>
+                            <tr><td>Class Name</td><td><code>AppiumBy.CLASS_NAME, 'android.widget.Button'</code></td></tr>
+                        </table>
+                    </section>
+
+                    <section id="checklist">
+                        <h2>✅ Mobile Testing Checklist</h2>
+
+                        <h3>📱 Device Interactions</h3>
+                        <ul>
+                            <li>✓ Installation/Uninstallation</li>
+                            <li>✓ App Launch Time</li>
+                            <li>✓ Background/Foreground switching</li>
+                            <li>✓ Screen rotation (Portrait/Landscape)</li>
+                            <li>✓ Interrupts (Call, SMS, Notifications)</li>
+                            <li>✓ Battery low scenario</li>
+                            <li>✓ Device lock/unlock</li>
+                        </ul>
+
+                        <h3>🌐 Network</h3>
+                        <ul>
+                            <li>✓ WiFi to Mobile Data switch</li>
+                            <li>✓ Airplane mode</li>
+                            <li>✓ Weak signal (2G)</li>
+                            <li>✓ Connection lost/reconnect</li>
+                        </ul>
+
+                        <h3>👆 Gestures</h3>
+                        <ul>
+                            <li>✓ Tap/Double tap</li>
+                            <li>✓ Swipe/Scroll</li>
+                            <li>✓ Pinch to zoom</li>
+                            <li>✓ Pull to refresh</li>
+                            <li>✓ Long press</li>
+                        </ul>
+                    </section>
+
+                    <section id="quiz" class="quiz-section">
+                        <h2>🧠 แบบทดสอบ</h2>
+                        
+                        <div class="quiz-container">
+                            <div class="quiz-question" data-answer="a">
+                                <p><strong>คำถาม 1:</strong> Appium ใช้ทดสอบอะไร?</p>
+                                <div class="quiz-options">
+                                    <label><input type="radio" name="q1" value="a"> Mobile Apps (iOS/Android)</label>
+                                    <label><input type="radio" name="q1" value="b"> Web Applications เท่านั้น</label>
+                                    <label><input type="radio" name="q1" value="c"> Database</label>
+                                </div>
+                                <div class="quiz-feedback"></div>
+                            </div>
+
+                            <button class="btn btn-primary" onclick="checkAnswers()">ตรวจคำตอบ</button>
+                            <div id="quiz-result"></div>
+                        </div>
+                    </section>
+
+                    <section class="completion-section">
+                        <button class="btn btn-complete" onclick="markTopicComplete('topics/mobile-testing.html')">
+                            ✅ ฉันเรียนจบบทนี้แล้ว
+                        </button>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 QA Learning Hub | สร้างด้วย ❤️ สำหรับ QA ทุกคน</p>
+        </div>
+    </footer>
+
+    <script src="../js/topic.js"></script>
+    <script>
+        function checkAnswers() {
+            const questions = document.querySelectorAll('.quiz-question');
+            let correct = 0;
+            questions.forEach(q => {
+                const answer = q.dataset.answer;
+                const selected = q.querySelector('input[type="radio"]:checked');
+                const feedback = q.querySelector('.quiz-feedback');
+                if (selected) {
+                    if (selected.value === answer) {
+                        feedback.innerHTML = '<span class="correct">✅ ถูกต้อง!</span>';
+                        correct++;
+                    } else {
+                        feedback.innerHTML = '<span class="incorrect">❌ ลองใหม่</span>';
+                    }
+                } else {
+                    feedback.innerHTML = '<span class="incorrect">⚠️ เลือกคำตอบ</span>';
+                }
+            });
+            const resultDiv = document.getElementById('quiz-result');
+            if (correct === questions.length) {
+                resultDiv.innerHTML = '<div class="success-message">🎉 ยินดีด้วย!</div>';
+            }
+        }
+    </script>
+</body>
+</html>

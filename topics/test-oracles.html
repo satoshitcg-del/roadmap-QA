@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Oracles - QA Learning Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/topic.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">🧪</span>
+                <span class="logo-text">QA Learning Hub</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">← กลับสู่หน้าหลัก</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="topic-page">
+        <div class="topic-header">
+            <div class="container">
+                <div class="topic-meta">
+                    <span class="topic-level-badge intermediate">Intermediate</span>
+                    <span class="topic-category">Testing Techniques</span>
+                </div>
+                <h1>🔮 Test Oracles</h1>
+                <p class="topic-description">แหล่งข้อมูลที่ใช้ตัดสินว่าผลการทดสอบผ่านหรือไม่ผ่าน</p>
+            </div>
+        </div>
+
+        <div class="topic-content">
+            <div class="container">
+                <nav class="toc">
+                    <h3>📋 สารบัญ</h3>
+                    <ul>
+                        <li><a href="#concept">Test Oracle คืออะไร?</a></li>
+                        <li><a href="#types">ประเภทของ Test Oracles</a></li>
+                        <li><a href="#examples">ตัวอย่างการใช้งาน</a></li>
+                        <li><a href="#quiz">แบบทดสอบ</a></li>
+                    </ul>
+                </nav>
+
+                <article class="content-body">
+                    <section id="concept">
+                        <h2>🔮 Test Oracle คืออะไร?</h2>
+                        
+                        <p><strong>Test Oracle</strong> คือ <strong>แหล่งข้อมูลอ้างอิง</strong> ที่ใช้ในการตัดสินว่าผลลัพธ์จากการทดสอบ (Actual Result) ถูกต้องหรือไม่ เมื่อเทียบกับ Expected Result</p>
+
+                        <div class="info-box">
+                            <h4>💡 นิยามอย่างง่าย</h4>
+                            <p>Test Oracle = <strong>"เกณฑ์ตัดสิน"</strong> ว่าซอฟต์แวร์ทำงานถูกต้องหรือไม่</p>
+                        </div>
+
+                        <h3>🎯 ทำไม Test Oracle สำคัญ?</h3>
+                        <ul>
+                            <li>✅ กำหนด Expected Result ได้ชัดเจน</li>
+                            <li>✅ ตรวจสอบความถูกต้องของผลลัพธ์อัตโนมัติ</li>
+                            <li>✅ ช่วยใน Regression Testing</li>
+                        </ul>
+                    </section>
+
+                    <section id="types">
+                        <h2>📋 ประเภทของ Test Oracles</h2>
+
+                        <div class="test-types-grid">
+                            <div class="test-type-card">
+                                <span class="type-icon">📄</span>
+                                <h4>Specified Oracle</h4>
+                                <p>ใช้ specification/document เป็นเกณฑ์</p>
+                                <span class="example">เช่น: SRS, User Stories</span>
+                            </div>
+                            <div class="test-type-card">
+                                <span class="type-icon">💾</span>
+                                <h4>Derived Oracle</h4>
+                                <p>คำนวณ expected result จาก input</p>
+                                <span class="example">เช่น: 2+3=5 (คำนวณได้)</span>
+                            </div>
+                            <div class="test-type-card">
+                                <span class="type-icon">🔄</span>
+                                <h4>Implicit Oracle</h4>
+                                <p>ความรู้ทั่วไปที่ไม่ต้องอธิบาย</p>
+                                <span class="example">เช่น: App ไม่ควร crash</span>
+                            </div>
+                            <div class="test-type-card">
+                                <span class="type-icon">📊</span>
+                                <h4>Statistical Oracle</span>
+                                <p>ใช้สถิติหรือ heuristic</p>
+                                <span class="example">เช่น: Response time < 2 วินาที</span>
+                            </div>
+                            <div class="test-type-card">
+                                <span class="type-icon">👤</span>
+                                <h4>Human Oracle</h4>
+                                <p>ผู้เชี่ยวชาญตัดสินใจ</p>
+                                <span class="example">เช่น: UX ดีไหม? (subjective)</span>
+                            </div>
+                            <div class="test-type-card">
+                                <span class="type-icon">🤖</span>
+                                <h4>Automated Oracle</h4>
+                                <p>ใช้เครื่องมือตรวจสอบ</p>
+                                <span class="example">เช่น: Assert equals, Screenshot compare</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="examples">
+                        <h2>💡 ตัวอย่าง Test Oracles ในการทดสอบจริง</h2>
+
+                        <h3>ตัวอย่าง 1: Calculator</h3>
+                        <div class="code-block">
+                            <pre><code class="language-python"># Test: add(2, 3)
+# Oracle: Mathematical operation
+# Expected: 5
+assert calculator.add(2, 3) == 5  # ✓ Derived Oracle</code></pre>
+                        </div>
+
+                        <h3>ตัวอย่าง 2: Login System</h3>
+                        <div class="code-block">
+                            <pre><code># Test: Login with valid credentials
+# Oracle: Requirements document
+# Expected: Redirect to dashboard
+# Actual: dashboard page loads
+# Result: PASS ✓ (Specified Oracle)</code></pre>
+                        </div>
+
+                        <h3>ตัวอย่าง 3: Web Page Load</h3>
+                        <div class="code-block">
+                            <pre><code># Test: Page load time
+# Oracle: Performance requirement (SLA)
+# Expected: < 2 seconds
+# Actual: 1.5 seconds
+# Result: PASS ✓ (Statistical Oracle)</code></pre>
+                        </div>
+
+                        <h3>ตัวอย่าง 4: Visual Testing</h3>
+                        <div class="code-block">
+                            <pre><code># Test: UI appearance
+# Oracle: Baseline screenshot
+# Tool: Percy/Applitools compares images
+# Result: PASS/FAIL based on diff % (Automated Oracle)</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="quiz" class="quiz-section">
+                        <h2>🧠 แบบทดสอบ</h2>
+                        
+                        <div class="quiz-container">
+                            <div class="quiz-question" data-answer="b">
+                                <p><strong>คำถาม 1:</strong> Test Oracle คืออะไร?</p>
+                                <div class="quiz-options">
+                                    <label><input type="radio" name="q1" value="a"> โปรแกรมทดสอบอัตโนมัติ</label>
+                                    <label><input type="radio" name="q1" value="b"> แหล่งข้อมูลอ้างอิงสำหรับตัดสินผลทดสอบ</label>
+                                    <label><input type="radio" name="q1" value="c"> ชนิดของการทดสอบ</label>
+                                </div>
+                                <div class="quiz-feedback"></div>
+                            </div>
+
+                            <button class="btn btn-primary" onclick="checkAnswers()">ตรวจคำตอบ</button>
+                            <div id="quiz-result"></div>
+                        </div>
+                    </section>
+
+                    <section class="completion-section">
+                        <button class="btn btn-complete" onclick="markTopicComplete('topics/test-oracles.html')">
+                            ✅ ฉันเรียนจบบทนี้แล้ว
+                        </button>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 QA Learning Hub | สร้างด้วย ❤️ สำหรับ QA ทุกคน</p>
+        </div>
+    </footer>
+
+    <script src="../js/topic.js"></script>
+    <script>
+        function checkAnswers() {
+            const questions = document.querySelectorAll('.quiz-question');
+            let correct = 0;
+            questions.forEach(q => {
+                const answer = q.dataset.answer;
+                const selected = q.querySelector('input[type="radio"]:checked');
+                const feedback = q.querySelector('.quiz-feedback');
+                if (selected) {
+                    if (selected.value === answer) {
+                        feedback.innerHTML = '<span class="correct">✅ ถูกต้อง!</span>';
+                        correct++;
+                    } else {
+                        feedback.innerHTML = '<span class="incorrect">❌ ลองใหม่</span>';
+                    }
+                } else {
+                    feedback.innerHTML = '<span class="incorrect">⚠️ เลือกคำตอบ</span>';
+                }
+            });
+            const resultDiv = document.getElementById('quiz-result');
+            if (correct === questions.length) {
+                resultDiv.innerHTML = '<div class="success-message">🎉 ยินดีด้วย!</div>';
+            }
+        }
+    </script>
+</body>
+</html>

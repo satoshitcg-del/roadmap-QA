@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selenium WebDriver - QA Learning Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/topic.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">🧪</span>
+                <span class="logo-text">QA Learning Hub</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">← กลับสู่หน้าหลัก</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="topic-page">
+        <div class="topic-header">
+            <div class="container">
+                <div class="topic-meta">
+                    <span class="topic-level-badge intermediate">Intermediate</span>
+                    <span class="topic-category">Automation Testing</span>
+                </div>
+                <h1>🎭 Selenium WebDriver</h1>
+                <p class="topic-description">เครื่องมือ Automation Testing ยอดนิยมสำหรับ Web Application</p>
+            </div>
+        </div>
+
+        <div class="topic-content">
+            <div class="container">
+                <nav class="toc">
+                    <h3>📋 สารบัญ</h3>
+                    <ul>
+                        <li><a href="#intro">Selenium คืออะไร?</a></li>
+                        <li><a href="#setup">การติดตั้ง</a></li>
+                        <li><a href="#locators">Locators (หา Element)</a></li>
+                        <li><a href="#actions">Actions (คลิก พิมพ์)</a></li>
+                        <li><a href="#waits">Waits (การรอ)</a></li>
+                        <li><a href="#examples">ตัวอย่าง Test Case</a></li>
+                        <li><a href="#quiz">แบบทดสอบ</a></li>
+                    </ul>
+                </nav>
+
+                <article class="content-body">
+                    <section id="intro">
+                        <h2>🎭 Selenium WebDriver คืออะไร?</h2>
+                        
+                        <p><strong>Selenium WebDriver</strong> เป็น open-source tool สำหรับ automate การทดสอบ web application โดยควบคุม browser จริงๆ (Chrome, Firefox, Safari, Edge)</p>
+
+                        <div class="info-box">
+                            <h4>✨ ทำไมต้อง Selenium?</h4>
+                            <ul>
+                                <li>🌐 รองรับทุก browser หลัก</li>
+                                <li>🔤 รองรับหลายภาษา (Python, Java, JavaScript, C#, Ruby)</li>
+                                <li>💰 ฟรี (Open Source)</li>
+                                <li>🏢 มาตรฐานอุตสาหกรรม</li>
+                                <li>🔧 ยืดหยุ่น ปรับแต่งได้</li>
+                            </ul>
+                        </div>
+
+                        <h3>🏗️ สถาปัตยกรรม Selenium</h3>
+                        <div class="architecture-diagram">
+                            <pre class="diagram">
+Test Script (Python/Java/JS)
+         ↓
+WebDriver (Selenium Library)
+         ↓
+Browser Driver (ChromeDriver/GeckoDriver)
+         ↓
+    Browser
+                            </pre>
+                        </div>
+                    </section>
+
+                    <section id="setup">
+                        <h2>⚙️ การติดตั้ง (Python)</h2>
+
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-bash"># 1. ติดตั้ง Selenium Library
+pip install selenium
+
+# 2. ดาวน์โหลด ChromeDriver (ต้องตรงกับ Chrome version)
+# https://chromedriver.chromium.org/downloads
+
+# 3. วาง chromedriver ใน PATH หรือระบุ path ตรงๆ</code></pre>
+                        </div>
+
+                        <h3>🚀 Hello World - เปิดเว็บด้วย Selenium</h3>
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-python">from selenium import webdriver
+from selenium.webdriver.common.by import By
+
+# เปิด Chrome Browser
+driver = webdriver.Chrome()
+
+# เปิดเว็บไซต์
+driver.get("https://www.google.com")
+
+# หา search box และพิมพ์ค้นหา
+search_box = driver.find_element(By.NAME, "q")
+search_box.send_keys("Selenium WebDriver")
+search_box.submit()
+
+# รอ 5 วินาทีแล้วปิด
+import time
+time.sleep(5)
+driver.quit()</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="locators">
+                        <h2>🎯 Locators - หา Element บนหน้าเว็บ</h2>
+
+                        <p>การหา element เป็นสิ่งสำคัญใน Selenium มีหลายวิธี:</p>
+
+                        <table class="locator-table">
+                            <tr>
+                                <th>Locator</th>
+                                <th>คำอธิบาย</th>
+                                <th>ตัวอย่าง</th>
+                                <th>ความเร็ว</th>
+                            </tr>
+                            <tr>
+                                <td><code>ID</code></td>
+                                <td>หาจาก id attribute (ควรใช้)</td>
+                                <td><code>By.ID, "username"</code></td>
+                                <td>⭐⭐⭐⭐⭐</td>
+                            </tr>
+                            <tr>
+                                <td><code>NAME</code></td>
+                                <td>หาจาก name attribute</td>
+                                <td><code>By.NAME, "email"</code></td>
+                                <td>⭐⭐⭐⭐</td>
+                            </tr>
+                            <tr>
+                                <td><code>CLASS_NAME</code></td>
+                                <td>หาจาก class attribute</td>
+                                <td><code>By.CLASS_NAME, "btn-primary"</code></td>
+                                <td>⭐⭐⭐</td>
+                            </tr>
+                            <tr>
+                                <td><code>TAG_NAME</code></td>
+                                <td>หาจาก tag name</td>
+                                <td><code>By.TAG_NAME, "button"</code></td>
+                                <td>⭐⭐</td>
+                            </tr>
+                            <tr>
+                                <td><code>LINK_TEXT</code></td>
+                                <td>หาลิงก์จากข้อความเต็ม</td>
+                                <td><code>By.LINK_TEXT, "Click Here"</code></td>
+                                <td>⭐⭐⭐</td>
+                            </tr>
+                            <tr>
+                                <td><code>PARTIAL_LINK_TEXT</code></td>
+                                <td>หาลิงก์จากข้อความบางส่วน</td>
+                                <td><code>By.PARTIAL_LINK_TEXT, "Click"</code></td>
+                                <td>⭐⭐⭐</td>
+                            </tr>
+                            <tr>
+                                <td><code>CSS_SELECTOR</code></td>
+                                <td>ใช้ CSS selector (ยืดหยุ่น)</td>
+                                <td><code>By.CSS_SELECTOR, "#login .btn"</code></td>
+                                <td>⭐⭐⭐⭐</td>
+                            </tr>
+                            <tr>
+                                <td><code>XPATH</code></td>
+                                <td>ใช้ XPath (ทรงพลัง)</td>
+                                <td><code>By.XPATH, "//input[@id='user']"</code></td>
+                                <td>⭐⭐</td>
+                            </tr>
+                        </table>
+
+                        <div class="tip-box">
+                            <h4>💡 Best Practice การเลือก Locator</h4>
+                            <p>ลำดับความสำคัญ: <strong>ID > NAME > CSS_SELECTOR > XPATH > CLASS_NAME > TAG_NAME</strong></p>
+                        </div>
+                    </section>
+
+                    <section id="actions">
+                        <h2>🖱️ Actions - โต้ตอบกับ Element</h2>
+
+                        <h3>พื้นฐานที่ต้องรู้</h3>
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-python">from selenium.webdriver.common.by import By
+
+# หา element
+button = driver.find_element(By.ID, "submit-btn")
+
+# คลิก
+button.click()
+
+# พิมพ์ข้อความ (input fields)
+input_field = driver.find_element(By.NAME, "username")
+input_field.send_keys("myusername")
+
+# ล้างข้อความ
+input_field.clear()
+
+# ดึงข้อความจาก element
+text = button.text
+
+# ดึง attribute value
+link_url = driver.find_element(By.TAG_NAME, "a").get_attribute("href")
+
+# ตรวจสอบว่า element แสดงอยู่ไหม
+is_visible = button.is_displayed()
+
+# ตรวจสอบว่า element ใช้งานได้ไหม
+is_enabled = button.is_enabled()</code></pre>
+                        </div>
+
+                        <h3>🖱️ Advanced Actions (ActionChains)</h3>
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-python">from selenium.webdriver.common.action_chains import ActionChains
+
+actions = ActionChains(driver)
+
+# Hover (Mouse Over)
+element = driver.find_element(By.ID, "menu")
+actions.move_to_element(element).perform()
+
+# Right Click
+actions.context_click(element).perform()
+
+# Double Click
+actions.double_click(element).perform()
+
+# Drag and Drop
+source = driver.find_element(By.ID, "draggable")
+target = driver.find_element(By.ID, "droppable")
+actions.drag_and_drop(source, target).perform()
+
+# คลิกและถือ (Click and Hold)
+actions.click_and_hold(element).move_by_offset(100, 0).release().perform()</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="waits">
+                        <h2>⏱️ Waits - การรอ Element</h2>
+
+                        <p>เว็บสมัยนี้โหลดแบบ dynamic ต้องรอ element ปรากฏก่อนคลิก</p>
+
+                        <h3>❌ อย่าใช้ time.sleep()!</h3>
+                        <div class="code-block bad">
+                            <pre><code class="language-python"># ❌ ไม่แนะนำ - รอแบบ fixed time
+time.sleep(5)  # รอ 5 วินาทีเสมอ ไม่ว่าเว็บจะโหลดเร็วหรือช้า</code></pre>
+                        </div>
+
+                        <h3>✅ ใช้ Explicit Wait (แนะนำ)</h3>
+                        <div class="code-block good">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-python">from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+# รอสูงสุด 10 วินาที จนกว่า element จะคลิกได้
+wait = WebDriverWait(driver, 10)
+
+# รอจนกว่าจะคลิกได้
+button = wait.until(EC.element_to_be_clickable((By.ID, "submit")))
+button.click()
+
+# รอจนกว่าจะมองเห็น
+message = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "success")))
+
+# รอจนกว่าจะปรากฏ
+element = wait.until(EC.presence_of_element_located((By.TAG_NAME, "div")))</code></pre>
+                        </div>
+
+                        <h3>📋 Expected Conditions ที่ใช้บ่อย</h3>
+                        <table>
+                            <tr><th>Condition</th><th>คำอธิบาย</th></tr>
+                            <tr><td><code>presence_of_element_located</code></td><td>Element มีอยู่ใน DOM</td></tr>
+                            <tr><td><code>visibility_of_element_located</code></td><td>Element มองเห็นได้ (displayed)</td></tr>
+                            <tr><td><code>element_to_be_clickable</code></td><td>Element คลิกได้ (visible + enabled)</td></tr>
+                            <tr><td><code>text_to_be_present_in_element</code></td><td>Element มีข้อความที่ต้องการ</td></tr>
+                            <tr><td><code>title_contains</code></td><td>Title ของหน้าเปลี่ยน</td></tr>
+                        </table>
+                    </section>
+
+                    <section id="examples">
+                        <h2>💼 ตัวอย่าง: Login Test Case</h2>
+
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-python">import pytest
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+class TestLogin:
+    
+    @pytest.fixture
+    def driver(self):
+        driver = webdriver.Chrome()
+        driver.get("https://example.com/login")
+        yield driver
+        driver.quit()
+    
+    def test_successful_login(self, driver):
+        """ทดสอบ login สำเร็จ"""
+        wait = WebDriverWait(driver, 10)
+        
+        # กรอก username
+        username = driver.find_element(By.ID, "username")
+        username.send_keys("testuser")
+        
+        # กรอก password
+        password = driver.find_element(By.ID, "password")
+        password.send_keys("Test@123")
+        
+        # คลิก login
+        login_btn = driver.find_element(By.ID, "login-btn")
+        login_btn.click()
+        
+        # รอและตรวจสอบว่า login สำเร็จ
+        welcome_msg = wait.until(
+            EC.visibility_of_element_located((By.CLASS_NAME, "welcome-message"))
+        )
+        assert "Welcome" in welcome_msg.text
+        assert "dashboard" in driver.current_url
+    
+    def test_invalid_login_shows_error(self, driver):
+        """ทดสอบ login ผิดพลาดแสดง error"""
+        driver.find_element(By.ID, "username").send_keys("wronguser")
+        driver.find_element(By.ID, "password").send_keys("wrongpass")
+        driver.find_element(By.ID, "login-btn").click()
+        
+        error = WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((By.CLASS_NAME, "error-message"))
+        )
+        assert "Invalid credentials" in error.text</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="quiz" class="quiz-section">
+                        <h2>🧠 แบบทดสอบ</h2>
+                        
+                        <div class="quiz-container">
+                            <div class="quiz-question" data-answer="a">
+                                <p><strong>คำถาม 1:</strong> Locator ประเภทไหนเร็วและเสถียรที่สุด?</p>
+                                <div class="quiz-options">
+                                    <label><input type="radio" name="q1" value="a"> ID</label>
+                                    <label><input type="radio" name="q1" value="b"> XPath</label>
+                                    <label><input type="radio" name="q1" value="c"> CLASS_NAME</label>
+                                </div>
+                                <div class="quiz-feedback"></div>
+                            </div>
+
+                            <div class="quiz-question" data-answer="b">
+                                <p><strong>คำถาม 2:</strong> ควรใช้อะไรแทน time.sleep()?</p>
+                                <div class="quiz-options">
+                                    <label><input type="radio" name="q2" value="a"> ลดเวลา sleep</label>
+                                    <label><input type="radio" name="q2" value="b"> WebDriverWait + Expected Conditions</label>
+                                    <label><input type="radio" name="q2" value="c"> ไม่ต้องรอ</label>
+                                </div>
+                                <div class="quiz-feedback"></div>
+                            </div>
+
+                            <button class="btn btn-primary" onclick="checkAnswers()">ตรวจคำตอบ</button>
+                            <div id="quiz-result"></div>
+                        </div>
+                    </section>
+
+                    <section class="completion-section">
+                        <button class="btn btn-complete" onclick="markTopicComplete('topics/selenium.html')">
+                            ✅ ฉันเรียนจบบทนี้แล้ว
+                        </button>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 QA Learning Hub | สร้างด้วย ❤️ สำหรับ QA ทุกคน</p>
+        </div>
+    </footer>
+
+    <script src="../js/topic.js"></script>
+    <script>
+        function checkAnswers() {
+            const questions = document.querySelectorAll('.quiz-question');
+            let correct = 0;
+            questions.forEach(q => {
+                const answer = q.dataset.answer;
+                const selected = q.querySelector('input[type="radio"]:checked');
+                const feedback = q.querySelector('.quiz-feedback');
+                if (selected) {
+                    if (selected.value === answer) {
+                        feedback.innerHTML = '<span class="correct">✅ ถูกต้อง!</span>';
+                        correct++;
+                    } else {
+                        feedback.innerHTML = '<span class="incorrect">❌ ลองใหม่</span>';
+                    }
+                } else {
+                    feedback.innerHTML = '<span class="incorrect">⚠️ เลือกคำตอบ</span>';
+                }
+            });
+            const resultDiv = document.getElementById('quiz-result');
+            if (correct === questions.length) {
+                resultDiv.innerHTML = '<div class="success-message">🎉 ยินดีด้วย!</div>';
+            }
+        }
+    </script>
+</body>
+</html>

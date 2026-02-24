@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compatibility Testing - QA Learning Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/topic.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">🧪</span>
+                <span class="logo-text">QA Learning Hub</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">← กลับสู่หน้าหลัก</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="topic-page">
+        <div class="topic-header">
+            <div class="container">
+                <div class="topic-meta">
+                    <span class="topic-level-badge intermediate">Intermediate</span>
+                    <span class="topic-category">Manual Testing</span>
+                </div>
+                <h1>🔄 Compatibility Testing</h1>
+                <p class="topic-description">ทดสอบความเข้ากันได้กับ Browsers, OS, Devices, Hardware ต่างๆ</p>
+            </div>
+        </div>
+
+        <div class="topic-content">
+            <div class="container">
+                <nav class="toc">
+                    <h3>📋 สารบัญ</h3>
+                    <ul>
+                        <li><a href="#intro">อะไรคือ Compatibility Testing?</a></li>
+                        <li><a href="#types">ประเภทของ Compatibility Testing</a></li>
+                        <li><a href="#checklist">Testing Checklist</a></li>
+                        <li><a href="#tools">Tools สำหรับ Compatibility Testing</a></li>
+                        <li><a href="#quiz">แบบทดสอบ</a></li>
+                    </ul>
+                </nav>
+
+                <article class="content-body">
+                    <section id="intro">
+                        <h2>🔄 อะไรคือ Compatibility Testing?</h2>
+                        
+                        <p><strong>Compatibility Testing</strong> เป็นการทดสอบว่าซอฟต์แวร์ทำงานได้ถูกต้องบน <strong>สภาพแวดล้อมที่แตกต่างกัน</strong> เช่น browsers, operating systems, devices, network environments</p>
+
+                        <div class="info-box">
+                            <h4>💡 ทำไมต้อง Compatibility Testing?</h4>
+                            <ul>
+                                <li>ผู้ใช้ใช้ devices และ browsers หลากหลาย</li>
+                                <li>ช่วยให้มั่นใจว่าทุกคนใช้งานได้</li>
+                                <li>ลด bad reviews จาก user experience ที่แย่</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section id="types">
+                        <h2>📱 ประเภทของ Compatibility Testing</h2>
+
+                        <div class="test-types-grid">
+                            <div class="test-type-card">
+                                <span class="type-icon">🌐</span>
+                                <h4>Browser Compatibility</h4>
+                                <ul>
+                                    <li>Chrome, Firefox, Safari, Edge</li>
+                                    <li>Versions ต่างๆ</li>
+                                    <li>Mobile browsers</li>
+                                </ul>
+                            </div>
+                            <div class="test-type-card">
+                                <span class="type-icon">💻</span>
+                                <h4>OS Compatibility</h4>
+                                <ul>
+                                    <li>Windows (7, 8, 10, 11)</li>
+                                    <li>macOS</li>
+                                    <li>Linux distributions</li>
+                                </ul>
+                            </div>
+                            <div class="test-type-card">
+                                <span class="type-icon">📱</span>
+                                <h4>Device Compatibility</h4>
+                                <ul>
+                                    <li>Mobile (iOS, Android)</li>
+                                    <li>Tablets</li>
+                                    <li>Desktops/Laptops</li>
+                                </ul>
+                            </div>
+                            <div class="test-type-card">
+                                <span class="type-icon">📊</span>
+                                <h4>Hardware Compatibility</h4>
+                                <ul>
+                                    <li>Screen resolutions</li>
+                                    <li>RAM, Processor</li>
+                                    <li>Peripherals</li>
+                                </ul>
+                            </div>
+                            <div class="test-type-card">
+                                <span class="type-icon">🔄</span>
+                                <h4>Software Compatibility</h4>
+                                <ul>
+                                    <li>Third-party integrations</li>
+                                    <li>Plugins/Extensions</li>
+                                    <li>API versions</li>
+                                </ul>
+                            </div>
+                            <div class="test-type-card">
+                                <span class="type-icon">🌐</span>
+                                <h4>Network Compatibility</h4>
+                                <ul>
+                                    <li>WiFi, 4G, 5G</li>
+                                    <li>Network speed</li>
+                                    <li>Offline mode</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h3>🌐 Forward vs Backward Compatibility</h3>
+                        <table>
+                            <tr><th>Type</th><th>คำอธิบาย</th><th>ตัวอย่าง</th></tr>
+                            <tr>
+                                <td><strong>Forward</strong></td>
+                                <td>สร้างให้ใช้กับ version ใหม่ได้</td>
+                                <td>ไฟล์เก่าเปิดใน Office 2024 ได้</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Backward</strong></td>
+                                <td>สร้างให้ใช้กับ version เก่าได้</td>
+                                <td>App ใหม่ทำงานบน iOS 15 (เก่า)</td>
+                            </tr>
+                        </table>
+                    </section>
+
+                    <section id="checklist">
+                        <h2>✅ Compatibility Testing Checklist</h2>
+
+                        <h3>🌐 Browser Testing</h3>
+                        <ul class="checklist">
+                            <li>☐ Chrome (latest, latest-1)</li>
+                            <li>☐ Firefox (latest, latest-1)</li>
+                            <li>☐ Safari (macOS, iOS)</li>
+                            <li>☐ Edge (Chromium)</li>
+                            <li>☐ Responsive breakpoints</li>
+                        </ul>
+
+                        <h3>📱 Mobile Testing</h3>
+                        <ul class="checklist">
+                            <li>☐ iOS (latest, latest-1)</li>
+                            <li>☐ Android (latest, latest-1)</li>
+                            <li>☐ Screen sizes: Small, Medium, Large</li>
+                            <li>☐ Portrait & Landscape</li>
+                        </ul>
+
+                        <h3>📊 Screen Resolution</h3>
+                        <ul class="checklist">
+                            <li>☐ 1920x1080 (Full HD)</li>
+                            <li>☐ 1366x768 (Laptop common)</li>
+                            <li>☐ 375x667 (iPhone SE)</li>
+                            <li>☐ 414x896 (iPhone Pro Max)</li>
+                        </ul>
+                    </section>
+
+                    <section id="tools">
+                        <h2>🛠️ Tools สำหรับ Compatibility Testing</h2>
+
+                        <div class="tools-grid">
+                            <div class="tool-card">
+                                <h4>🌐 BrowserStack</h4>
+                                <p>Cloud-based cross-browser testing</p>
+                                <span class="tool-tag">Paid</span>
+                            </div>
+                            <div class="tool-card">
+                                <h4>🔄 Sauce Labs</h4>
+                                <p>Continuous testing cloud</p>
+                                <span class="tool-tag">Paid</span>
+                            </div>
+                            <div class="tool-card">
+                                <h4>📱 LambdaTest</h4>
+                                <p>Cross browser testing platform</p>
+                                <span class="tool-tag">Free/Paid</span>
+                            </div>
+                            <div class="tool-card">
+                                <h4>🔧 Chrome DevTools</h4>
+                                <p>Device emulation, responsive testing</p>
+                                <span class="tool-tag">Free</span>
+                            </div>
+                            <div class="tool-card">
+                                <h4>📸 Percy</h4>
+                                <p>Visual testing & review</p>
+                                <span class="tool-tag">Paid</span>
+                            </div>
+                            <div class="tool-card">
+                                <h4>👁️ Applitools</h4>
+                                <p>AI-powered visual testing</p>
+                                <span class="tool-tag">Paid</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="quiz" class="quiz-section">
+                        <h2>🧠 แบบทดสอบ</h2>
+                        
+                        <div class="quiz-container">
+                            <div class="quiz-question" data-answer="a">
+                                <p><strong>คำถาม 1:</strong> Compatibility Testing คืออะไร?</p>
+                                <div class="quiz-options">
+                                    <label><input type="radio" name="q1" value="a"> ทดสอบว่าซอฟต์แวร์ทำงานได้บนสภาพแวดล้อมต่างๆ</label>
+                                    <label><input type="radio" name="q1" value="b"> ทดสอบความเร็ว</label>
+                                    <label><input type="radio" name="q1" value="c"> ทดสอบความปลอดภัย</label>
+                                </div>
+                                <div class="quiz-feedback"></div>
+                            </div>
+
+                            <button class="btn btn-primary" onclick="checkAnswers()">ตรวจคำตอบ</button>
+                            <div id="quiz-result"></div>
+                        </div>
+                    </section>
+
+                    <section class="completion-section">
+                        <button class="btn btn-complete" onclick="markTopicComplete('topics/compatibility-testing.html')">
+                            ✅ ฉันเรียนจบบทนี้แล้ว
+                        </button>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 QA Learning Hub | สร้างด้วย ❤️ สำหรับ QA ทุกคน</p>
+        </div>
+    </footer>
+
+    <script src="../js/topic.js"></script>
+    <script>
+        function checkAnswers() {
+            const questions = document.querySelectorAll('.quiz-question');
+            let correct = 0;
+            questions.forEach(q => {
+                const answer = q.dataset.answer;
+                const selected = q.querySelector('input[type="radio"]:checked');
+                const feedback = q.querySelector('.quiz-feedback');
+                if (selected) {
+                    if (selected.value === answer) {
+                        feedback.innerHTML = '<span class="correct">✅ ถูกต้อง!</span>';
+                        correct++;
+                    } else {
+                        feedback.innerHTML = '<span class="incorrect">❌ ลองใหม่</span>';
+                    }
+                } else {
+                    feedback.innerHTML = '<span class="incorrect">⚠️ เลือกคำตอบ</span>';
+                }
+            });
+            const resultDiv = document.getElementById('quiz-result');
+            if (correct === questions.length) {
+                resultDiv.innerHTML = '<div class="success-message">🎉 ยินดีด้วย!</div>';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exploratory Testing - QA Learning Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/topic.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">🧪</span>
+                <span class="logo-text">QA Learning Hub</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">← กลับสู่หน้าหลัก</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="topic-page">
+        <div class="topic-header">
+            <div class="container">
+                <div class="topic-meta">
+                    <span class="topic-level-badge intermediate">Intermediate</span>
+                    <span class="topic-category">Manual Testing</span>
+                </div>
+                <h1>🗺️ Exploratory Testing</h1>
+                <p class="topic-description">การทดสอบแบบสำรวจค้นหา ผสมผสานการเรียนรู้ การออกแบบ และการทดสอบไปพร้อมกัน</p>
+            </div>
+        </div>
+
+        <div class="topic-content">
+            <div class="container">
+                <nav class="toc">
+                    <h3>📋 สารบัญ</h3>
+                    <ul>
+                        <li><a href="#concept">แนวคิด Exploratory Testing</a></li>
+                        <li><a href="#vs-scripted">vs Scripted Testing</a></li>
+                        <li><a href="#session">Session-Based Testing</a></li>
+                        <li><a href="#charter">Test Charter</a></li>
+                        <li><a href="#tips">เทคนิคการทดสอบ</a></li>
+                        <li><a href="#quiz">แบบทดสอบ</a></li>
+                    </ul>
+                </nav>
+
+                <article class="content-body">
+                    <section id="concept">
+                        <h2>🧭 อะไรคือ Exploratory Testing?</h2>
+                        <blockquote class="quote-box">
+                            "Exploratory testing is simultaneous learning, test design, and test execution."
+                            <cite>— Cem Kaner</cite>
+                        </blockquote>
+
+                        <p><strong>Exploratory Testing</strong> คือการทดสอบที่ไม่มี Test Script ล่วงหน้า แต่ผู้ทดสอบจะ:</p>
+                        
+                        <ul>
+                            <li>🧠 <strong>เรียนรู้</strong> ระบบไปพร้อมกับการทดสอบ</li>
+                            <li>✏️ <strong>ออกแบบ</strong> Test ใหม่ๆ ตามสิ่งที่ค้นพบ</li>
+                            <li>▶️ <strong>ทดสอบ</strong> ทันทีที่คิดได้</li>
+                        </ul>
+
+                        <div class="info-box">
+                            <h4>💡 ทำไมต้อง Exploratory Testing?</h4>
+                            <ul>
+                                <li>🐛 พบ Bug ที่ Scripted Test หาไม่เจอ (20-30% ของ Serious Bugs)</li>
+                                <li>⚡ รวดเร็ว ไม่ต้องเตรียมเอกสารมาก</li>
+                                <li>🎨 ใช้ความคิดสร้างสรรค์และประสบการณ์ของ Tester</li>
+                                <li>🔍 เหมาะกับสถานการณ์ที่ไม่แน่นอน หรือระบบที่เปลี่ยนเร็ว</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section id="vs-scripted">
+                        <h2>⚖️ Exploratory vs Scripted Testing</h2>
+
+                        <table class="comparison-table">
+                            <tr>
+                                <th>Exploratory Testing</th>
+                                <th>Scripted Testing</th>
+                            </tr>
+                            <tr>
+                                <td>ไม่มี Test Script ล่วงหน้า</td>
+                                <td>มี Test Script/Case เขียนไว้แล้ว</td>
+                            </tr>
+                            <tr>
+                                <td>Test Design + Execution พร้อมกัน</td>
+                                <td>Test Design ก่อน แล้วค่อย Execute</td>
+                            </tr>
+                            <tr>
+                                <td>ใช้ความคิดสร้างสรรค์</td>
+                                <td>ทำตาม Steps ที่กำหนด</td>
+                            </tr>
+                            <tr>
+                                <td>พบ Bug แปลกๆ ที่ไม่คาดคิด</td>
+                                <td>ยืนยันว่า Features ทำงานตาม Spec</td>
+                            </tr>
+                            <tr>
+                                <td>ต้องใช้ Tester ที่มีประสบการณ์</td>
+                                <td>Junior Tester ก็ทำได้</td>
+                            </tr>
+                            <tr>
+                                <td>ไม่ Repeatable 100%</td>
+                                <td>Repeatable เหมือนกันทุกครั้ง</td>
+                            </tr>
+                        </table>
+
+                        <div class="highlight-box">
+                            <h4>🤝 ใช้ร่วมกัน!</h4>
+                            <p>การทดสอบที่ดีควรมีทั้งสองแบบ: <strong>Scripted Test</strong> สำหรับ Regression และ Requirements หลัก + <strong>Exploratory Test</strong> สำหรับค้นหา Bug ใหม่ๆ</p>
+                        </div>
+                    </section>
+
+                    <section id="session">
+                        <h2>⏱️ Session-Based Test Management (SBTM)</h2>
+                        
+                        <p>วิธีจัดการ Exploratory Testing ให้มีโครงสร้าง โดยแบ่งเป็น "Session" (ช่วงเวลาทดสอบ)</p>
+
+                        <h3>🕐 Session Types</h3>
+                        <div class="session-types">
+                            <div class="session-card">
+                                <span class="session-icon">⏰</span>
+                                <h4>Short Session</h4>
+                                <p>60-90 นาที</p>
+                                <span class="session-use">สำหรับ: ฟีเจอร์เล็ก หรือตรวจสอบเร็ว</span>
+                            </div>
+                            <div class="session-card">
+                                <span class="session-icon">⏱️</span>
+                                <h4>Normal Session</h4>
+                                <p>90-120 นาที</p>
+                                <span class="session-use">สำหรับ: ฟีเจอร์มาตรฐาน</span>
+                            </div>
+                            <div class="session-card">
+                                <span class="session-icon">🕐</span>
+                                <h4>Long Session</h4>
+                                <p>2-3 ชั่วโมง</p>
+                                <span class="session-use">สำหรับ: ฟีเจอร์ซับซ้อน หรือ End-to-End</span>
+                            </div>
+                        </div>
+
+                        <h3>📋 Session Report Template (LIGHT)</h3>
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code>SESSION REPORT
+============
+
+Mission: [เป้าหมายการทดสอบ]
+Charter: [ขอบเขตการทดสอบ]
+
+Tester: [ชื่อ]
+Date: [วันที่]
+Duration: [ระยะเวลา]
+
+AREAS TESTED:
+- [รายการที่ทดสอบ]
+
+BUGS FOUND:
+- [Bug #1 - Severity]
+- [Bug #2 - Severity]
+
+ISSUES/QUESTIONS:
+- [คำถามที่เกิดขึ้น]
+
+NOTES:
+- [บันทึกเพิ่มเติม]
+
+Time Breakdown:
+- Testing: __%
+- Bug Reporting: __%
+- Setup: __%</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="charter">
+                        <h2>🎯 Test Charter คืออะไร?</h2>
+                        
+                        <p><strong>Test Charter</strong> คือ "ใบสั่งทดสอบ" ที่กำหนดว่าจะสำรวจอะไร ในขอบเขตไหน โดยไม่บอกว่าต้องทดสอบยังไง</p>
+
+                        <h3>📝 Charter Template</h3>
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code>[สำรวจ/ตรวจสอบ/ทดสอบ] <Target>
+โดยใช้ <Resources/Tools>
+เพื่อ <Purpose/Information Goal>
+
+Constraints:
+- [ข้อจำกัดหรือขอบเขต]
+
+Reference:
+- [เอกสารอ้างอิง]</code></pre>
+                        </div>
+
+                        <h3>💡 ตัวอย่าง Charters</h3>
+                        <div class="example-box">
+                            <h4>Charter 1: Shopping Cart</h4>
+                            <p><strong>สำรวจ</strong> ฟีเจอร์ Shopping Cart และ Checkout Flow <strong>โดยใช้</strong> บัญชีทดสอบหลายประเภท (มีสินค้า/ไม่มีสินค้า/สินค้าหมดสต็อก) <strong>เพื่อ</strong> หาปัญหาการคำนวณราคา หรือข้อผิดพลาดในการ Checkout</p>
+                        </div>
+
+                        <div class="example-box">
+                            <h4>Charter 2: Search Function</h4>
+                            <p><strong>ตรวจสอบ</strong> การทำงานของระบบค้นหา <strong>โดยใช้</strong> คำค้นหาพิเศษ (SQL injection patterns, XSS, long strings) <strong>เพื่อ</strong> ประเมินความปลอดภัยและความทนทานของระบบ</p>
+                        </div>
+                    </section>
+
+                    <section id="tips">
+                        <h2>💡 เทคนิค Exploratory Testing</h2>
+
+                        <div class="tips-grid">
+                            <div class="tip-card">
+                                <span class="tip-icon">🗺️</span>
+                                <h4>Touring</h4>
+                                <p>ท่องเที่ยวในระบบแบบ Tourist - ไปเรื่อยๆ ไม่ตามแผน</p>
+                            </div>
+                            <div class="tip-card">
+                                <span class="tip-icon">👤</span>
+                                <h4>Personas</h4>
+                                <p>สวมบทบาทผู้ใช้ (มือใหม่/ผู้เชี่ยวชาญ/อารมณ์ร้อน)</p>
+                            </div>
+                            <div class="tip-card">
+                                <span class="tip-icon">🎲</span>
+                                <h4>Random Input</h4>
+                                <p>ใส่ข้อมูลแปลกๆ ที่ไม่คาดคิด</p>
+                            </div>
+                            <div class="tip-card">
+                                <span class="tip-icon">↩️</span>
+                                <h4>Back Button</h4>
+                                <p>กด Back, Cancel, Refresh ตอนกำลังทำอะไรสักอย่าง</p>
+                            </div>
+                            <div class="tip-card">
+                                <span class="tip-icon">🐌</span>
+                                <h4>Slow Motion</h4>
+                                <p>ทำทุกอย่างช้ามากๆ ดูว่าระบบรอไหวไหม</p>
+                            </div>
+                            <div class="tip-card">
+                                <span class="tip-icon">⚡</span>
+                                <h4>Rapid Fire</h4>
+                                <p>กดเร็วๆ ซ้ำๆ ในจุดเดียวกัน</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="quiz" class="quiz-section">
+                        <h2>🧠 แบบทดสอบ</h2>
+                        
+                        <div class="quiz-container">
+                            <div class="quiz-question" data-answer="b">
+                                <p><strong>คำถาม 1:</strong> Exploratory Testing ต่างจาก Scripted Testing อย่างไร?</p>
+                                <div class="quiz-options">
+                                    <label><input type="radio" name="q1" value="a"> ใช้เครื่องมือ Automation</label>
+                                    <label><input type="radio" name="q1" value="b"> ไม่มี Test Script ล่วงหน้า ออกแบบและทดสอบพร้อมกัน</label>
+                                    <label><input type="radio" name="q1" value="c"> ใช้เวลานานกว่า</label>
+                                </div>
+                                <div class="quiz-feedback"></div>
+                            </div>
+
+                            <button class="btn btn-primary" onclick="checkAnswers()">ตรวจคำตอบ</button>
+                            <div id="quiz-result"></div>
+                        </div>
+                    </section>
+
+                    <section class="completion-section">
+                        <button class="btn btn-complete" onclick="markTopicComplete('topics/exploratory-testing.html')">
+                            ✅ ฉันเรียนจบบทนี้แล้ว
+                        </button>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 QA Learning Hub | สร้างด้วย ❤️ สำหรับ QA ทุกคน</p>
+        </div>
+    </footer>
+
+    <script src="../js/topic.js"></script>
+    <script>
+        function checkAnswers() {
+            const questions = document.querySelectorAll('.quiz-question');
+            let correct = 0;
+            questions.forEach(q => {
+                const answer = q.dataset.answer;
+                const selected = q.querySelector('input[type="radio"]:checked');
+                const feedback = q.querySelector('.quiz-feedback');
+                if (selected) {
+                    if (selected.value === answer) {
+                        feedback.innerHTML = '<span class="correct">✅ ถูกต้อง!</span>';
+                        correct++;
+                    } else {
+                        feedback.innerHTML = '<span class="incorrect">❌ ลองใหม่</span>';
+                    }
+                } else {
+                    feedback.innerHTML = '<span class="incorrect">⚠️ เลือกคำตอบ</span>';
+                }
+            });
+            const resultDiv = document.getElementById('quiz-result');
+            if (correct === questions.length) {
+                resultDiv.innerHTML = '<div class="success-message">🎉 ยินดีด้วย!</div>';
+            }
+        }
+    </script>
+</body>
+</html>

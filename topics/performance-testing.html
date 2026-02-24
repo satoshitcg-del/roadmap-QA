@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Testing - QA Learning Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/topic.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">🧪</span>
+                <span class="logo-text">QA Learning Hub</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">← กลับสู่หน้าหลัก</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="topic-page">
+        <div class="topic-header">
+            <div class="container">
+                <div class="topic-meta">
+                    <span class="topic-level-badge advanced">Advanced</span>
+                    <span class="topic-category">Non-Functional Testing</span>
+                </div>
+                <h1>📊 Performance Testing</h1>
+                <p class="topic-description">ทดสอบความเร็ว ความสามารถรองรับผู้ใช้ และความเสถียนของระบบ</p>
+            </div>
+        </div>
+
+        <div class="topic-content">
+            <div class="container">
+                <nav class="toc">
+                    <h3>📋 สารบัญ</h3>
+                    <ul>
+                        <li><a href="#intro">ประเภท Performance Testing</a></li>
+                        <li><a href="#metrics">Key Metrics</a></li>
+                        <li><a href="#jmeter">JMeter Basics</a></li>
+                        <li><a href="#k6">k6 Load Testing</a></li>
+                        <li><a href="#quiz">แบบทดสอบ</a></li>
+                    </ul>
+                </nav>
+
+                <article class="content-body">
+                    <section id="intro">
+                        <h2>📈 ประเภท Performance Testing</h2>
+                        
+                        <div class="test-types-grid">
+                            <div class="test-type-card">
+                                <span class="type-icon">⚡</span>
+                                <h4>Load Testing</h4>
+                                <p>ทดสอบด้วยโหลดปกติ (expected load)</p>
+                                <ul>
+                                    <li>จำลองผู้ใช้ตามจริง</li>
+                                    <li>ตรวจสอบ Response Time</li>
+                                    <li>Throughput ที่รองรับได้</li>
+                                </ul>
+                            </div>
+                            <div class="test-type-card">
+                                <span class="type-icon">🔥</span>
+                                <h4>Stress Testing</h4>
+                                <p>ทดสอบด้วยโหลดเกิน (beyond capacity)</p>
+                                <ul>
+                                    <li>หา Breaking Point</li>
+                                    <li>ตรวจสอบการ Recovery</li>
+                                    <li>พฤติกรรมตอน Crash</li>
+                                </ul>
+                            </div>
+                            <div class="test-type-card">
+                                <span class="type-icon">📈</span>
+                                <h4>Spike Testing</span>
+                                <p>เพิ่มโหลดกะทันหัน (sudden spike)</p>
+                                <ul>
+                                    <li>Flash Sale scenario</li>
+                                    <li>Viral content</li>
+                                    <li>System resilience</li>
+                                </ul>
+                            </div>
+                            <div class="test-type-card">
+                                <span class="type-icon">🕐</span>
+                                <h4>Endurance Testing</h4>
+                                <p>ทดสอบนานๆ (soak test)</p>
+                                <ul>
+                                    <li>Memory leaks</li>
+                                    <li>Connection pool exhaustion</li>
+                                    <li>8-24 ชั่วโมง+</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="metrics">
+                        <h2>🎯 Key Performance Metrics</h2>
+
+                        <table class="metrics-table">
+                            <tr>
+                                <th>Metric</th>
+                                <th>คำอธิบาย</th>
+                                <th>เป้าหมายดี</th>
+                            </tr>
+                            <tr>
+                                <td><strong>Response Time</strong></td>
+                                <td>เวลาตอบสนองต่อ request</td>
+                                <td>< 2 seconds</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Throughput</strong></td>
+                                <td>จำนวน request/transaction ต่อวินาที</td>
+                                <td>สูงตาม SLA</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Concurrent Users</strong></td>
+                                <td>จำนวนผู้ใช้พร้อมกัน</td>
+                                <td>ตามที่ออกแบบ</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Error Rate</strong></td>
+                                <td>% ของ request ที่ผิดพลาด</td>
+                                <td>< 0.1%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>CPU/Memory Usage</strong></td>
+                                <td>การใช้ทรัพยากร server</td>
+                                <td>< 80%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Apdex Score</strong></td>
+                                <td>ดัชนีความพึงพอใจผู้ใช้ (0-1)</td>
+                                <td>> 0.85</td>
+                            </tr>
+                        </table>
+
+                        <div class="formula-box">
+                            <h4>📐 Apdex Score Formula</h4>
+                            <p>(Satisfied Users + Tolerating Users/2) / Total Users</p>
+                            <ul>
+                                <li>Satisfied: Response < T (threshold)</li>
+                                <li>Tolerating: T ≤ Response < 4T</li>
+                                <li>Frustrated: Response ≥ 4T</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section id="jmeter">
+                        <h2>🔧 Apache JMeter</h2>
+
+                        <p>JMeter เป็น Open Source Load Testing Tool ที่นิยมใช้มากที่สุด</p>
+
+                        <h3>Basic JMeter Test Plan</h3>
+                        <div class="code-block">
+                            <pre><code>Test Plan
+├── Thread Group (Users)
+│   ├── Number of Threads: 100
+│   ├── Ramp-up: 60 seconds
+│   └── Loop Count: 10
+│
+├── HTTP Request
+│   ├── Protocol: https
+│   ├── Server: api.example.com
+│   ├── Method: GET
+│   └── Path: /users
+│
+├── Listeners (Results)
+│   ├── View Results Tree
+│   ├── Summary Report
+│   └── Graph Results</code></pre>
+                        </div>
+
+                        <h3>ขั้นตอนการใช้งาน</h3>
+                        <ol>
+                            <li>เปิด JMeter → File → Templates → Building a Web Test Plan</li>
+                            <li>ตั้งค่า Thread Group (จำนวน user, ramp-up, duration)</li>
+                            <li>เพิ่ม HTTP Request Sampler</li>
+                            <li>เพิ่ม Listener ดูผลลัพธ์</li>
+                            <li>กด Run (Ctrl+R)</li>
+                            <li>วิเคราะห์ผลลัพธ์</li>
+                        </ol>
+                    </section>
+
+                    <section id="k6">
+                        <h2>⚡ k6 - Modern Load Testing (แนะนำ!)</h2>
+
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code class="language-javascript">// loadtest.js
+import http from 'k6/http';
+import { check, sleep } from 'k6';
+
+// Test Configuration
+export const options = {
+  stages: [
+    { duration: '2m', target: 100 },   // Ramp up
+    { duration: '5m', target: 100 },   // Steady state
+    { duration: '2m', target: 200 },   // Ramp up more
+    { duration: '5m', target: 200 },   // Steady state
+    { duration: '2m', target: 0 },     // Ramp down
+  ],
+  thresholds: {
+    http_req_duration: ['p(95)<500'], // 95% ต้องเร็วกว่า 500ms
+    http_req_failed: ['rate<0.1'],     // Error rate < 0.1%
+  },
+};
+
+export default function () {
+  const response = http.get('https://api.example.com/users');
+  
+  check(response, {
+    'status is 200': (r) => r.status === 200,
+    'response time < 500ms': (r) => r.timings.duration < 500,
+  });
+  
+  sleep(1);
+}</code></pre>
+                        </div>
+
+                        <h3>▶️ รัน k6</h3>
+                        <div class="code-block">
+                            <pre><code class="language-bash"># รันทดสอบ
+k6 run loadtest.js
+
+# รันบน Cloud
+k6 cloud loadtest.js
+
+# รันด้วย Docker
+docker run -i loadimpact/k6 run --vus 10 --duration 30s -< loadtest.js</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="quiz" class="quiz-section">
+                        <h2>🧠 แบบทดสอบ</h2>
+                        
+                        <div class="quiz-container">
+                            <div class="quiz-question" data-answer="b">
+                                <p><strong>คำถาม 1:</strong> Load Testing ต่างจาก Stress Testing อย่างไร?</p>
+                                <div class="quiz-options">
+                                    <label><input type="radio" name="q1" value="a"> ไม่ต่างกัน</label>
+                                    <label><input type="radio" name="q1" value="b"> Load = โหลดปกติ, Stress = โหลดเกิน</label>
+                                    <label><input type="radio" name="q1" value="c"> Load = เร็วกว่า</label>
+                                </div>
+                                <div class="quiz-feedback"></div>
+                            </div>
+
+                            <button class="btn btn-primary" onclick="checkAnswers()">ตรวจคำตอบ</button>
+                            <div id="quiz-result"></div>
+                        </div>
+                    </section>
+
+                    <section class="completion-section">
+                        <button class="btn btn-complete" onclick="markTopicComplete('topics/performance-testing.html')">
+                            ✅ ฉันเรียนจบบทนี้แล้ว
+                        </button>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 QA Learning Hub | สร้างด้วย ❤️ สำหรับ QA ทุกคน</p>
+        </div>
+    </footer>
+
+    <script src="../js/topic.js"></script>
+    <script>
+        function checkAnswers() {
+            const questions = document.querySelectorAll('.quiz-question');
+            let correct = 0;
+            questions.forEach(q => {
+                const answer = q.dataset.answer;
+                const selected = q.querySelector('input[type="radio"]:checked');
+                const feedback = q.querySelector('.quiz-feedback');
+                if (selected) {
+                    if (selected.value === answer) {
+                        feedback.innerHTML = '<span class="correct">✅ ถูกต้อง!</span>';
+                        correct++;
+                    } else {
+                        feedback.innerHTML = '<span class="incorrect">❌ ลองใหม่</span>';
+                    }
+                } else {
+                    feedback.innerHTML = '<span class="incorrect">⚠️ เลือกคำตอบ</span>';
+                }
+            });
+            const resultDiv = document.getElementById('quiz-result');
+            if (correct === questions.length) {
+                resultDiv.innerHTML = '<div class="success-message">🎉 ยินดีด้วย!</div>';
+            }
+        }
+    </script>
+</body>
+</html>

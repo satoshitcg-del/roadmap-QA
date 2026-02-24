@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Documentation - QA Learning Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/topic.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">🧪</span>
+                <span class="logo-text">QA Learning Hub</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">← กลับสู่หน้าหลัก</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="topic-page">
+        <div class="topic-header">
+            <div class="container">
+                <div class="topic-meta">
+                    <span class="topic-level-badge beginner">Beginner</span>
+                    <span class="topic-category">Manual Testing</span>
+                </div>
+                <h1>📋 Test Documentation</h1>
+                <p class="topic-description">เอกสารทดสอบที่จำเป็นสำหรับ QA: Test Plan, Test Strategy, Test Report</p>
+            </div>
+        </div>
+
+        <div class="topic-content">
+            <div class="container">
+                <nav class="toc">
+                    <h3>📋 สารบัญ</h3>
+                    <ul>
+                        <li><a href="#overview">ภาพรวม</a></li>
+                        <li><a href="#test-plan">Test Plan</a></li>
+                        <li><a href="#test-strategy">Test Strategy</a></li>
+                        <li><a href="#test-case">Test Case Template</a></li>
+                        <li><a href="#test-report">Test Report</a></li>
+                        <li><a href="#best-practices">Best Practices</a></li>
+                        <li><a href="#quiz">แบบทดสอบ</a></li>
+                    </ul>
+                </nav>
+
+                <article class="content-body">
+                    <section id="overview">
+                        <h2>📄 ทำไมต้องมี Test Documentation?</h2>
+                        <p>เอกสารทดสอบ (Test Documentation) คือหลักฐานสำคัญที่แสดงให้เห็นว่า:</p>
+                        <ul>
+                            <li>✅ เราวางแผนทดสอบอะไรบ้าง</li>
+                            <li>✅ เราทดสอบอะไรไปแล้วบ้าง</li>
+                            <li>✅ ผลการทดสอบเป็นอย่างไร</li>
+                            <li>✅ คุณภาพซอฟต์แวร์ตอนนี้อยู่ในระดับไหน</li>
+                        </ul>
+                        
+                        <div class="info-box">
+                            <h4>📊 สถิติที่น่าสนใจ</h4>
+                            <p>โครงการที่มีเอกสารทดสอบที่ดี มีโอกาสสำเร็จสูงกว่า <strong>40%</strong> และลดเวลาในการ Maintenance ลง <strong>30%</strong></p>
+                        </div>
+                    </section>
+
+                    <section id="test-plan">
+                        <h2>🗂️ Test Plan คืออะไร?</h2>
+                        <p><strong>Test Plan</strong> เป็นเอกสารที่อธิบายว่า <em>"เราจะทดสอบอะไร อย่างไร และเมื่อไหร่"</em> สำหรับโครงการหรือ Release ใด Release หนึ่ง</p>
+                        
+                        <h3>📝 Test Plan Template (IEEE 829)</h3>
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code>1. Introduction
+   1.1 Document Identifier
+   1.2 Scope
+   1.3 References
+
+2. Test Items (สิ่งที่จะทดสอบ)
+   - Features ที่ต้องทดสอบ
+   - Features ที่ไม่ต้องทดสอบ
+
+3. Features to be Tested
+   - Functional Requirements
+   - Non-functional Requirements
+
+4. Features Not to be Tested
+   - Out of scope items
+
+5. Approach (วิธีการทดสอบ)
+   - Testing Levels (Unit, Integration, System)
+   - Testing Types (Functional, Performance, Security)
+
+6. Item Pass/Fail Criteria
+   - เกณฑ์การผ่าน/ไม่ผ่าน
+
+7. Suspension Criteria and Resumption Requirements
+   - หยุดทดสอบเมื่อไหร่
+   - กลับมาทดสอบเมื่อไหร่
+
+8. Test Deliverables
+   - เอกสารที่จะส่งมอบ
+
+9. Testing Tasks
+   - รายการงานที่ต้องทำ
+
+10. Environmental Needs
+    - Hardware, Software, Tools
+
+11. Responsibilities
+    - ใครทำอะไร
+
+12. Staffing and Training Needs
+
+13. Schedule
+    - Timeline, Milestones
+
+14. Risks and Contingencies
+    - ความเสี่ยงและแผนสำรอง
+
+15. Approvals
+    - ผู้อนุมัติ</code></pre>
+                        </div>
+
+                        <h3>💡 ตัวอย่าง Test Plan สำหรับ E-commerce Website</h3>
+                        <div class="example-box">
+                            <h4>Test Plan: E-commerce v2.0</h4>
+                            <table>
+                                <tr><th>Item</th><th>Details</th></tr>
+                                <tr><td><strong>Scope</strong></td><td>User Registration, Product Search, Shopping Cart, Checkout, Payment</td></tr>
+                                <tr><td><strong>Approach</strong></td><td>Manual testing สำหรับ UI, Automation สำหรับ Regression</td></tr>
+                                <tr><td><strong>Entry Criteria</strong></td><td>Code freeze, Unit tests pass, Build deployed to staging</td></tr>
+                                <tr><td><strong>Exit Criteria</strong></td><td>All P1 bugs fixed, 95% test cases passed, Performance metrics met</td></tr>
+                                <tr><td><strong>Timeline</strong></td><td>2 weeks (Sprint 15)</td></tr>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section id="test-strategy">
+                        <h2>🎯 Test Strategy vs Test Plan</h2>
+                        <table class="comparison-table">
+                            <tr>
+                                <th>Test Strategy</th>
+                                <th>Test Plan</th>
+                            </tr>
+                            <tr>
+                                <td>ระดับองค์กร/โครงการ</td>
+                                <td>ระดับ Release/Iteration</td>
+                            </tr>
+                            <tr>
+                                <td>กว้าง ครอบคลุมทุกโครงการ</td>
+                                <td>เฉพาะเจาะจงต่อ Release</td>
+                            </tr>
+                            <tr>
+                                <td>ระยะยาว (1-3 ปี)</td>
+                                <td>ระยะสั้น (1 Sprint - 3 เดือน)</td>
+                            </tr>
+                            <tr>
+                                <td>กำหนด "ทำอย่างไร"</td>
+                                <td>กำหนด "ทดสอบอะไร"</td>
+                            </tr>
+                        </table>
+
+                        <h3>📝 Test Strategy Template</h3>
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code>1. Objective & Scope
+   - เป้าหมายของการทดสอบในองค์กร
+
+2. Test Levels
+   - Unit Testing: Developer responsibility
+   - Integration Testing: QA + Developer
+   - System Testing: QA Team
+   - UAT: Business Users
+
+3. Test Types
+   - Functional Testing
+   - Performance Testing
+   - Security Testing
+   - Usability Testing
+
+4. Test Environment
+   - Dev → Staging → Production
+
+5. Tools & Frameworks
+   - Test Management: TestRail
+   - Automation: Selenium + Python
+   - CI/CD: Jenkins
+
+6. Roles & Responsibilities
+   - QA Lead: Strategy, Planning
+   - QA Engineer: Execution, Automation
+   - Developer: Unit Tests
+
+7. Metrics & KPIs
+   - Test Coverage ≥ 80%
+   - Defect Density < 5 per 1000 LOC
+   - Automation Coverage ≥ 60%</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="test-case">
+                        <h2>🧪 Test Case Template</h2>
+                        <p>Test Case ที่ดีควรมีองค์ประกอบครบถ้วน:</p>
+                        
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code>| Field | Description | Example |
+|-------|-------------|---------|
+| Test Case ID | รหัสเฉพาะ | TC_LOGIN_001 |
+| Title | ชื่อสั้น ชัดเจน | Verify successful login with valid credentials |
+| Precondition | เงื่อนไขก่อนทดสอบ | User exists, Account active |
+| Test Steps | ขั้นตอน 1, 2, 3... | 1. Go to login page<br>2. Enter username<br>3. Enter password<br>4. Click Login |
+| Test Data | ข้อมูลที่ใช้ | username: testuser, password: Test@123 |
+| Expected Result | ผลที่ควรได้ | Redirect to dashboard, Welcome message shown |
+| Actual Result | ผลที่ได้จริง | (เติมหลังทดสอบ) |
+| Status | Pass/Fail/Block | Pass |
+| Priority | P1/P2/P3 | P1 - Critical |
+| Environment | Browser/OS | Chrome 120, Windows 11 |
+| Tester | ผู้ทดสอบ | John Doe |
+| Date | วันที่ทดสอบ | 2026-02-24 |</code></pre>
+                        </div>
+
+                        <h3>✨ ตัวอย่าง Test Case ที่ดี</h3>
+                        <div class="example-box">
+                            <table class="test-case-table">
+                                <tr><td class="label">Test Case ID</td><td>TC_SEARCH_003</td></tr>
+                                <tr><td class="label">Title</td><td>Verify search with no results shows empty state</td></tr>
+                                <tr><td class="label">Precondition</td><td>User is on homepage</td></tr>
+                                <tr><td class="label">Steps</td><td>
+                                    1. Click on search box<br>
+                                    2. Type "xyz123nonexistent"<br>
+                                    3. Press Enter
+                                </td></tr>
+                                <tr><td class="label">Expected Result</td><td>
+                                    - Search results page displays<br>
+                                    - Message: "No products found for 'xyz123nonexistent'"<br>
+                                    - "Browse all products" link shown
+                                </td></tr>
+                                <tr><td class="label">Priority</td><td>P2 - High</td></tr>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section id="test-report">
+                        <h2>📊 Test Report</h2>
+                        <p>สรุปผลการทดสอบเพื่อสื่อสารกับ Stakeholders</p>
+
+                        <h3>📈 Executive Summary Report</h3>
+                        <div class="code-block">
+                            <button class="copy-code-btn">📋 คัดลอก</button>
+                            <pre><code>TEST EXECUTION SUMMARY REPORT
+Project: E-commerce Mobile App v3.0
+Test Period: Feb 1-14, 2026
+
+═══════════════════════════════════════
+EXECUTIVE SUMMARY
+═══════════════════════════════════════
+Overall Status: ✅ READY FOR RELEASE
+
+Key Metrics:
+• Total Test Cases: 450
+• Passed: 432 (96%)
+• Failed: 12 (2.7%)
+• Blocked: 6 (1.3%)
+• Not Run: 0 (0%)
+
+Defect Summary:
+• Critical (P1): 0 open
+• High (P2): 2 open (workaround available)
+• Medium (P3): 5 open (fixed in next release)
+• Low (P4): 8 open
+
+═══════════════════════════════════════
+RISK ASSESSMENT
+═══════════════════════════════════════
+• Release Risk: LOW
+• Known Issues: 2 minor UI glitches
+• Recommendation: Approve for release
+
+═══════════════════════════════════════
+TEST COVERAGE
+═══════════════════════════════════════
+• Functional: 98%
+• UI/UX: 95%
+• API: 100%
+• Performance: 90%</code></pre>
+                        </div>
+
+                        <h3>📋 Daily/Weekly Test Report</h3>
+                        <table class="report-table">
+                            <tr>
+                                <th>Metric</th>
+                                <th>Day 1</th>
+                                <th>Day 2</th>
+                                <th>Day 3</th>
+                                <th>Total</th>
+                            </tr>
+                            <tr>
+                                <td>Test Cases Executed</td>
+                                <td>50</td>
+                                <td>75</td>
+                                <td>60</td>
+                                <td>185</td>
+                            </tr>
+                            <tr>
+                                <td>Passed</td>
+                                <td>45</td>
+                                <td>70</td>
+                                <td>58</td>
+                                <td>173</td>
+                            </tr>
+                            <tr>
+                                <td>Failed</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>2</td>
+                                <td>9</td>
+                            </tr>
+                            <tr>
+                                <td>New Bugs Found</td>
+                                <td>5</td>
+                                <td>3</td>
+                                <td>2</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>Bugs Fixed</td>
+                                <td>2</td>
+                                <td>4</td>
+                                <td>3</td>
+                                <td>9</td>
+                            </tr>
+                        </table>
+                    </section>
+
+                    <section id="best-practices">
+                        <h2>✅ Best Practices สำหรับ Test Documentation</h2>
+                        
+                        <div class="tips-grid">
+                            <div class="tip-card">
+                                <span class="tip-icon">🎯</span>
+                                <h4>ชัดเจนและกระชับ</h4>
+                                <p>เขียนให้เข้าใจง่าย ไม่ซับซ้อนเกินจำเป็น</p>
+                            </div>
+                            <div class="tip-card">
+                                <span class="tip-icon">🔄</span>
+                                <h4>Review Regularly</h4>
+                                <p>อัปเดตเอกสารให้ตรงกับความเป็นจริง</p>
+                            </div>
+                            <div class="tip-card">
+                                <span class="tip-icon">🤝</span>
+                                <h4>Stakeholder Input</h4>
+                                <p>ให้ทีมอื่นรีวิวเพื่อความครบถ้วน</p>
+                            </div>
+                            <div class="tip-card">
+                                <span class="tip-icon">📊</span>
+                                <h4>ใช้ Template</h4>
+                                <p>มาตรฐานเดียวกันทั้งทีม</p>
+                            </div>
+                            <div class="tip-card">
+                                <span class="tip-icon">💾</span>
+                                <h4>Version Control</h4>
+                                <p>เก็บประวัติการแก้ไข</p>
+                            </div>
+                            <div class="tip-card">
+                                <span class="tip-icon">🌐</span>
+                                <h4>Centralized Location</h4>
+                                <p>Confluence, SharePoint, TestRail</p>
+                            </div>
+                        </div>
+
+                        <div class="warning-box">
+                            <h4>⚠️ Common Mistakes</h4>
+                            <ul>
+                                <li>❌ Test Plan ที่ไม่มี Exit Criteria ชัดเจน</li>
+                                <li>❌ Test Case ที่ซ้ำซ้อนกัน</li>
+                                <li>❌ ไม่ Update เอกสารหลัง Release</li>
+                                <li>❌ เขียนเอกสารมากเกินไป (Over-documentation)</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section id="quiz" class="quiz-section">
+                        <h2>🧠 แบบทดสอบความเข้าใจ</h2>
+                        
+                        <div class="quiz-container">
+                            <div class="quiz-question" data-answer="b">
+                                <p><strong>คำถาม 1:</strong> ความแตกต่างหลักระหว่าง Test Plan และ Test Strategy คืออะไร?</p>
+                                <div class="quiz-options">
+                                    <label><input type="radio" name="q1" value="a"> Test Plan ยาวกว่า</label>
+                                    <label><input type="radio" name="q1" value="b"> Test Strategy อยู่ระดับองค์กร ส่วน Test Plan อยู่ระดับ Release</label>
+                                    <label><input type="radio" name="q1" value="c"> ไม่มีความแตกต่าง</label>
+                                </div>
+                                <div class="quiz-feedback"></div>
+                            </div>
+
+                            <div class="quiz-question" data-answer="c">
+                                <p><strong>คำถาม 2:</strong> Test Case ควรมีองค์ประกอบใดบ้าง?</p>
+                                <div class="quiz-options">
+                                    <label><input type="radio" name="q2" value="a"> แค่ Title และ Steps</label>
+                                    <label><input type="radio" name="q2" value="b"> Title, Steps, Expected Result</label>
+                                    <label><input type="radio" name="q2" value="c"> ID, Title, Precondition, Steps, Test Data, Expected Result, Priority</label>
+                                </div>
+                                <div class="quiz-feedback"></div>
+                            </div>
+
+                            <div class="quiz-question" data-answer="a">
+                                <p><strong>คำถาม 3:</strong> Exit Criteria มีไว้เพื่ออะไร?</p>
+                                <div class="quiz-options">
+                                    <label><input type="radio" name="q3" value="a"> กำหนดว่าทดสอบเสร็จเมื่อไหร่และ Release ได้เมื่อไหร่</label>
+                                    <label><input type="radio" name="q3" value="b"> บอกว่าต้องทดสอบกี่ Test Case</label>
+                                    <label><input type="radio" name="q3" value="c"> กำหนดว่าใครเป็นคนทดสอบ</label>
+                                </div>
+                                <div class="quiz-feedback"></div>
+                            </div>
+
+                            <button class="btn btn-primary" onclick="checkAnswers()">ตรวจคำตอบ</button>
+                            <div id="quiz-result"></div>
+                        </div>
+                    </section>
+
+                    <section class="completion-section">
+                        <button class="btn btn-complete" onclick="markComplete()">
+                            ✅ ฉันเรียนจบบทนี้แล้ว
+                        </button>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 QA Learning Hub | สร้างด้วย ❤️ สำหรับ QA ทุกคน</p>
+        </div>
+    </footer>
+
+    <script src="../js/topic.js"></script>
+    <script>
+        function checkAnswers() {
+            const questions = document.querySelectorAll('.quiz-question');
+            let correct = 0;
+            
+            questions.forEach(q => {
+                const answer = q.dataset.answer;
+                const selected = q.querySelector('input[type="radio"]:checked');
+                const feedback = q.querySelector('.quiz-feedback');
+                
+                if (selected) {
+                    if (selected.value === answer) {
+                        feedback.innerHTML = '<span class="correct">✅ ถูกต้อง!</span>';
+                        correct++;
+                    } else {
+                        feedback.innerHTML = '<span class="incorrect">❌ ลองใหม่อีกครั้ง</span>';
+                    }
+                } else {
+                    feedback.innerHTML = '<span class="incorrect">⚠️ กรุณาเลือกคำตอบ</span>';
+                }
+            });
+            
+            const resultDiv = document.getElementById('quiz-result');
+            if (correct === questions.length) {
+                resultDiv.innerHTML = '<div class="success-message">🎉 ยินดีด้วย! คุณตอบถูกทุกข้อ!</div>';
+            } else {
+                resultDiv.innerHTML = `<div class="info-message">คุณตอบถูก ${correct}/${questions.length} ข้อ ลองเรียนรู้เพิ่มเติมแล้วทำอีกครั้งนะคะ</div>`;
+            }
+        }
+
+        function markComplete() {
+            markTopicComplete('topics/test-documentation.html');
+            alert('🎉 บันทึกความก้าวหน้าเรียบร้อย!');
+        }
+    </script>
+</body>
+</html>

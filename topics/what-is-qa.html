@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What is QA? - QA Learning Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/topic.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">🧪</span>
+                <span class="logo-text">QA Learning Hub</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">← กลับสู่หน้าหลัก</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="topic-page">
+        <div class="topic-header">
+            <div class="container">
+                <div class="topic-meta">
+                    <span class="topic-level-badge beginner">Beginner</span>
+                    <span class="topic-category">พื้นฐาน (Basics)</span>
+                </div>
+                <h1>🎯 What is QA?</h1>
+                <p class="topic-description">เข้าใจบทบาท QA Engineer และความแตกต่างระหว่าง QA กับ QC</p>
+            </div>
+        </div>
+
+        <div class="topic-content">
+            <div class="container">
+                <nav class="toc">
+                    <h3>📋 สารบัญ</h3>
+                    <ul>
+                        <li><a href="#qa-definition">QA คืออะไร?</a></li>
+                        <li><a href="#qa-vs-qc">QA vs QC</a></li>
+                        <li><a href="#responsibilities">หน้าที่ QA</a></li>
+                        <li><a href="#skills">ทักษะที่ต้องมี</a></li>
+                        <li><a href="#career">Career Path</a></li>
+                        <li><a href="#quiz">แบบทดสอบ</a></li>
+                    </ul>
+                </nav>
+
+                <article class="content-body">
+                    <section id="qa-definition">
+                        <h2>QA คืออะไร?</h2>
+                        <p><strong>QA (Quality Assurance)</strong> คือกระบวนการรับประกันคุณภาพซอฟต์แวร์ โดยมุ่งเน้นการป้องกันข้อบกพร่องตั้งแต่ต้น ผ่านกระบวนการและมาตรฐานที่ดี มากกว่าการหาบั๊กหลังจากพัฒนาเสร็จแล้ว</p>
+                        
+                        <div class="info-box">
+                            <span class="info-icon">💡</span>
+                            <div class="info-content">
+                                <strong>Key Concept:</strong> QA มุ่งเน้น <em>"ป้องกัน"</em> ข้อผิดพลาด ส่วน QC มุ่งเน้น <em>"ตรวจจับ"</em> ข้อผิดพลาด
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="qa-vs-qc">
+                        <h2>QA vs QC: ความแตกต่าง</h2>
+                        
+                        <div class="comparison-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ด้าน</th>
+                                        <th>QA (Quality Assurance)</th>
+                                        <th>QC (Quality Control)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>จุดเน้น</strong></td>
+                                        <td>กระบวนการ (Process)</td>
+                                        <td>ผลิตภัณฑ์ (Product)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>เป้าหมาย</strong></td>
+                                        <td>ป้องกันข้อผิดพลาด</td>
+                                        <td>หาและแก้ไขข้อผิดพลาด</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>เวลา</strong></td>
+                                        <td>ตลอด SDLC</td>
+                                        <td>หลังจากพัฒนา</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>กิจกรรม</strong></td>
+                                        <td>Process definition, Audits</td>
+                                        <td>Testing, Reviews</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section id="responsibilities">
+                        <h2>หน้าที่ของ QA Engineer</h2>
+                        
+                        <div class="component-grid">
+                            <div class="component-card">
+                                <div class="component-icon">📝</div>
+                                <h4>Test Planning</h4>
+                                <ul>
+                                    <li>เขียน Test Plan</li>
+                                    <li>กำหนด Test Strategy</li>
+                                    <li>ประมาณการเวลา</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="component-card">
+                                <div class="component-icon">🔍</div>
+                                <h4>Testing</h4>
+                                <ul>
+                                    <li>Manual Testing</li>
+                                    <li>Automation Testing</li>
+                                    <li>API Testing</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="component-card">
+                                <div class="component-icon">🐛</div>
+                                <h4>Bug Management</h4>
+                                <ul>
+                                    <li>รายงาน Bugs</li>
+                                    <li>ติดตามสถานะ</li>
+                                    <li>Verify fixes</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="component-card">
+                                <div class="component-icon">🤝</div>
+                                <h4>Collaboration</h4>
+                                <ul>
+                                    <li>ทำงานกับ Developer</li>
+                                    <li>รายงานผลให้ Stakeholders</li>
+                                    <li>Improve Processes</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="skills">
+                        <h2>ทักษะที่ QA Engineer ต้องมี</h2>
+                        
+                        <div class="comparison-cards">
+                            <div class="comparison-card client">
+                                <div class="card-header">
+                                    <span class="card-icon">💻</span>
+                                    <h3>Technical Skills</h3>
+                                </div>
+                                <ul>
+                                    <li>เข้าใจ Testing Methodologies</li>
+                                    <li>เขียน Test Cases</li>
+                                    <li>ใช้ Automation Tools (Selenium, etc.)</li>
+                                    <li>รู้จัก API และ Database</li>
+                                    <li>เขียน SQL</li>
+                                    <li>Version Control (Git)</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="comparison-card server">
+                                <div class="card-header">
+                                    <span class="card-icon">👤</span>
+                                    <h3>Soft Skills</h3>
+                                </div>
+                                <ul>
+                                    <li>Analytical Thinking</li>
+                                    <li>Attention to Detail</li>
+                                    <li>Communication Skills</li>
+                                    <li>Problem Solving</li>
+                                    <li>Time Management</li>
+                                    <li>Teamwork</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="career">
+                        <h2>Career Path</h2>
+                        
+                        <div class="process-flow">
+                            <div class="process-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>Junior QA (0-2 ปี)</h4>
+                                    <p>Execute test cases, Report bugs, Learn tools</p>
+                                </div>
+                            </div>
+                            <div class="process-arrow">↓</div>
+                            
+                            <div class="process-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>QA Engineer (2-5 ปี)</h4>
+                                    <p>Write test plans, Automation, API testing</p>
+                                </div>
+                            </div>
+                            <div class="process-arrow">↓</div>
+                            
+                            <div class="process-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>Senior QA (5+ ปี)</h4>
+                                    <p>Test strategy, Mentoring, CI/CD integration</p>
+                                </div>
+                            </div>
+                            <div class="process-arrow">↓</div>
+                            
+                            <div class="process-step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4>QA Lead / Manager</h4>
+                                    <p>Team management, Process improvement, Strategy</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="quiz" class="quiz-section">
+                        <h2>🎯 แบบทดสอบ</h2>
+                        
+                        <div class="quiz-container">
+                            <div class="quiz-question" data-correct="b">
+                                <p class="question">1. QA เน้นที่อะไรเป็นหลัก?</p>
+                                <div class="options">
+                                    <label><input type="radio" name="q1" value="a"> หา Bugs หลังพัฒนา</label>
+                                    <label><input type="radio" name="q1" value="b"> ป้องกันข้อผิดพลาด</label>
+                                    <label><input type="radio" name="q1" value="c"> เขียนโค้ด</label>
+                                    <label><input type="radio" name="q1" value="d"> ออกแบบ UI</label>
+                                </div>
+                                <div class="feedback"></div>
+                            </div>
+                            
+                            <div class="quiz-question" data-correct="c">
+                                <p class="question">2. QC ทำงานช่วงไหนของ SDLC?</p>
+                                <div class="options">
+                                    <label><input type="radio" name="q2" value="a"> ต้นโครงการ</label>
+                                    <label><input type="radio" name="q2" value="b"> ตลอดโครงการ</label>
+                                    <label><input type="radio" name="q2" value="c"> หลังพัฒนาเสร็จ</label>
+                                    <label><input type="radio" name="q2" value="d"> ไม่เกี่ยวข้อง</label>
+                                </div>
+                                <div class="feedback"></div>
+                            </div>
+                            
+                            <div class="quiz-question" data-correct="a">
+                                <p class="question">3. ข้อใดเป็นทักษะ Technical ของ QA?</p>
+                                <div class="options">
+                                    <label><input type="radio" name="q3" value="a"> เขียน SQL</label>
+                                    <label><input type="radio" name="q3" value="b"> Communication</label>
+                                    <label><input type="radio" name="q3" value="c"> Teamwork</label>
+                                    <label><input type="radio" name="q3" value="d"> Time Management</label>
+                                </div>
+                                <div class="feedback"></div>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-primary" id="checkAnswers">ตรวจคำตอบ</button>
+                        <div id="quizResult" class="quiz-result"></div>
+                    </section>
+                </article>
+
+                <nav class="topic-nav">
+                    <a href="http-https.html" class="nav-prev">← HTTP/HTTPS</a>
+                    <a href="testing-types.html" class="nav-next">Testing Types →</a>
+                </nav>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/topic.js"></script>
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTTP/HTTPS - QA Learning Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/topic.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">🧪</span>
+                <span class="logo-text">QA Learning Hub</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">← กลับสู่หน้าหลัก</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="topic-page">
+        <div class="topic-header">
+            <div class="container">
+                <div class="topic-meta">
+                    <span class="topic-level-badge beginner">Beginner</span>
+                    <span class="topic-category">พื้นฐาน (Basics)</span>
+                </div>
+                <h1>📡 HTTP/HTTPS</h1>
+                <p class="topic-description">โปรโตคอลหลักของเว็บ - เรียนรู้การทำงานของ HTTP, Methods, Status Codes และความปลอดภัยด้วย HTTPS</p>
+            </div>
+        </div>
+
+        <div class="topic-content">
+            <div class="container">
+                <nav class="toc">
+                    <h3>📋 สารบัญ</h3>
+                    <ul>
+                        <li><a href="#what-is-http">HTTP คืออะไร?</a></li>
+                        <li><a href="#http-methods">HTTP Methods</a></li>
+                        <li><a href="#status-codes">Status Codes</a></li>
+                        <li><a href="#headers">HTTP Headers</a></li>
+                        <li><a href="#https">HTTPS และ SSL/TLS</a></li>
+                        <li><a href="#quiz">แบบทดสอบ</a></li>
+                    </ul>
+                </nav>
+
+                <article class="content-body">
+                    <section id="what-is-http">
+                        <h2>HTTP คืออะไร?</h2>
+                        <p><strong>HTTP (HyperText Transfer Protocol)</strong> เป็นโปรโตคอลที่ใช้สื่อสารระหว่าง Client (เบราว์เซอร์) กับ Server บนอินเทอร์เน็ต เป็นรากฐานของการทำงานทั้งหมดบนเว็บไซต์</p>
+                        
+                        <div class="info-box">
+                            <span class="info-icon">💡</span>
+                            <div class="info-content">
+                                <strong>สำหรับ QA:</strong> ต้องเข้าใจ HTTP เพื่อตรวจสอบ API, วิเคราะห์ Network Traffic และ Debug ปัญหาเว็บแอป
+                            </div>
+                        </div>
+
+                        <h3>โครงสร้าง HTTP Request/Response</h3>
+                        
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>HTTP Request Example</span>
+                                <button class="copy-code-btn">📋 คัดลอก</button>
+                            </div>
+                            <pre><code>GET /api/users HTTP/1.1
+Host: example.com
+User-Agent: Mozilla/5.0
+Accept: application/json
+Authorization: Bearer token123</code></pre>
+                        </div>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>HTTP Response Example</span>
+                                <button class="copy-code-btn">📋 คัดลอก</button>
+                            </div>
+                            <pre><code>HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 123
+Date: Mon, 24 Feb 2026 08:00:00 GMT
+
+{
+  "users": [
+    {"id": 1, "name": "John"},
+    {"id": 2, "name": "Jane"}
+  ]
+}</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="http-methods">
+                        <h2>HTTP Methods</h2>
+                        
+                        <div class="comparison-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Method</th>
+                                        <th>คำอธิบาย</th>
+                                        <th>ใช้เมื่อไหร่</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>GET</strong></td>
+                                        <td>ดึงข้อมูล</td>
+                                        <td>อ่านข้อมูล, ไม่มีผลต่อ Server</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>POST</strong></td>
+                                        <td>สร้างข้อมูล</td>
+                                        <td>สร้าง Resource ใหม่</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>PUT</strong></td>
+                                        <td>แก้ไขข้อมูล (ทั้งหมด)</td>
+                                        <td>อัปเดต Resource แทนที่ทั้งหมด</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>PATCH</strong></td>
+                                        <td>แก้ไขข้อมูล (บางส่วน)</td>
+                                        <td>อัปเดตเฉพาะฟิลด์ที่เปลี่ยน</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>DELETE</strong></td>
+                                        <td>ลบข้อมูล</td>
+                                        <td>ลบ Resource</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section id="status-codes">
+                        <h2>HTTP Status Codes</h2>
+                        
+                        <div class="component-grid">
+                            <div class="component-card">
+                                <div class="component-icon" style="color: var(--beginner);">2xx</div>
+                                <h4>Success</h4>
+                                <ul>
+                                    <li><strong>200 OK</strong> - สำเร็จ</li>
+                                    <li><strong>201 Created</strong> - สร้างสำเร็จ</li>
+                                    <li><strong>204 No Content</strong> - สำเร็จแต่ไม่มีข้อมูล</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="component-card">
+                                <div class="component-icon" style="color: var(--intermediate);">3xx</div>
+                                <h4>Redirection</h4>
+                                <ul>
+                                    <li><strong>301 Moved</strong> - ย้ายถาวร</li>
+                                    <li><strong>302 Found</strong> - ย้ายชั่วคราว</li>
+                                    <li><strong>304 Not Modified</strong> - ใช้ Cache</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="component-card">
+                                <div class="component-icon" style="color: var(--advanced);">4xx</div>
+                                <h4>Client Error</h4>
+                                <ul>
+                                    <li><strong>400 Bad Request</strong></li>
+                                    <li><strong>401 Unauthorized</strong></li>
+                                    <li><strong>403 Forbidden</strong></li>
+                                    <li><strong>404 Not Found</strong></li>
+                                    <li><strong>422 Validation Error</strong></li>
+                                </ul>
+                            </div>
+                            
+                            <div class="component-card">
+                                <div class="component-icon" style="color: var(--advanced);">5xx</div>
+                                <h4>Server Error</h4>
+                                <ul>
+                                    <li><strong>500 Internal Error</strong></li>
+                                    <li><strong>502 Bad Gateway</strong></li>
+                                    <li><strong>503 Service Unavailable</strong></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="headers">
+                        <h2>HTTP Headers สำคัญ</h2>
+                        
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Common Headers</span>
+                                <button class="copy-code-btn">📋 คัดลอก</button>
+                            </div>
+                            <pre><code># Request Headers
+Content-Type: application/json    # ประเภทข้อมูล
+Authorization: Bearer token       # ยืนยันตัวตน
+Accept: application/json          # รับข้อมูลแบบไหน
+User-Agent: Chrome/120            # เบราว์เซอร์
+
+# Response Headers
+Content-Length: 1234              # ขนาดข้อมูล
+Cache-Control: max-age=3600       # การ Cache
+Set-Cookie: session=abc123        # ตั้งค่า Cookie</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="https">
+                        <h2>HTTPS และ SSL/TLS</h2>
+                        
+                        <p><strong>HTTPS (HTTP Secure)</strong> คือ HTTP ที่มีการเข้ารหัสข้อมูลด้วย SSL/TLS ป้องกันการดักจับข้อมูลระหว่างทาง</p>
+                        
+                        <div class="process-flow">
+                            <div class="process-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>SSL Handshake</h4>
+                                    <p>Client & Server ตกลงวิธีเข้ารหัส</p>
+                                </div>
+                            </div>
+                            <div class="process-arrow">↓</div>
+                            <div class="process-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>Certificate Exchange</h4>
+                                    <p>Server ส่งใบรับรอง SSL</p>
+                                </div>
+                            </div>
+                            <div class="process-arrow">↓</div>
+                            <div class="process-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>Secure Communication</h4>
+                                    <p>สื่อสารด้วยการเข้ารหัส</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="quiz" class="quiz-section">
+                        <h2>🎯 แบบทดสอบ</h2>
+                        
+                        <div class="quiz-container">
+                            <div class="quiz-question" data-correct="b">
+                                <p class="question">1. HTTP Method ใดใช้สำหรับสร้างข้อมูลใหม่?</p>
+                                <div class="options">
+                                    <label><input type="radio" name="q1" value="a"> GET</label>
+                                    <label><input type="radio" name="q1" value="b"> POST</label>
+                                    <label><input type="radio" name="q1" value="c"> PUT</label>
+                                    <label><input type="radio" name="q1" value="d"> DELETE</label>
+                                </div>
+                                <div class="feedback"></div>
+                            </div>
+                            
+                            <div class="quiz-question" data-correct="a">
+                                <p class="question">2. Status Code 200 หมายถึงอะไร?</p>
+                                <div class="options">
+                                    <label><input type="radio" name="q2" value="a"> Success</label>
+                                    <label><input type="radio" name="q2" value="b"> Error</label>
+                                    <label><input type="radio" name="q2" value="c"> Redirect</label>
+                                    <label><input type="radio" name="q2" value="d"> Not Found</label>
+                                </div>
+                                <div class="feedback"></div>
+                            </div>
+                            
+                            <div class="quiz-question" data-correct="c">
+                                <p class="question">3. HTTPS แตกต่างจาก HTTP อย่างไร?</p>
+                                <div class="options">
+                                    <label><input type="radio" name="q3" value="a"> เร็วกว่า</label>
+                                    <label><input type="radio" name="q3" value="b"> รองรับไฟล์ใหญ่กว่า</label>
+                                    <label><input type="radio" name="q3" value="c"> เข้ารหัสข้อมูล</label>
+                                    <label><input type="radio" name="q3" value="d"> ใช้พอร์ตต่างกัน</label>
+                                </div>
+                                <div class="feedback"></div>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-primary" id="checkAnswers">ตรวจคำตอบ</button>
+                        <div id="quizResult" class="quiz-result"></div>
+                    </section>
+                </article>
+
+                <nav class="topic-nav">
+                    <a href="internet-basics.html" class="nav-prev">← Internet Basics</a>
+                    <a href="what-is-qa.html" class="nav-next">What is QA? →</a>
+                </nav>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/topic.js"></script>
+</body>
+</html>

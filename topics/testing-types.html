@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing Types - QA Learning Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/topic.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">🧪</span>
+                <span class="logo-text">QA Learning Hub</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">← กลับสู่หน้าหลัก</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="topic-page">
+        <div class="topic-header">
+            <div class="container">
+                <div class="topic-meta">
+                    <span class="topic-level-badge beginner">Beginner</span>
+                    <span class="topic-category">พื้นฐาน (Basics)</span>
+                </div>
+                <h1>🧩 Testing Types</h1>
+                <p class="topic-description">เรียนรู้ประเภทการทดสอบต่างๆ: Functional, Non-Functional, Manual, Automation และอื่นๆ</p>
+            </div>
+        </div>
+
+        <div class="topic-content">
+            <div class="container">
+                <nav class="toc">
+                    <h3>📋 สารบัญ</h3>
+                    <ul>
+                        <li><a href="#functional">Functional Testing</a></li>
+                        <li><a href="#non-functional">Non-Functional Testing</a></li>
+                        <li><a href="#manual-auto">Manual vs Automation</a></li>
+                        <li><a href="#levels">Levels of Testing</a></li>
+                        <li><a href="#quiz">แบบทดสอบ</a></li>
+                    </ul>
+                </nav>
+
+                <article class="content-body">
+                    <section id="functional">
+                        <h2>Functional Testing</h2>
+                        
+                        <p>การทดสอบฟังก์ชันการทำงานของซอฟต์แวร์ว่าตรงตาม Requirements หรือไม่</p>
+                        
+                        <div class="component-grid">
+                            <div class="component-card">
+                                <div class="component-icon">📦</div>
+                                <h4>Unit Testing</h4>
+                                <p>ทดสอบส่วนย่อยที่สุด (function, method) มักโดย Developer</p>
+                            </div>
+                            
+                            <div class="component-card">
+                                <div class="component-icon">🔗</div>
+                                <h4>Integration Testing</h4>
+                                <p>ทดสอบการเชื่อมต่อระหว่าง modules/components</p>
+                            </div>
+                            
+                            <div class="component-card">
+                                <div class="component-icon">🎯</div>
+                                <h4>System Testing</h4>
+                                <p>ทดสอบระบบทั้งหมดตาม Requirements</p>
+                            </div>
+                            
+                            <div class="component-card">
+                                <div class="component-icon">✅</div>
+                                <h4>Acceptance Testing</h4>
+                                <p>ตรวจสอบว่าพร้อมส่งมอบ (UAT, BAT)</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="non-functional">
+                        <h2>Non-Functional Testing</h2>
+                        
+                        <p>ทดสอบคุณสมบัติที่ไม่ใช่ฟังก์ชันการทำงานโดยตรง เช่น ความเร็ว ความปลอดภัย</p>
+                        
+                        <div class="comparison-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ประเภท</th>
+                                        <th>จุดประสงค์</th>
+                                        <th>เครื่องมือตัวอย่าง</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Performance</td>
+                                        <td>ความเร็ว ความเสถียร</td>
+                                        <td>JMeter, LoadRunner</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Security</td>
+                                        <td>ความปลอดภัย</td>
+                                        <td>OWASP ZAP, Burp Suite</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Usability</td>
+                                        <td>ความง่ายต่อการใช้งาน</td>
+                                        <td>User testing</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Compatibility</td>
+                                        <td>ทำงานบนอุปกรณ์/บราว์เซอร์ต่างๆ</td>
+                                        <td>BrowserStack</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Reliability</td>
+                                        <td>ความน่าเชื่อถือ</td>
+                                        <td>Chaos Engineering</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section id="manual-auto">
+                        <h2>Manual vs Automation Testing</h2>
+                        
+                        <div class="comparison-cards">
+                            <div class="comparison-card client">
+                                <div class="card-header">
+                                    <span class="card-icon">✋</span>
+                                    <h3>Manual Testing</h3>
+                                </div>
+                                <ul>
+                                    <li>✓ Exploratory testing</li>
+                                    <li>✓ Usability testing</li>
+                                    <li>✓ Ad-hoc testing</li>
+                                    <li>✗ Time-consuming</li>
+                                    <li>✗ Prone to human error</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="comparison-card server">
+                                <div class="card-header">
+                                    <span class="card-icon">🤖</span>
+                                    <h3>Automation Testing</h3>
+                                </div>
+                                <ul>
+                                    <li>✓ Regression testing</li>
+                                    <li>✓ Load testing</li>
+                                    <li>✓ Repetitive tasks</li>
+                                    <li>✓ Fast execution</li>
+                                    <li>✗ Initial setup cost</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="info-box">
+                            <span class="info-icon">💡</span>
+                            <div class="info-content">
+                                <strong>แนะนำ:</strong> ใช้ทั้งสองแบบร่วมกัน — Manual สำหรับการทดสอบที่ต้องใช้มนุษย์ตัดสิน 
+                                และ Automation สำหรับงานที่ทำซ้ำบ่อย
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="levels">
+                        <h2>Levels of Testing (Testing Pyramid)</h2>
+                        
+                        <div class="diagram">
+                            <pre class="ascii-art">
+        /\
+       /  \       UI Tests (E2E)
+      / E2E \      - Few tests
+     /________\     - Slow, expensive
+    /          \
+   / Integration \   Integration Tests
+  /________________\  - Service/API level
+ /                  \
+/     Unit Tests     \ Unit Tests
+______________________ - Many tests
+                       - Fast, cheap
+                            </pre>
+                        </div>
+                        
+                        <p><strong>The Testing Pyramid:</strong> มี Unit Tests มากที่สุด (ฐานแพร่) และ E2E Tests น้อยที่สุด (ยอดแหลม)</p>
+                    </section>
+
+                    <section id="quiz" class="quiz-section">
+                        <h2>🎯 แบบทดสอบ</h2>
+                        
+                        <div class="quiz-container">
+                            <div class="quiz-question" data-correct="b">
+                                <p class="question">1. การทดสอบความเร็วของระบบเรียกว่าอะไร?</p>
+                                <div class="options">
+                                    <label><input type="radio" name="q1" value="a"> Functional Testing</label>
+                                    <label><input type="radio" name="q1" value="b"> Performance Testing</label>
+                                    <label><input type="radio" name="q1" value="c"> Unit Testing</label>
+                                    <label><input type="radio" name="q1" value="d"> Integration Testing</label>
+                                </div>
+                                <div class="feedback"></div>
+                            </div>
+                            
+                            <div class="quiz-question" data-correct="a">
+                                <p class="question">2. ใครเป็นผู้ทำ Unit Testing ส่วนใหญ่?</p>
+                                <div class="options">
+                                    <label><input type="radio" name="q2" value="a"> Developer</label>
+                                    <label><input type="radio" name="q2" value="b"> QA Engineer</label>
+                                    <label><input type="radio" name="q2" value="c"> Product Owner</label>
+                                    <label><input type="radio" name="q2" value="d"> End User</label>
+                                </div>
+                                <div class="feedback"></div>
+                            </div>
+                            
+                            <div class="quiz-question" data-correct="c">
+                                <p class="question">3. ข้อใดเหมาะกับ Automation?</p>
+                                <div class="options">
+                                    <label><input type="radio" name="q3" value="a"> Exploratory Testing</label>
+                                    <label><input type="radio" name="q3" value="b"> Usability Testing</label>
+                                    <label><input type="radio" name="q3" value="c"> Regression Testing</label>
+                                    <label><input type="radio" name="q3" value="d"> Ad-hoc Testing</label>
+                                </div>
+                                <div class="feedback"></div>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-primary" id="checkAnswers">ตรวจคำตอบ</button>
+                        <div id="quizResult" class="quiz-result"></div>
+                    </section>
+                </article>
+
+                <nav class="topic-nav">
+                    <a href="what-is-qa.html" class="nav-prev">← What is QA?</a>
+                    <a href="sdlc-stlc.html" class="nav-next">SDLC/STLC →</a>
+                </nav>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/topic.js"></script>
+</body>
+</html>
